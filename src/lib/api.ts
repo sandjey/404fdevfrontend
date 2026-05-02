@@ -1,6 +1,6 @@
 // API client (server- va client-side ishlaydi).
 
-export const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080/api/v1";
+export const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:7070/api/v1";
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
 type FetchOpts = RequestInit & {
