@@ -317,10 +317,13 @@
     to { transform: skewX(-8deg) scaleX(1); }
   }
 
-  /* ===== Header (iPhone-notch style) — slow plavno grow from center ===== */
+  /* ===== Header (iPhone-notch style) — slow plavno grow from center =====
+     The animation uses `clip-path: inset()` to reveal the pill from the
+     centre. After the animation, we lift the clip entirely so dropdown
+     menus and tooltips that visually sit OUTSIDE the pill can render. */
   .header-island {
     transform-origin: center center;
-    animation: header-reveal 2.6s cubic-bezier(.22,.7,.18,1) both;
+    animation: header-reveal 2.6s cubic-bezier(.22,.7,.18,1) forwards;
   }
   @keyframes header-reveal {
     0% {
@@ -331,8 +334,13 @@
     20% {
       opacity: 0.5;
     }
-    100% {
+    99% {
       clip-path: inset(0 0% 0 0% round 9999px);
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      clip-path: none;
       opacity: 1;
       transform: translateY(0);
     }

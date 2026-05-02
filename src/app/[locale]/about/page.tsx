@@ -5,6 +5,7 @@ import { type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { buildMetadata } from "@/lib/seo";
 import ContactForm from "@/components/contact/ContactForm";
+import CountUp from "@/components/CountUp";
 import {
   ArrowUpRightIcon,
   BotIcon,
@@ -235,7 +236,7 @@ export default function AboutPage({ params }: { params: { locale: Locale } }) {
 
   const WHY_REASONS = {
     uz: [
-      { t: "Brif va baho bepul", d: "30 daqiqalik qo'ng'iroq + 1-2 kun ichida batafsil baho." },
+      { t: "Brif va baho bepul", d: "Onlayn brif + 1-2 kun ichida batafsil baho." },
       { t: "Aniq narx, aniq muddat", d: "Hech qanday yashirin to'lov, sprint asosida ishlash." },
       { t: "Toza kod, hujjat, sinov", d: "Loyiha tugaganda hammasi sizga to'liq topshiriladi." },
       { t: "Reliz keyin support", d: "Birinchi 30 kun bepul bug-fix, keyin SLA shartnoma." },
@@ -243,7 +244,7 @@ export default function AboutPage({ params }: { params: { locale: Locale } }) {
       { t: "O'zbek + rus + ingliz", d: "Mijoz qulay tilda — biz har 3 tilda ishlaymiz." },
     ],
     ru: [
-      { t: "Бриф и оценка бесплатны", d: "Звонок 30 минут + детальная оценка за 1-2 дня." },
+      { t: "Бриф и оценка бесплатны", d: "Онлайн-бриф + детальная оценка за 1-2 дня." },
       { t: "Понятная цена и сроки", d: "Никаких скрытых платежей, работаем спринтами." },
       { t: "Чистый код, документация, тесты", d: "По завершении всё передаётся клиенту." },
       { t: "Поддержка после релиза", d: "Первые 30 дней — бесплатный bug-fix, далее SLA." },
@@ -251,7 +252,7 @@ export default function AboutPage({ params }: { params: { locale: Locale } }) {
       { t: "Узбекский + русский + английский", d: "Клиент на удобном языке — мы работаем на 3 языках." },
     ],
     en: [
-      { t: "Free brief and estimate", d: "30-min call + detailed estimate within 1-2 days." },
+      { t: "Free brief and estimate", d: "Online brief + detailed estimate within 1-2 days." },
       { t: "Clear price, clear timeline", d: "No hidden fees, sprint-based delivery." },
       { t: "Clean code, docs, tests", d: "Everything is handed over when the project ends." },
       { t: "Post-launch support", d: "First 30 days bug-fix free, then SLA." },
@@ -282,14 +283,18 @@ export default function AboutPage({ params }: { params: { locale: Locale } }) {
             <div className="lg:col-span-4">
               <div className="grid grid-cols-3 gap-3">
                 {[
-                  { v: "60+", l: t.home.statsClients },
-                  { v: "80+", l: t.home.statsProjects },
-                  { v: "5+", l: t.home.statsYears },
+                  { v: 60, l: t.home.statsClients,  delay: 200 },
+                  { v: 80, l: t.home.statsProjects, delay: 350 },
+                  { v: 5,  l: t.home.statsYears,    delay: 500 },
                 ].map((s) => (
-                  <div key={s.v} className="card p-4 text-center">
-                    <div className="font-display text-2xl md:text-3xl font-extrabold tracking-tightest text-ink-900 leading-none">
-                      {s.v}
-                    </div>
+                  <div key={s.l} className="card p-4 text-center">
+                    <CountUp
+                      value={s.v}
+                      suffix="+"
+                      duration={1700}
+                      delay={s.delay}
+                      className="block font-display text-2xl md:text-3xl font-extrabold tracking-tightest text-ink-900 leading-none tabular-nums"
+                    />
                     <div className="mt-1 text-[10px] md:text-[11px] text-ink-600 leading-tight">
                       {s.l}
                     </div>
@@ -585,9 +590,9 @@ export default function AboutPage({ params }: { params: { locale: Locale } }) {
                     <CheckIcon size={14} />
                   </span>
                   <span className="text-sm text-ink-800 leading-6 pt-1">
-                    {locale === "ru" ? "Бесплатная консультация 30 минут" :
-                     locale === "en" ? "Free 30-min consultation" :
-                     "Bepul 30-daqiqalik konsultatsiya"}
+                    {locale === "ru" ? "Бесплатный онлайн-бриф" :
+                     locale === "en" ? "Free online brief" :
+                     "Bepul onlayn brif"}
                   </span>
                 </li>
                 <li className="flex items-start gap-3">

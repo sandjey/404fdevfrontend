@@ -2,6 +2,7 @@ import Link from "next/link";
 import { type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import CTAButton from "@/components/CTAButton";
+import CountUp from "@/components/CountUp";
 import {
   ArrowRightIcon,
   ArrowUpRightIcon,
@@ -192,26 +193,35 @@ export default function Hero({ locale }: { locale: Locale }) {
               </Link>
             </div>
 
-            {/* Stats — single horizontal row, evenly spaced */}
+            {/* Stats — 3 columns; each stat stacks (number on top, label below)
+                so labels never wrap mid-row and the whole strip stays on
+                one line on every breakpoint. */}
             <div
-              className="mt-6 md:mt-9 flex items-center justify-between sm:justify-start sm:gap-x-7 animate-fade-up"
+              className="mt-6 md:mt-9 grid grid-cols-3 gap-2 sm:gap-4 max-w-md animate-fade-up"
               style={{ animationDelay: "280ms" }}
             >
               {[
-                { v: "80+", l: t.home.statsProjects },
-                { v: "60+", l: t.home.statsClients },
-                { v: "5+", l: t.home.statsYears },
+                { v: 80, suffix: "+", l: t.home.statsProjects, delay: 600 },
+                { v: 60, suffix: "+", l: t.home.statsClients,  delay: 750 },
+                { v: 5,  suffix: "+", l: t.home.statsYears,    delay: 900 },
               ].map((s, i) => (
-                <div key={s.v} className="flex items-baseline gap-1.5 sm:gap-2 shrink-0">
-                  <span className="font-display text-xl sm:text-3xl md:text-4xl font-extrabold tracking-tightest text-ink-900 leading-none">
-                    {s.v}
-                  </span>
-                  <span className="text-[10px] sm:text-[11px] md:text-xs text-ink-600 leading-tight max-w-[4.5rem] sm:max-w-[6rem]">
+                <div
+                  key={s.l}
+                  className={
+                    "flex flex-col items-start gap-0.5 " +
+                    (i > 0 ? "sm:pl-4 sm:border-l sm:border-ink-300/70" : "")
+                  }
+                >
+                  <CountUp
+                    value={s.v}
+                    suffix={s.suffix}
+                    duration={1700}
+                    delay={s.delay}
+                    className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tightest text-ink-900 leading-none tabular-nums"
+                  />
+                  <span className="text-[10px] sm:text-[11px] md:text-xs text-ink-600 leading-tight">
                     {s.l}
                   </span>
-                  {i < 2 && (
-                    <span aria-hidden className="hidden sm:inline-block ml-3 h-5 w-px bg-ink-300/70" />
-                  )}
                 </div>
               ))}
             </div>
@@ -268,7 +278,7 @@ export default function Hero({ locale }: { locale: Locale }) {
 function AnimatedHeadline({ locale }: { locale: Locale }) {
   const parts =
     locale === "uz"
-      ? { lead: "Bizneslarga", coral: "raqamli", end: "yechimlar" }
+      ? { lead: "Biznesingiz uchun", coral: "raqamli", end: "yechimlar" }
       : locale === "ru"
       ? { lead: "Создаём", coral: "цифровые", end: "решения" }
       : { lead: "We build", coral: "digital", end: "solutions" };

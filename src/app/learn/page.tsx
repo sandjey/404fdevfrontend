@@ -58,10 +58,6 @@ export default async function LearnIndexPage() {
           <p className="mt-6 max-w-2xl mx-auto text-lg text-ink-200">
             Asoslardan amaliyotgacha — soddadan murakkabga, real misollar va vazifalar bilan. Har bir mavzu tushunarli va aniq.
           </p>
-          <div className="mt-9 flex items-center justify-center gap-2 text-xs text-ink-300">
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse-soft" />
-            <span>Yangilanib boriladi · Practice-driven · O'zbek tilida</span>
-          </div>
         </div>
       </section>
 

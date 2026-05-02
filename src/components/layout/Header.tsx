@@ -205,6 +205,30 @@ export default function Header({ locale }: { locale: Locale }) {
         {open && (
           <div className="lg:hidden mt-2 pointer-events-auto rounded-3xl bg-cream-50/95 backdrop-blur-md ring-1 ring-ink-200 shadow-card animate-fade-in">
             <div className="p-4 flex flex-col gap-1">
+              {/* Language switcher — pinned to the very top */}
+              <div className="mb-3 pb-3 border-b border-ink-200 flex items-center justify-between gap-2">
+                <span className="text-[10px] font-mono uppercase tracking-[0.18em] text-ink-500">
+                  {locale === "ru" ? "Язык" : locale === "en" ? "Language" : "Til"}
+                </span>
+                <div className="flex items-center gap-1.5">
+                  {LOCALES.map((l) => (
+                    <Link
+                      key={l}
+                      href={isLearn ? `/${l}` : `/${l}${stripped}`}
+                      onClick={() => setOpen(false)}
+                      className={cn(
+                        "rounded-full px-3.5 py-1.5 text-xs font-bold transition",
+                        l === locale
+                          ? "bg-ink-900 text-cream-50 shadow-sm"
+                          : "bg-ink-100 text-ink-700 hover:bg-ink-200"
+                      )}
+                    >
+                      {LOCALE_SHORT[l]}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
               {/* Highlighted Learn block */}
               <Link
                 href="/learn"
@@ -262,21 +286,6 @@ export default function Header({ locale }: { locale: Locale }) {
               >
                 <SendIcon size={16} /> {t.cta.contactUs}
               </button>
-
-              <div className="mt-4 flex items-center gap-2">
-                {LOCALES.map((l) => (
-                  <Link
-                    key={l}
-                    href={isLearn ? `/${l}` : `/${l}${stripped}`}
-                    className={cn(
-                      "rounded-full px-3 py-1 text-xs font-semibold transition",
-                      l === locale ? "bg-ink-900 text-cream-50" : "bg-ink-100 text-ink-700"
-                    )}
-                  >
-                    {LOCALE_SHORT[l]}
-                  </Link>
-                ))}
-              </div>
             </div>
           </div>
         )}

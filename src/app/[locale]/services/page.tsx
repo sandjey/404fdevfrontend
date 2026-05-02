@@ -940,10 +940,10 @@ export default function ServicesPage({ params }: { params: { locale: Locale } })
               </h3>
               <p className="mt-3 text-ink-700">
                 {params.locale === "ru"
-                  ? "Бесплатная консультация 30 минут — обсудим вашу задачу и предложим лучшее решение."
+                  ? "Бесплатный онлайн-бриф — обсудим вашу задачу и предложим лучшее решение."
                   : params.locale === "en"
-                  ? "Free 30-min consultation — we'll discuss your goal and recommend the best path."
-                  : "Bepul 30-daqiqalik konsultatsiya — masalangizni muhokama qilamiz va eng to'g'ri yo'lni taklif etamiz."}
+                  ? "Free online brief — we'll discuss your goal and recommend the best path."
+                  : "Bepul onlayn brif — masalangizni muhokama qilamiz va eng to'g'ri yo'lni taklif etamiz."}
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3">

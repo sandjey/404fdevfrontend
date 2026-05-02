@@ -10,7 +10,7 @@ const FAQS: Record<Locale, { q: string; a: string }[]> = {
   uz: [
     { q: "Loyiha qancha vaqtda tayyor bo'ladi?", a: "Mu'rod loyihalar (landing, oddiy bot) — 1-2 hafta. Web saytlar — 3-6 hafta. Murakkab CRM/ERP — 2-4 oy. Aniqroq bahoni shartnomadan oldin beramiz." },
     { q: "Narx qanday hisoblanadi?", a: "Loyiha hajmi va murakkabligiga qarab. Brifdan keyin batafsil bahoni olasiz. To'lov bosqichma-bosqich (50% boshlanishida, qolgani milestonelar bo'yicha)." },
-    { q: "Brif yoki konsultatsiya pulli mi?", a: "Yo'q, birinchi 30 daqiqalik onlayn brif va konsultatsiya bepul. Maqsadingizni eshitamiz, mumkin bo'lgan yo'llarni aytib beramiz." },
+    { q: "Brif yoki konsultatsiya pulli mi?", a: "Yo'q, onlayn brif va birinchi konsultatsiya bepul. Maqsadingizni eshitamiz, mumkin bo'lgan yo'llarni aytib beramiz." },
     { q: "Loyiha tugagandan keyin qo'llab-quvvatlash bormi?", a: "Ha. Birinchi 30 kun bepul (bug-fix). Keyin oylik kelishuv yoki SLA shartnomasi orqali doimiy support taklif qilamiz." },
     { q: "Source kod menga to'liq tegadimi?", a: "Albatta. Hamma kod, ma'lumotlar bazasi, GitHub repo, hujjatlar va admin panel sizniki bo'ladi. Hech narsa biz tomonda saqlanmaydi." },
     { q: "Qaysi texnologiyalardan foydalanasizlar?", a: "Frontend: Next.js, React, TypeScript, Tailwind. Backend: Go, Node.js, Python. DB: PostgreSQL, MongoDB. Mobile: React Native / Flutter. Cloud: AWS, GCP, Vercel." },
@@ -24,7 +24,7 @@ const FAQS: Record<Locale, { q: string; a: string }[]> = {
   ru: [
     { q: "Сколько займёт реализация проекта?", a: "Простые (лендинг, бот) — 1-2 недели. Сайты — 3-6 недель. CRM/ERP — 2-4 месяца. Точнее — после брифа." },
     { q: "Как формируется стоимость?", a: "По объёму и сложности. После брифа — детальная оценка. Оплата поэтапная (50% старт + по milestone)." },
-    { q: "Бриф или консультация платные?", a: "Нет, первые 30 минут онлайн-брифа и консультации бесплатные. Услышим вашу цель и предложим варианты." },
+    { q: "Бриф или консультация платные?", a: "Нет, онлайн-бриф и первая консультация бесплатные. Услышим вашу цель и предложим варианты." },
     { q: "Есть ли поддержка после релиза?", a: "Да. Первые 30 дней — бесплатные баг-фиксы. Дальше — ежемесячная поддержка или SLA." },
     { q: "Передаётся ли исходный код клиенту?", a: "Да. Весь код, БД, GitHub-репо, документация и админка — ваши. На нашей стороне ничего не остаётся." },
     { q: "Какой стек используете?", a: "Frontend: Next.js, React, TypeScript, Tailwind. Backend: Go, Node, Python. DB: PostgreSQL, MongoDB. Mobile: React Native / Flutter. Cloud: AWS, GCP, Vercel." },
@@ -38,7 +38,7 @@ const FAQS: Record<Locale, { q: string; a: string }[]> = {
   en: [
     { q: "How long will my project take?", a: "Simple (landing, bot) — 1-2 weeks. Sites — 3-6 weeks. CRM/ERP — 2-4 months. Detailed estimate after the brief." },
     { q: "How is pricing calculated?", a: "Based on scope and complexity. Detailed quote after brief. Payment in stages (50% upfront + milestones)." },
-    { q: "Is the brief or consultation paid?", a: "No, the first 30-minute online brief and consultation are free. We'll hear your goal and outline possible paths." },
+    { q: "Is the brief or consultation paid?", a: "No, the online brief and first consultation are free. We'll hear your goal and outline possible paths." },
     { q: "Is there support after launch?", a: "Yes. First 30 days bug-fixes are free. Then monthly support or an SLA." },
     { q: "Do we own the source code?", a: "Absolutely. All code, DB, GitHub repo, docs and admin panel are yours. Nothing stays on our side." },
     { q: "What's your tech stack?", a: "Frontend: Next.js, React, TS, Tailwind. Backend: Go, Node.js, Python. DB: PostgreSQL, MongoDB. Mobile: React Native / Flutter. Cloud: AWS, GCP, Vercel." },
