@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 56" width="200" height="56">
+  <rect width="56" height="56" rx="12" fill="#0f1426"/>
+  <text x="28" y="36" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="20" font-weight="700" fill="#ffffff">404</text>
+  <text x="68" y="38" font-family="Inter,system-ui,sans-serif" font-size="28" font-weight="700" fill="#0f1426">Dev</text>
+</svg>

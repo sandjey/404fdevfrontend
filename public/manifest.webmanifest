@@ -1,0 +1,17 @@
+{
+  "name": "404Dev",
+  "short_name": "404Dev",
+  "description": "404Dev — outsourcing studio: web, Telegram bots, mobile apps, CRM/ERP, SEO and business automation.",
+  "start_url": "/uz",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F2EEE5",
+  "theme_color": "#FF4D2E",
+  "lang": "uz",
+  "dir": "ltr",
+  "categories": ["business", "productivity", "developer"],
+  "icons": [
+    { "src": "/favicon.svg",       "sizes": "any",     "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
