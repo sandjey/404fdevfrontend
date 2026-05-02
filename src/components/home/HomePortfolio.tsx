@@ -75,14 +75,14 @@ export default async function HomePortfolio({ locale }: { locale: Locale }) {
                   href={`/${locale}/portfolio/${p.slug}`}
                   className="group card card-hover overflow-hidden flex flex-col"
                 >
-                  <div className="relative aspect-[4/3] overflow-hidden bg-ink-100">
+                  <div className="relative aspect-[4/3] overflow-hidden bg-ink-50">
                     {p.cover_image ? (
                       <Image
                         src={p.cover_image}
                         alt={p.title}
                         fill
                         sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        className="object-contain"
                       />
                     ) : (
                       <div className={`absolute inset-0 bg-gradient-to-br ${FALLBACK[i % FALLBACK.length]}`}>
