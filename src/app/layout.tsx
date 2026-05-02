@@ -3,9 +3,9 @@ import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: { default: "404Dev — code · learn · build", template: "%s — 404Dev" },
+  title: { default: "404Dev — Tashkent, Uzbekistan · code · learn · build", template: "%s — 404Dev" },
   description:
-    "404Dev — outsourcing studio in Tashkent. Web sites, Telegram bots, mobile apps, CRM/ERP, SEO and business automation. Free programming school in Uzbek.",
+    "404Dev — outsourcing studio in Tashkent, Uzbekistan. We help digitalize services in Uzbekistan and around the world: websites, Telegram bots, mobile apps, CRM/ERP, SEO and business automation. Free programming school in Uzbek.",
   applicationName: "404Dev",
   manifest: "/manifest.webmanifest",
   icons: {

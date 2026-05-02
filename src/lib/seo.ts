@@ -205,7 +205,7 @@ export function organizationLD() {
     },
     image: `${SITE_URL}/og-default.svg`,
     description:
-      "404Dev — outsourcing software studio in Tashkent. Web, Telegram bots, mobile apps, CRM/ERP, SEO and business automation.",
+      "404Dev — outsourcing software studio in Tashkent, Uzbekistan. We help digitalize services in Uzbekistan and around the world: web, Telegram bots, mobile apps, CRM/ERP, SEO and business automation.",
     foundingDate: "2020",
     email: "hello@404dev.uz",
     telephone: "+998331108810",

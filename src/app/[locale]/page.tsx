@@ -19,17 +19,17 @@ export async function generateMetadata({ params }: { params: { locale: Locale } 
   // Per-locale keyword-rich title — each one targets the primary search intent.
   const seoTitle =
     params.locale === "ru"
-      ? "Разработка сайтов, Telegram-ботов, мобильных приложений и CRM | 404Dev Ташкент"
+      ? "Цифровизация услуг в Узбекистане и по всему миру | 404Dev Ташкент"
       : params.locale === "en"
-      ? "Web, Telegram bot, mobile app and CRM development in Uzbekistan | 404Dev"
-      : "Web sayt, Telegram bot, mobil ilova va CRM yaratish — 404Dev Toshkent";
+      ? "Digitalizing services in Uzbekistan and worldwide | 404Dev Tashkent"
+      : "O'zbekiston va dunyo bo'ylab xizmatlarni raqamlashtirish | 404Dev Toshkent";
 
   const seoDescription =
     params.locale === "ru"
-      ? "404Dev — outsourcing студия в Ташкенте. Разрабатываем сайты, Telegram-боты, мобильные приложения, CRM/ERP, SEO в Google и Яндекс. Прозрачная цена, готовый прототип за 7 дней."
+      ? "404Dev — outsourcing-студия в Ташкенте. Помогаем цифровизировать услуги в Узбекистане и по всему миру: сайты, Telegram-боты, мобильные приложения, CRM/ERP, SEO в Google и Яндекс. Прозрачная цена, прототип за 7 дней."
       : params.locale === "en"
-      ? "404Dev is an outsourcing studio in Tashkent. We build websites, Telegram bots, mobile apps, CRM/ERP, and SEO for Google and Yandex. Transparent pricing, prototype in 7 days."
-      : "404Dev — Toshkentdagi outsourcing studiya. Web sayt, Telegram bot, mobil ilova, CRM/ERP yaratamiz va Google/Yandex SEO bilan ishlaymiz. Aniq narx, 7 kunda tayyor prototip.";
+      ? "404Dev is an outsourcing studio in Tashkent, Uzbekistan. We help digitalize services in Uzbekistan and around the world: websites, Telegram bots, mobile apps, CRM/ERP, and SEO for Google and Yandex. Transparent pricing, prototype in 7 days."
+      : "404Dev — Toshkentdagi outsourcing studiya. O'zbekiston va butun dunyo bo'ylab xizmatlarni raqamlashtirishga yordam beramiz: web sayt, Telegram bot, mobil ilova, CRM/ERP, Google va Yandex SEO. Aniq narx, 7 kunda tayyor prototip.";
 
   return buildMetadata({
     title: seoTitle,

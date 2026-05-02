@@ -95,26 +95,26 @@ const dictionaries: Record<Locale, Dict> = {
       viewAll: "Barchasini ko'rish",
     },
     home: {
-      heroBadge: "404Dev — sizning raqamli sherigingiz",
-      heroTitle: "Bizneslar uchun zamonaviy raqamli yechimlar",
+      heroBadge: "404Dev — Toshkentdan raqamli agentlik",
+      heroTitle: "O'zbekiston va butun dunyo bo'ylab xizmatlarni raqamlashtirishga yordam beramiz",
       heroSubtitle:
-        "Web saytlar, Telegram botlar, mobil ilovalar, CRM/ERP tizimlar va biznes avtomatlashtirish — g'oyadan tayyor mahsulotgacha bir joyda.",
+        "404Dev — Toshkentdagi outsourcing studiya. Web saytlar, Telegram botlar, mobil ilovalar, CRM/ERP tizimlar va biznes avtomatlashtirish — O'zbekiston biznesi uchun g'oyadan tayyor mahsulotgacha bir joyda.",
       statsProjects: "yakunlangan loyihalar",
-      statsClients: "mamnun mijozlar",
+      statsClients: "O'zbekistondagi mamnun mijozlar",
       statsYears: "yillik tajriba",
       servicesTitle: "Bizning xizmatlar",
       servicesSubtitle:
-        "G'oyadan tortib ishga tushirish va keyingi qo'llab-quvvatlashgacha — bir joyda.",
+        "O'zbekiston bozoriga moslangan yechimlar — g'oyadan tortib ishga tushirish va keyingi qo'llab-quvvatlashgacha bir joyda.",
       techTitle: "Texnologiyalar",
       techSubtitle: "Biz ishonchli, sinovdan o'tgan texnologiya stekidan foydalanamiz.",
       ctaTitle: "Loyihangizni biz bilan boshlang",
       ctaSubtitle:
-        "Bepul konsultatsiya oling — biz sizning biznesingiz uchun eng to'g'ri yechimni topamiz.",
+        "Bepul konsultatsiya oling — O'zbekistondagi biznesingiz uchun eng to'g'ri raqamli yechimni topamiz.",
     },
     services: {
       title: "Xizmatlarimiz",
       subtitle:
-        "Biznesingizning raqamli o'sishi uchun yechimlar — g'oyadan tayyor mahsulotgacha bir joyda.",
+        "O'zbekiston biznesi va dunyo bo'ylab mijozlar uchun raqamli yechimlar — g'oyadan tayyor mahsulotgacha bir joyda.",
       items: [
         { title: "Web saytlar", description: "Korporativ saytlar, landing pagelar, e-commerce platformalar." },
         { title: "Telegram botlar", description: "Mijozlarni avtomatlashtirish, savdo va yetkazib berish botlari." },
@@ -127,10 +127,10 @@ const dictionaries: Record<Locale, Dict> = {
     about: {
       title: "Biz haqimizda",
       subtitle:
-        "404Dev — O'zbekistondagi outsourcing kompaniya. Biz raqamli mahsulotlarni yaratish va biznesni avtomatlashtirishga ixtisoslashganmiz.",
+        "404Dev — Toshkent shahridagi outsourcing studiya. Biz O'zbekiston va butun dunyo bo'ylab xizmatlarni raqamlashtirishga yordam beramiz: raqamli mahsulotlarni yaratish va biznesni avtomatlashtirishga ixtisoslashganmiz.",
       missionTitle: "Bizning missiyamiz",
       mission:
-        "Biznesga zamonaviy texnologiyalar orqali o'sish va raqobatbardosh bo'lishga yordam berish. Biz har bir loyihaga shaffof, professional va natijaga yo'naltirilgan yondashuvni qo'llaymiz.",
+        "O'zbekiston biznesiga zamonaviy texnologiyalar orqali o'sish va xalqaro bozorda raqobatbardosh bo'lishga yordam berish. Biz har bir loyihaga shaffof, professional va natijaga yo'naltirilgan yondashuvni qo'llaymiz.",
       valuesTitle: "Qadriyatlarimiz",
       values: [
         { title: "Sifat", description: "Har bir kod qatorida muhandislik standartlari." },
@@ -141,18 +141,18 @@ const dictionaries: Record<Locale, Dict> = {
     },
     portfolio: {
       title: "Portfolio",
-      subtitle: "Yakunlangan loyihalarimiz va keyslar.",
+      subtitle: "O'zbekistondagi va xalqaro mijozlar uchun yakunlangan loyihalarimiz va keyslar.",
       empty: "Tez orada bu yerda yangi loyihalar paydo bo'ladi.",
     },
     blog: {
       title: "Blog",
-      subtitle: "Texnologiyalar, yondashuvlar va biznes haqida bizning maqolalarimiz.",
+      subtitle: "O'zbekiston bozori, texnologiyalar va biznes raqamlashtirish haqida maqolalarimiz.",
       empty: "Tez orada birinchi maqolalarimiz e'lon qilinadi.",
       readingTime: "min o'qish",
     },
     contact: {
       title: "Bog'lanish",
-      subtitle: "Loyihangiz haqida gaplashaylik. Biz 1 ish kuni ichida javob beramiz.",
+      subtitle: "Toshkentdan ish boshlaymiz, dunyo bo'ylab yetkazib beramiz. Loyihangiz haqida gaplashaylik — 1 ish kuni ichida javob beramiz.",
       name: "Ismingiz",
       phone: "Telefon raqamingiz",
       telegram: "Telegram username",
@@ -188,23 +188,23 @@ const dictionaries: Record<Locale, Dict> = {
       viewAll: "Смотреть все",
     },
     home: {
-      heroBadge: "404Dev — ваш цифровой партнёр",
-      heroTitle: "Современные цифровые решения для бизнеса",
+      heroBadge: "404Dev — цифровое агентство из Ташкента",
+      heroTitle: "Помогаем цифровизировать услуги в Узбекистане и по всему миру",
       heroSubtitle:
-        "Мы создаём веб-сайты, Telegram-ботов, мобильные приложения, CRM/ERP системы и автоматизируем бизнес-процессы.",
+        "404Dev — outsourcing-студия в Ташкенте. Мы создаём веб-сайты, Telegram-ботов, мобильные приложения, CRM/ERP системы и автоматизируем бизнес-процессы — от идеи до готового продукта в одном месте.",
       statsProjects: "завершённых проектов",
-      statsClients: "довольных клиентов",
+      statsClients: "довольных клиентов в Узбекистане",
       statsYears: "лет опыта",
       servicesTitle: "Наши услуги",
-      servicesSubtitle: "От идеи до запуска и сопровождения — в одном месте.",
+      servicesSubtitle: "Решения, адаптированные к рынку Узбекистана — от идеи до запуска и сопровождения в одном месте.",
       techTitle: "Технологии",
       techSubtitle: "Мы используем надёжный, проверенный технологический стек.",
       ctaTitle: "Начните проект с нами",
-      ctaSubtitle: "Бесплатная консультация — подберём оптимальное решение для вашего бизнеса.",
+      ctaSubtitle: "Бесплатная консультация — подберём оптимальное цифровое решение для вашего бизнеса в Узбекистане.",
     },
     services: {
       title: "Наши услуги",
-      subtitle: "Цифровые решения для роста вашего бизнеса — от идеи до готового продукта.",
+      subtitle: "Цифровые решения для бизнеса в Узбекистане и клиентов по всему миру — от идеи до готового продукта.",
       items: [
         { title: "Веб-сайты", description: "Корпоративные сайты, лендинги, e-commerce." },
         { title: "Telegram боты", description: "Автоматизация клиентов, продажи, логистика." },
@@ -217,10 +217,10 @@ const dictionaries: Record<Locale, Dict> = {
     about: {
       title: "О нас",
       subtitle:
-        "404Dev — outsourcing компания из Узбекистана. Мы специализируемся на создании цифровых продуктов и автоматизации бизнеса.",
+        "404Dev — outsourcing-студия из Ташкента, Узбекистан. Помогаем цифровизировать услуги в Узбекистане и по всему миру: специализируемся на создании цифровых продуктов и автоматизации бизнеса.",
       missionTitle: "Наша миссия",
       mission:
-        "Помогать бизнесу расти и оставаться конкурентным с помощью современных технологий. Прозрачно, профессионально, с фокусом на результат.",
+        "Помогать бизнесу в Узбекистане расти и оставаться конкурентным на международном рынке с помощью современных технологий. Прозрачно, профессионально, с фокусом на результат.",
       valuesTitle: "Наши ценности",
       values: [
         { title: "Качество", description: "Инженерные стандарты в каждой строке кода." },
@@ -231,18 +231,18 @@ const dictionaries: Record<Locale, Dict> = {
     },
     portfolio: {
       title: "Портфолио",
-      subtitle: "Наши завершённые проекты и кейсы.",
+      subtitle: "Наши завершённые проекты и кейсы — для клиентов в Узбекистане и за рубежом.",
       empty: "Скоро здесь появятся новые проекты.",
     },
     blog: {
       title: "Блог",
-      subtitle: "Наши статьи о технологиях, подходах и бизнесе.",
+      subtitle: "Статьи о рынке Узбекистана, технологиях и цифровизации бизнеса.",
       empty: "Скоро будут опубликованы первые статьи.",
       readingTime: "мин чтения",
     },
     contact: {
       title: "Контакты",
-      subtitle: "Давайте обсудим ваш проект. Ответим в течение одного рабочего дня.",
+      subtitle: "Работаем из Ташкента, доставляем по всему миру. Давайте обсудим ваш проект — ответим в течение одного рабочего дня.",
       name: "Ваше имя",
       phone: "Номер телефона",
       telegram: "Telegram username",
@@ -278,23 +278,23 @@ const dictionaries: Record<Locale, Dict> = {
       viewAll: "View all",
     },
     home: {
-      heroBadge: "404Dev — your digital partner",
-      heroTitle: "Modern digital solutions for businesses",
+      heroBadge: "404Dev — digital agency from Tashkent, Uzbekistan",
+      heroTitle: "We help digitalize services in Uzbekistan and around the world",
       heroSubtitle:
-        "We build websites, Telegram bots, mobile apps, CRM/ERP systems, and automate business workflows.",
+        "404Dev is an outsourcing studio based in Tashkent, Uzbekistan. We build websites, Telegram bots, mobile apps, CRM/ERP systems, and automate business workflows — from idea to finished product in one place.",
       statsProjects: "projects delivered",
-      statsClients: "happy clients",
+      statsClients: "happy clients across Uzbekistan",
       statsYears: "years of experience",
       servicesTitle: "Our services",
-      servicesSubtitle: "From idea to launch and ongoing support — all in one place.",
+      servicesSubtitle: "Solutions tailored to the Uzbekistan market — from idea to launch and ongoing support, all in one place.",
       techTitle: "Technologies",
       techSubtitle: "We use a reliable, battle-tested technology stack.",
       ctaTitle: "Start your project with us",
-      ctaSubtitle: "Free consultation — we'll find the right solution for your business.",
+      ctaSubtitle: "Free consultation — we'll find the right digital solution for your business in Uzbekistan.",
     },
     services: {
       title: "Our services",
-      subtitle: "Digital solutions to grow your business — from idea to launch.",
+      subtitle: "Digital solutions for businesses in Uzbekistan and clients worldwide — from idea to launch.",
       items: [
         { title: "Websites", description: "Corporate sites, landing pages, e-commerce." },
         { title: "Telegram bots", description: "Customer automation, sales, delivery bots." },
@@ -307,10 +307,10 @@ const dictionaries: Record<Locale, Dict> = {
     about: {
       title: "About us",
       subtitle:
-        "404Dev is an outsourcing company from Uzbekistan. We focus on building digital products and automating businesses.",
+        "404Dev is an outsourcing studio based in Tashkent, Uzbekistan. We help digitalize services in Uzbekistan and around the world — focused on building digital products and automating businesses.",
       missionTitle: "Our mission",
       mission:
-        "Help businesses grow and stay competitive through modern technology. Transparent, professional, results-driven.",
+        "Help Uzbekistan businesses grow and stay competitive in the global market through modern technology. Transparent, professional, results-driven.",
       valuesTitle: "Our values",
       values: [
         { title: "Quality", description: "Engineering standards in every line of code." },
@@ -321,18 +321,18 @@ const dictionaries: Record<Locale, Dict> = {
     },
     portfolio: {
       title: "Portfolio",
-      subtitle: "Our completed projects and case studies.",
+      subtitle: "Completed projects and case studies — for clients in Uzbekistan and abroad.",
       empty: "New projects coming soon.",
     },
     blog: {
       title: "Blog",
-      subtitle: "Our articles about technology, approach, and business.",
+      subtitle: "Articles about the Uzbekistan market, technology and business digitalization.",
       empty: "Our first articles will be published soon.",
       readingTime: "min read",
     },
     contact: {
       title: "Contact",
-      subtitle: "Let's talk about your project. We reply within one business day.",
+      subtitle: "Based in Tashkent, delivering worldwide. Let's talk about your project — we reply within one business day.",
       name: "Your name",
       phone: "Phone number",
       telegram: "Telegram username",

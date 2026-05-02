@@ -21,10 +21,10 @@ export default function Hero({ locale }: { locale: Locale }) {
 
   const eyebrow =
     locale === "ru"
-      ? "404Dev — цифровое агентство"
+      ? "404Dev — цифровое агентство из Ташкента"
       : locale === "en"
-      ? "404Dev — digital agency"
-      : "404Dev — raqamli agentlik";
+      ? "404Dev — digital agency from Tashkent, Uzbekistan"
+      : "404Dev — Toshkent raqmlashtirish agentligi";
 
   const trustList =
     locale === "ru"
@@ -35,6 +35,8 @@ export default function Hero({ locale }: { locale: Locale }) {
 
   // Marquee ticker words
   const ticker = [
+    locale === "ru" ? "Узбекистан" : locale === "en" ? "Uzbekistan" : "O'zbekiston",
+    locale === "ru" ? "Ташкент" : locale === "en" ? "Tashkent" : "Toshkent",
     locale === "ru" ? "Веб-сайты" : locale === "en" ? "Websites" : "Web saytlar",
     "Telegram",
     locale === "ru" ? "Боты" : locale === "en" ? "Bots" : "Botlar",
@@ -49,6 +51,7 @@ export default function Hero({ locale }: { locale: Locale }) {
     "API",
     "Click",
     "Payme",
+    "Uzum",
     locale === "ru" ? "Аутсорсинг" : locale === "en" ? "Outsourcing" : "Outsourcing",
   ];
   const tickerLoop = [...ticker, ...ticker];
@@ -158,10 +161,10 @@ export default function Hero({ locale }: { locale: Locale }) {
               style={{ animationDelay: "120ms" }}
             >
               {locale === "uz"
-                ? "Web, Telegram bot, mobil ilova, CRM/ERP va biznes avtomatlashtirish — outsourcing model, aniq narx va muddat."
+                ? "O'zbekiston va butun dunyo bo'ylab xizmatlarni raqamlashtirishga yordam beramiz — sayt, Telegram bot, mobil ilova, CRM/ERP va biznes avtomatlashtirish. Outsourcing model, aniq narx va muddat."
                 : locale === "ru"
-                ? "Сайты, Telegram-боты, мобильные приложения, CRM/ERP и автоматизация — outsourcing-модель, понятная цена и сроки."
-                : "Websites, Telegram bots, mobile apps, CRM/ERP and automation — outsourcing model, clear price and timeline."}
+                ? "Помогаем цифровизировать услуги в Узбекистане и по всему миру — сайты, Telegram-боты, мобильные приложения, CRM/ERP и автоматизация бизнеса. Outsourcing-модель, понятная цена и сроки."
+                : "We help digitalize services in Uzbekistan and around the world — websites, Telegram bots, mobile apps, CRM/ERP and business automation. Outsourcing model, clear price and timeline."}
             </p>
 
             <ul
@@ -278,10 +281,10 @@ export default function Hero({ locale }: { locale: Locale }) {
 function AnimatedHeadline({ locale }: { locale: Locale }) {
   const parts =
     locale === "uz"
-      ? { lead: "Biznesingiz uchun", coral: "raqamli", end: "yechimlar" }
+      ? { lead: "O'zbekiston va dunyo bo'ylab", coral: "raqamlashtirish", end: "xizmati" }
       : locale === "ru"
-      ? { lead: "Создаём", coral: "цифровые", end: "решения" }
-      : { lead: "We build", coral: "digital", end: "solutions" };
+      ? { lead: "По Узбекистану и миру —", coral: "цифровизация", end: "услуг" }
+      : { lead: "Across Uzbekistan & the world —", coral: "digitalization", end: "services" };
 
   // All three lines share one size scale → uniform display rhythm.
   const lineSize = "text-[2rem] sm:text-5xl md:text-6xl lg:text-[4.75rem] xl:text-[5.5rem]";
