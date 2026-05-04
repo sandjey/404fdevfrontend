@@ -283,8 +283,8 @@ function AnimatedHeadline({ locale }: { locale: Locale }) {
     locale === "uz"
       ? { lead: "O'zbekiston va dunyo bo'ylab", coral: "raqamlashtirish", end: "xizmati" }
       : locale === "ru"
-      ? { lead: "По Узбекистану и миру —", coral: "цифровизация", end: "услуг" }
-      : { lead: "Across Uzbekistan & the world —", coral: "digitalization", end: "services" };
+      ? { lead: "Услуги цифровизации", coral: "в Узбекистане", end: "и по всему миру" }
+      : { lead: "Digitalization services", coral: "across Uzbekistan", end: "& the world" };
 
   // All three lines share one size scale → uniform display rhythm.
   const lineSize = "text-[2rem] sm:text-5xl md:text-6xl lg:text-[4.75rem] xl:text-[5.5rem]";
