@@ -20,10 +20,10 @@ export default function Hero({ locale }: { locale: Locale }) {
 
   const eyebrow =
     locale === "ru"
-      ? "404Dev — цифровое агентство из Ташкента"
+      ? "404Dev — цифровое агентство"
       : locale === "en"
-      ? "404Dev — digital agency from Tashkent, Uzbekistan"
-      : "404Dev — Toshkent raqmlashtirish agentligi";
+      ? "404Dev — digital agency from Uzbekistan"
+      : "404Dev — raqamlashtirish agentligi";
 
   const trustList =
     locale === "ru"
