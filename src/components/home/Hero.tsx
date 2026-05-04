@@ -76,10 +76,10 @@ export default function Hero({ locale }: { locale: Locale }) {
         style={{ transform: "rotate(-8deg)" }}
       />
 
-      {/* Massive 404 watermark */}
+      {/* Massive 404 watermark — kichraytirildi (LCP layout cost optimisation) */}
       <div
         aria-hidden
-        className="absolute inset-x-0 top-1/2 -translate-y-1/2 -z-10 text-center font-display font-extrabold tracking-tightest leading-none text-ink-900/[.04] select-none pointer-events-none text-[28rem] md:text-[36rem] hidden md:block"
+        className="absolute inset-x-0 top-1/2 -translate-y-1/2 -z-10 text-center font-display font-extrabold tracking-tightest leading-none text-ink-900/[.04] select-none pointer-events-none text-[14rem] md:text-[18rem] lg:text-[22rem] hidden md:block"
       >
         404
       </div>
@@ -433,13 +433,9 @@ function FloatingProductStack({ locale }: { locale: Locale }) {
         </div>
       </div>
 
-      {/* Stacked product cards — each with a randomly-staggered neon traveling border */}
+      {/* Stacked product cards */}
       {products.map((p, i) => {
         const top = 50 + i * 88;
-        // Deterministic per-card timing — slow & calm: each dot crawls
-        // around in 9-14 seconds with staggered starting points.
-        const NEON_DURATIONS = ["10s", "13s", "11s", "14s"];
-        const NEON_DELAYS = ["0s", "3s", "6s", "1.5s"];
         return (
           <div
             key={p.label}
@@ -457,8 +453,6 @@ function FloatingProductStack({ locale }: { locale: Locale }) {
               total={products.length}
               orderLabel={orderLabel}
               ready={ready}
-              neonDuration={NEON_DURATIONS[i % NEON_DURATIONS.length]}
-              neonDelay={NEON_DELAYS[i % NEON_DELAYS.length]}
             />
           </div>
         );
@@ -470,23 +464,19 @@ function FloatingProductStack({ locale }: { locale: Locale }) {
   );
 }
 
-/* ============ Product card (rich, with neon traveling border) ============ */
+/* ============ Product card ============ */
 function ProductCard({
   data,
   index,
   total,
   orderLabel,
   ready,
-  neonDuration,
-  neonDelay,
 }: {
   data: ProductCardData;
   index: number;
   total: number;
   orderLabel: string;
   ready: string;
-  neonDuration: string;
-  neonDelay: string;
 }) {
   return (
     <div
@@ -495,33 +485,6 @@ function ProductCard({
         data.tilt
       }
     >
-      {/* === Neon traveling border (SVG, exactly along the rounded edge) === */}
-      <svg
-        aria-hidden
-        className="pointer-events-none absolute inset-0 h-full w-full"
-        preserveAspectRatio="none"
-      >
-        <rect
-          x="1"
-          y="1"
-          rx="15"
-          ry="15"
-          fill="none"
-          stroke="#FF4D2E"
-          strokeWidth="1.5"
-          pathLength="100"
-          strokeDasharray="14 86"
-          strokeLinecap="round"
-          style={{
-            width: "calc(100% - 2px)",
-            height: "calc(100% - 2px)",
-            animation: `neon-travel ${neonDuration} linear infinite`,
-            animationDelay: neonDelay,
-            filter: "drop-shadow(0 0 5px rgba(255,77,46,.7))",
-          }}
-        />
-      </svg>
-
       {/* coral glow on hover (top-right corner) */}
       <div
         aria-hidden
@@ -634,9 +597,9 @@ function FreeLessonsCard({ locale }: { locale: Locale }) {
             </span>
           </div>
           {/* Headline */}
-          <h4 className="mt-1 font-display text-xl md:text-2xl font-extrabold tracking-tightest leading-tight">
+          <h2 className="mt-1 font-display text-xl md:text-2xl font-extrabold tracking-tightest leading-tight">
             {headline}
-          </h4>
+          </h2>
         </div>
       </div>
 

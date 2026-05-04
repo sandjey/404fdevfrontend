@@ -35,7 +35,7 @@ const YM_ID = process.env.NEXT_PUBLIC_YM_ID; // Yandex Metrica counter ID
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html suppressHydrationWarning>
+    <html lang="uz" suppressHydrationWarning>
       <body>{children}</body>
 
       {/* ===== Google Analytics 4 (loaded only when env is set) ===== */}

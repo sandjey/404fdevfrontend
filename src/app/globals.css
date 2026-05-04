@@ -36,6 +36,19 @@
     outline-offset: 2px;
     border-radius: 4px;
   }
+
+  /* Foydalanuvchi animatsiyalarni kamaytirishni so'rasa, bezakli
+     animatsiyalarni o'chiramiz. Bu CPU yukini va a11y'ni yaxshilaydi. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }
 
 /* ============ Components ============ */
@@ -317,41 +330,18 @@
     to { transform: skewX(-8deg) scaleX(1); }
   }
 
-  /* ===== Header (iPhone-notch style) — slow plavno grow from center =====
-     The animation uses `clip-path: inset()` to reveal the pill from the
-     centre. After the animation, we lift the clip entirely so dropdown
-     menus and tooltips that visually sit OUTSIDE the pill can render. */
+  /* ===== Header (iPhone-notch style) — composited reveal =====
+     Uses transform (scaleX) + opacity only — both GPU-composited, no
+     layout/paint cost per frame, unlike clip-path. */
   .header-island {
     transform-origin: center center;
-    animation: header-reveal 2.6s cubic-bezier(.22,.7,.18,1) forwards;
+    animation: header-reveal 1.6s cubic-bezier(.22,.7,.18,1) both;
+    will-change: transform, opacity;
   }
   @keyframes header-reveal {
-    0% {
-      clip-path: inset(0 50% 0 50% round 9999px);
-      opacity: 0;
-      transform: translateY(-4px);
-    }
-    20% {
-      opacity: 0.5;
-    }
-    99% {
-      clip-path: inset(0 0% 0 0% round 9999px);
-      opacity: 1;
-      transform: translateY(0);
-    }
-    100% {
-      clip-path: none;
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* ===== Neon traveling border (SVG stroke-dashoffset) ===== */
-  /* The SVG <rect> uses pathLength="100" so 100 = full perimeter.
-     A short dash (~12) is visible while the rest is empty (~88),
-     and the offset is animated to make the dash travel around. */
-  @keyframes neon-travel {
-    to { stroke-dashoffset: -100; }
+    0%   { opacity: 0; transform: translateY(-4px) scaleX(0.6); }
+    60%  { opacity: 1; }
+    100% { opacity: 1; transform: translateY(0) scaleX(1); }
   }
 
   /* Cream surface utility */
