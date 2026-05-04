@@ -137,32 +137,19 @@ export default async function HomePortfolio({ locale }: { locale: Locale }) {
 
   return (
     <section className="relative overflow-hidden bg-ink-900 text-cream-50 py-20 md:py-28">
-      {/* ===== Decorative backdrop layers ===== */}
-      <div aria-hidden className="absolute inset-0 grid-bg opacity-[0.06]" />
+      {/* ===== Decorative backdrop — restrained ===== */}
+      <div aria-hidden className="absolute inset-0 grid-bg opacity-[0.05]" />
       <div
         aria-hidden
-        className="absolute -top-40 -left-40 h-[32rem] w-[32rem] rounded-full bg-brand-500/20 blur-3xl"
-      />
-      <div
-        aria-hidden
-        className="absolute -bottom-40 -right-40 h-[28rem] w-[28rem] rounded-full bg-brand-500/15 blur-3xl"
+        className="absolute -top-40 -left-40 h-[28rem] w-[28rem] rounded-full bg-brand-500/10 blur-3xl"
       />
       {/* Massive 404 watermark */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 text-center font-display font-extrabold tracking-tightest leading-none text-cream-50/[0.025] select-none text-[24rem] md:text-[32rem] hidden md:block"
+        className="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 text-center font-display font-extrabold tracking-tightest leading-none text-cream-50/[0.02] select-none text-[20rem] md:text-[26rem] hidden md:block"
       >
         404
       </div>
-      {/* Diagonal coral slash on top-right */}
-      <span
-        aria-hidden
-        className="absolute -right-16 -top-24 hidden lg:block w-[10px] h-[26rem] rounded-full bg-brand-500/80"
-        style={{
-          transform: "rotate(-14deg)",
-          boxShadow: "0 20px 80px -10px rgba(255,77,46,.55)",
-        }}
-      />
       {/* Top + bottom gradient edges to softly blend with surrounding cream */}
       <div
         aria-hidden

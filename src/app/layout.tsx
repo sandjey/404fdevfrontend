@@ -17,6 +17,23 @@ export const metadata: Metadata = {
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
     shortcut: "/favicon.svg",
   },
+  // Local-SEO geo signals — picked up by Bing Places, Yandex Webmaster,
+  // and assorted local-pack indexers. Coordinates: Toshkent markazi.
+  other: {
+    "geo.region": "UZ-TA",
+    "geo.placename": "Tashkent",
+    "geo.position": "41.2995;69.2401",
+    "ICBM": "41.2995, 69.2401",
+    "DC.title": "404Dev — Tashkent, Uzbekistan",
+    "DC.language": "uz, ru, en",
+    "DC.creator": "404Dev",
+    "DC.publisher": "404Dev",
+    "DC.coverage": "Uzbekistan, Central Asia, Worldwide",
+    "rating": "general",
+    "distribution": "global",
+    "revisit-after": "3 days",
+    "yandex-tableau-widget": "logo=/logo.svg, color=#FF4D2E",
+  },
 };
 
 export const viewport: Viewport = {

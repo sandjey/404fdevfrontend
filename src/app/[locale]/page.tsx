@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, homeServicesItemListLD, breadcrumbLD, webPageLD } from "@/lib/seo";
+import { SITE_URL } from "@/lib/api";
 import Hero from "@/components/home/Hero";
 import HomePortfolio from "@/components/home/HomePortfolio";
 import HomeBlog from "@/components/home/HomeBlog";
@@ -41,9 +43,57 @@ export async function generateMetadata({ params }: { params: { locale: Locale } 
 
 export default function HomePage({ params }: { params: { locale: Locale } }) {
   const t = getDictionary(params.locale);
+  const homeUrl = `${SITE_URL}/${params.locale}`;
+
+  // Rich structured data for the homepage — improves rich-result eligibility
+  // for service queries (Google ItemList + Service rich snippets, Yandex
+  // service cards). Doesn't change visible content.
+  const itemListLD = homeServicesItemListLD(params.locale);
+  const homeBreadcrumbLD = breadcrumbLD([
+    {
+      name: params.locale === "ru" ? "Главная" : params.locale === "en" ? "Home" : "Bosh sahifa",
+      url: homeUrl,
+    },
+  ]);
+  const homeWebPageLD = webPageLD({
+    url: homeUrl,
+    name:
+      params.locale === "ru"
+        ? "Цифровизация услуг в Узбекистане и по всему миру | 404Dev Ташкент"
+        : params.locale === "en"
+        ? "Digitalizing services in Uzbekistan and worldwide | 404Dev Tashkent"
+        : "O'zbekiston va dunyo bo'ylab xizmatlarni raqamlashtirish | 404Dev Toshkent",
+    description:
+      params.locale === "ru"
+        ? "Заказать сайт, Telegram-бота, мобильное приложение, CRM/ERP и SEO в Ташкенте и по всему Узбекистану. Прозрачная цена, прототип за 7 дней."
+        : params.locale === "en"
+        ? "Order a website, Telegram bot, mobile app, CRM/ERP and SEO in Tashkent and across Uzbekistan. Transparent pricing, prototype in 7 days."
+        : "Toshkent va butun O'zbekiston bo'ylab sayt, Telegram bot, mobil ilova, CRM/ERP va SEO buyurtma bering. Aniq narx, 7 kunda prototip.",
+    locale: params.locale,
+  });
 
   return (
     <>
+      {/* Homepage structured data — invisible to users, indexed by search */}
+      <Script
+        id="ld-home-itemlist"
+        type="application/ld+json"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListLD) }}
+      />
+      <Script
+        id="ld-home-breadcrumb"
+        type="application/ld+json"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeBreadcrumbLD) }}
+      />
+      <Script
+        id="ld-home-webpage"
+        type="application/ld+json"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeWebPageLD) }}
+      />
+
       <Hero locale={params.locale} />
       <HomePortfolio locale={params.locale} />
       <ServicesGrid locale={params.locale} />

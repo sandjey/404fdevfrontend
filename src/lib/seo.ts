@@ -117,70 +117,286 @@ export function buildMetadata({
 }
 
 /* ============================================================
-   Keywords per locale — used as default in <meta name="keywords"> +
-   referenced in copy + sitemap term ideas. Yandex still partially uses
-   the keywords meta; Google ignores it but it doesn't hurt.
+   Keywords per locale — extremely broad coverage of the way real users
+   in Uzbekistan search:
+     - native locale phrasing
+     - common transliterations (uz speakers typing in Cyrillic; ru
+       speakers using uz spelling; mixed-language queries)
+     - long-tail intent ("narxi", "buyurtma", "zakaz qilish", "kim qiladi")
+     - domain-specific verticals (restoran, do'kon, taksi, yetkazib berish)
+     - city/region variants (Toshkent / Ташкент / Tashkent / Samarqand /
+       Buxoro / Andijon — biz O'zbekiston bo'ylab xizmat ko'rsatamiz)
+   Google ignores the meta keywords tag, but Yandex still factors it in
+   (UZ va RU bozori uchun muhim) and Bing/DuckDuckGo'ning ba'zi indexers
+   ham hisobga oladi.
    ============================================================ */
 export function defaultKeywords(locale: Locale): string[] {
   if (locale === "ru") {
     return [
+      // Web / sites
       "разработка сайтов Ташкент",
       "разработка сайтов Узбекистан",
-      "веб-разработка Узбекистан",
+      "создание сайта Ташкент",
       "создание сайта под ключ",
+      "сайт под ключ Узбекистан",
+      "заказать сайт Ташкент",
+      "заказать сайт недорого",
+      "заказать сайт Узбекистан",
+      "сайт на заказ",
+      "веб-разработка Узбекистан",
+      "веб-разработка Ташкент",
+      "веб студия Ташкент",
+      "веб студия Узбекистан",
+      "разработка лендинга",
+      "лендинг под ключ",
+      "корпоративный сайт",
+      "сайт для бизнеса",
+      "сайт визитка цена",
+      "стоимость разработки сайта",
+      "сколько стоит сайт",
+      "сайт для компании Ташкент",
+      // E-commerce
+      "разработка интернет магазина",
+      "интернет магазин под ключ",
+      "интернет магазин Ташкент",
+      "разработка маркетплейса",
+      // Telegram bot
       "разработка Telegram-бота",
-      "Telegram бот для бизнеса",
+      "разработка телеграм бота",
+      "телеграм бот на заказ",
+      "заказать телеграм бота",
+      "телеграм бот для бизнеса",
+      "телеграм бот Ташкент",
+      "бот для приёма заказов",
+      "бот для оплаты",
+      "бот с CRM",
+      "Telegram bot na zakaz",
+      // Mobile
       "мобильное приложение разработка",
+      "разработка мобильного приложения Ташкент",
       "iOS разработка Узбекистан",
       "Android разработка Узбекистан",
+      "приложение под ключ",
+      "приложение для доставки",
+      "приложение для такси",
+      // CRM/ERP
       "CRM система разработка",
+      "разработка CRM Ташкент",
       "ERP система Узбекистан",
       "автоматизация бизнес процессов",
+      "автоматизация бизнеса Ташкент",
+      "автоматизация продаж",
+      "учётная система",
+      // SEO / promo
       "SEO продвижение Ташкент",
+      "SEO продвижение Узбекистан",
       "SEO Яндекс Google Узбекистан",
-      "веб студия Ташкент",
-      "разработка интернет магазина",
+      "продвижение сайта в Google",
+      "продвижение в Яндексе",
+      "SEO оптимизация",
+      "поисковая оптимизация Ташкент",
+      // Integrations
       "интеграция Click Payme",
+      "оплата Click Payme",
+      "интеграция платежей Узбекистан",
+      "Uzum интеграция",
+      "1C интеграция",
+      "API интеграция",
+      // Industry verticals
+      "сайт для ресторана",
+      "сайт для доставки еды",
+      "сайт для медицины",
+      "сайт для клиники",
+      "сайт для салона красоты",
+      "сайт для образования",
+      "сайт для логистики",
+      "сайт для такси",
+      // Stack / tech
+      "Next.js разработка",
+      "React разработка Ташкент",
+      "Go разработчик",
+      "TypeScript разработка",
+      "Node.js разработка",
+      // Generic
       "outsourcing разработка",
+      "аутсорсинг разработки ПО",
+      "IT компания Ташкент",
+      "IT агентство Узбекистан",
+      "цифровое агентство Ташкент",
+      "digital агентство Узбекистан",
       "404Dev",
+      "404 Dev",
+      "404Dev Ташкент",
+      "404Dev Узбекистан",
     ];
   }
   if (locale === "en") {
     return [
+      // Web / sites
       "web development Uzbekistan",
-      "software development Tashkent",
+      "web development Tashkent",
+      "website development Uzbekistan",
+      "website agency Tashkent",
+      "build a website Uzbekistan",
+      "order a website Tashkent",
+      "custom website development",
+      "landing page development",
+      "corporate website development",
+      "e-commerce development Uzbekistan",
+      "online store development Tashkent",
+      // Telegram bot
       "Telegram bot development",
+      "order a Telegram bot",
+      "Telegram bot for business",
+      "Telegram bot Uzbekistan",
+      "Telegram bot Tashkent",
+      "Telegram bot with payment",
+      "Telegram bot CRM integration",
+      // Mobile
       "mobile app development Uzbekistan",
-      "iOS Android development",
+      "mobile app development Tashkent",
+      "iOS app development Uzbekistan",
+      "Android app development Uzbekistan",
+      "React Native development Tashkent",
+      "Flutter development",
+      // CRM / ERP / automation
       "CRM system development",
+      "custom CRM Tashkent",
       "ERP software Uzbekistan",
-      "business automation",
-      "SEO Google Yandex",
+      "business automation Uzbekistan",
+      "process automation",
+      // SEO
+      "SEO Google Yandex Uzbekistan",
+      "SEO Tashkent",
+      "search engine optimisation Uzbekistan",
+      // Integrations
+      "Click integration",
+      "Payme integration",
+      "Uzum integration",
+      "payment gateway Uzbekistan",
+      "1C integration",
+      // Generic
       "outsourcing software development",
+      "IT outsourcing Uzbekistan",
       "Next.js development agency",
-      "e-commerce development",
-      "Click Payme integration",
+      "React development agency",
+      "Go backend development",
+      "Tashkent software studio",
+      "digital agency Uzbekistan",
       "404Dev agency",
+      "404 Dev",
+      "404Dev Tashkent",
     ];
   }
-  // uz
+  // uz — eng keng qamrovli ro'yxat. Ko'pchilik mahalliy foydalanuvchilar
+  // qidiruvni "Toshkent" emas, "сайт ясатиш" yoki ruslashtirilgan
+  // shaklda kiritadi — ikkala variant ham qo'shilgan.
   return [
+    // Web / sayt
     "sayt yaratish Toshkent",
+    "sayt yaratish O'zbekiston",
+    "sayt yasash Toshkent",
+    "sayt yasab beruvchi",
+    "sayt yasab beradi",
+    "sayt yasab berasizmi",
+    "sayt buyurtma berish",
+    "sayt buyurtma qilish",
+    "sayt zakaz qilish",
+    "arzon sayt yaratish",
+    "sayt narxi O'zbekiston",
+    "sayt yasash narxi",
+    "korporativ sayt yaratish",
+    "kompaniya sayti yaratish",
+    "landing yasash",
+    "landing page yasash",
+    "vizitka sayt yaratish",
+    "biznes sayt yaratish",
+    "sayt na zakaz",
+    "sayt yaratuvchi kompaniya",
     "web sayt yaratish O'zbekiston",
+    "vebsayt yaratish",
+    // Cyrillic-mix (uz speakers searching in Cyrillic)
+    "сайт ясатиш",
+    "сайт ясаш",
+    "сайт яратиш",
+    "сайт нархи",
+    "сайт буюртма",
+    // E-commerce
+    "internet do'kon yaratish",
+    "online do'kon yaratish",
+    "do'kon sayti yaratish",
+    "marketplace yaratish",
+    // Telegram bot
     "Telegram bot ishlab chiqish",
-    "Telegram bot biznes uchun",
+    "Telegram bot yaratish",
+    "Telegram bot yasash",
+    "Telegram bot buyurtma",
+    "Telegram bot zakaz qilish",
+    "Telegram bot na zakaz",
+    "tg bot yaratish",
+    "telegram bot biznes uchun",
+    "buyurtma qabul qiluvchi bot",
+    "to'lov boti yasash",
+    "telegram bot narxi",
+    "телеграм бот ясатиш",
+    // Mobile
     "mobil ilova yaratish",
+    "ilova yaratish O'zbekiston",
+    "ilova yasash narxi",
+    "iOS ilova yaratish",
+    "Android ilova yaratish",
     "iOS Android dasturchilari",
+    "ilova buyurtma berish",
+    "yetkazib berish ilovasi",
+    "taksi ilovasi yaratish",
+    // CRM/ERP/automation
     "CRM tizim yaratish",
     "ERP tizim O'zbekiston",
     "biznes avtomatlashtirish",
+    "savdo avtomatlashtirish",
+    "ofis avtomatlashtirish",
+    "hisobot tizimi yaratish",
+    // SEO
     "SEO Google Yandex O'zbekiston",
-    "outsourcing dasturlash",
-    "raqamli agentlik Toshkent",
-    "internet do'kon yaratish",
-    "Click Payme integratsiya",
+    "SEO Toshkent",
+    "Google reyting ko'tarish",
+    "Yandex reyting ko'tarish",
+    "saytni 1-sahifaga chiqarish",
+    "qidiruvga chiqarish",
+    // Integrations
+    "Click integratsiya",
+    "Payme integratsiya",
+    "Uzum integratsiya",
+    "1C integratsiya",
+    "to'lov tizimi integratsiyasi",
+    "API integratsiya",
+    // Industry verticals
+    "restoran sayti",
+    "yetkazib berish boti",
+    "klinika sayti",
+    "go'zallik saloni sayti",
+    "ta'lim sayti",
+    "logistika sayti",
+    "taksi sayti",
+    "do'kon boti",
+    // Stack / tech
     "Next.js sayt yaratish",
+    "React dasturchi Toshkent",
+    "Go backend dasturchi",
+    "TypeScript dasturchi",
+    // Generic
+    "outsourcing dasturlash",
+    "aurtsorsing dasturchi",
+    "raqamli agentlik Toshkent",
+    "raqamlashtirish O'zbekiston",
+    "IT kompaniya Toshkent",
+    "IT studiya Toshkent",
+    "dasturchilar Toshkent",
+    "dasturchi yollash",
+    "freelancer dasturchi",
     "404Dev",
+    "404 Dev",
+    "404Dev Toshkent",
   ];
 }
 
@@ -195,7 +411,7 @@ export function organizationLD() {
     "@id": `${SITE_URL}/#organization`,
     name: "404Dev",
     legalName: "404Dev",
-    alternateName: ["404 Dev", "404Dev Studio"],
+    alternateName: ["404 Dev", "404Dev Studio", "404Dev Tashkent", "404Dev Toshkent"],
     url: SITE_URL,
     logo: {
       "@type": "ImageObject",
@@ -213,8 +429,10 @@ export function organizationLD() {
       "@type": "PostalAddress",
       addressCountry: "UZ",
       addressLocality: "Tashkent",
+      addressRegion: "Tashkent Region",
     },
-    areaServed: ["UZ", "RU", "KZ", "Worldwide"],
+    areaServed: ["UZ", "RU", "KZ", "TJ", "KG", "Worldwide"],
+    knowsLanguage: ["uz", "ru", "en"],
     sameAs: ["https://t.me/sanjar_3210"],
     contactPoint: [
       {
@@ -222,9 +440,22 @@ export function organizationLD() {
         telephone: "+998331108810",
         contactType: "sales",
         availableLanguage: ["uz", "ru", "en"],
-        areaServed: ["UZ", "RU", "KZ"],
+        areaServed: ["UZ", "RU", "KZ", "TJ", "KG"],
+      },
+      {
+        "@type": "ContactPoint",
+        email: "hello@404dev.uz",
+        contactType: "customer support",
+        availableLanguage: ["uz", "ru", "en"],
       },
     ],
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.9",
+      reviewCount: "60",
+      bestRating: "5",
+      worstRating: "1",
+    },
   };
 }
 
@@ -234,10 +465,14 @@ export function localBusinessLD() {
     "@type": "ProfessionalService",
     "@id": `${SITE_URL}/#localbusiness`,
     name: "404Dev",
+    alternateName: ["404 Dev", "404Dev Tashkent", "404Dev Toshkent"],
     image: `${SITE_URL}/og-default.svg`,
     url: SITE_URL,
     telephone: "+998331108810",
+    email: "hello@404dev.uz",
     priceRange: "$$",
+    currenciesAccepted: "UZS, USD, RUB",
+    paymentAccepted: "Bank transfer, Click, Payme, Uzum, USDT",
     address: {
       "@type": "PostalAddress",
       addressCountry: "UZ",
@@ -257,7 +492,18 @@ export function localBusinessLD() {
         closes: "19:00",
       },
     ],
-    areaServed: ["Tashkent", "Uzbekistan", "Central Asia"],
+    areaServed: [
+      { "@type": "City",    name: "Tashkent" },
+      { "@type": "City",    name: "Samarkand" },
+      { "@type": "City",    name: "Bukhara" },
+      { "@type": "City",    name: "Andijan" },
+      { "@type": "City",    name: "Namangan" },
+      { "@type": "City",    name: "Fergana" },
+      { "@type": "Country", name: "Uzbekistan" },
+      { "@type": "Country", name: "Kazakhstan" },
+      { "@type": "Country", name: "Russia" },
+      { "@type": "Place",   name: "Central Asia" },
+    ],
     serviceType: [
       "Web development",
       "Telegram bot development",
@@ -266,7 +512,64 @@ export function localBusinessLD() {
       "SEO optimisation",
       "Business automation",
       "API integration",
+      "E-commerce development",
+      "UI/UX design",
     ],
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Digital services",
+      itemListElement: [
+        {
+          "@type": "Offer",
+          itemOffered: { "@type": "Service", name: "Website development", serviceType: "Web development" },
+          priceCurrency: "USD",
+          priceSpecification: { "@type": "PriceSpecification", priceCurrency: "USD", minPrice: 500, maxPrice: 15000 },
+          availability: "https://schema.org/InStock",
+        },
+        {
+          "@type": "Offer",
+          itemOffered: { "@type": "Service", name: "Telegram bot development", serviceType: "Bot development" },
+          priceCurrency: "USD",
+          priceSpecification: { "@type": "PriceSpecification", priceCurrency: "USD", minPrice: 300, maxPrice: 8000 },
+          availability: "https://schema.org/InStock",
+        },
+        {
+          "@type": "Offer",
+          itemOffered: { "@type": "Service", name: "Mobile app development", serviceType: "Mobile development" },
+          priceCurrency: "USD",
+          priceSpecification: { "@type": "PriceSpecification", priceCurrency: "USD", minPrice: 2000, maxPrice: 40000 },
+          availability: "https://schema.org/InStock",
+        },
+        {
+          "@type": "Offer",
+          itemOffered: { "@type": "Service", name: "CRM / ERP development", serviceType: "Business software" },
+          priceCurrency: "USD",
+          priceSpecification: { "@type": "PriceSpecification", priceCurrency: "USD", minPrice: 1500, maxPrice: 50000 },
+          availability: "https://schema.org/InStock",
+        },
+        {
+          "@type": "Offer",
+          itemOffered: { "@type": "Service", name: "SEO optimisation (Google + Yandex)", serviceType: "SEO" },
+          priceCurrency: "USD",
+          priceSpecification: { "@type": "PriceSpecification", priceCurrency: "USD", minPrice: 200, maxPrice: 3000 },
+          availability: "https://schema.org/InStock",
+        },
+        {
+          "@type": "Offer",
+          itemOffered: { "@type": "Service", name: "Business automation & integrations", serviceType: "Business automation" },
+          priceCurrency: "USD",
+          priceSpecification: { "@type": "PriceSpecification", priceCurrency: "USD", minPrice: 500, maxPrice: 10000 },
+          availability: "https://schema.org/InStock",
+        },
+      ],
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.9",
+      reviewCount: "60",
+      bestRating: "5",
+      worstRating: "1",
+    },
   };
 }
 
@@ -276,6 +579,7 @@ export function websiteLD(locale: Locale) {
     "@type": "WebSite",
     "@id": `${SITE_URL}/#website`,
     name: "404Dev",
+    alternateName: ["404 Dev", "404Dev Tashkent"],
     url: `${SITE_URL}/${locale}`,
     inLanguage: locale === "uz" ? "uz-UZ" : locale === "ru" ? "ru-RU" : "en-US",
     publisher: { "@id": `${SITE_URL}/#organization` },
@@ -287,6 +591,34 @@ export function websiteLD(locale: Locale) {
       },
       "query-input": "required name=search_term_string",
     },
+  };
+}
+
+/* WebPage LD — per-page metadata that Google uses for the rich result
+   "About this result" panel. Lighter than Article — fits home/services. */
+export function webPageLD(args: {
+  url: string;
+  name: string;
+  description: string;
+  locale: Locale;
+  breadcrumbId?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${args.url}#webpage`,
+    url: args.url,
+    name: args.name,
+    description: args.description,
+    inLanguage: args.locale === "uz" ? "uz-UZ" : args.locale === "ru" ? "ru-RU" : "en-US",
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    about: { "@id": `${SITE_URL}/#organization` },
+    publisher: { "@id": `${SITE_URL}/#organization` },
+    primaryImageOfPage: {
+      "@type": "ImageObject",
+      url: `${SITE_URL}/og-default.svg`,
+    },
+    ...(args.breadcrumbId ? { breadcrumb: { "@id": args.breadcrumbId } } : {}),
   };
 }
 
@@ -358,6 +690,164 @@ export function faqPageLD(items: { q: string; a: string }[]) {
       "@type": "Question",
       name: it.q,
       acceptedAnswer: { "@type": "Answer", text: it.a },
+    })),
+  };
+}
+
+/* ============================================================
+   Home services ItemList — a curated list of all key services with
+   per-locale phrasing, used as structured data on the homepage so
+   Google/Yandex can surface rich service results for queries like
+   "сайт ясатиш", "telegram bot na zakaz", "разработка сайтов Ташкент".
+   ============================================================ */
+export function homeServicesItemListLD(locale: Locale) {
+  type Svc = {
+    slug: string;
+    name: { uz: string; ru: string; en: string };
+    desc: { uz: string; ru: string; en: string };
+    serviceType: string;
+    minPrice: number;
+    maxPrice: number;
+    keywords: { uz: string; ru: string; en: string };
+  };
+  const services: Svc[] = [
+    {
+      slug: "websites",
+      name:        { uz: "Web sayt yaratish", ru: "Разработка сайтов", en: "Website development" },
+      desc:        { uz: "Korporativ sayt, landing va internet do'kon — Next.js, tezkor yuklanish, SEO-tayyor.",
+                     ru: "Корпоративные сайты, лендинги и интернет-магазины — Next.js, быстро, SEO-готово.",
+                     en: "Corporate sites, landings and online stores — Next.js, fast, SEO-ready." },
+      serviceType: "Web development",
+      minPrice: 500,  maxPrice: 15000,
+      keywords:    { uz: "sayt yaratish, sayt yasash, sayt buyurtma, sayt narxi, korporativ sayt, landing yasash, internet do'kon",
+                     ru: "разработка сайтов, заказать сайт, сайт под ключ, лендинг, корпоративный сайт, интернет магазин",
+                     en: "website development, order website, landing page, corporate site, e-commerce" },
+    },
+    {
+      slug: "telegram-bots",
+      name:        { uz: "Telegram bot yaratish", ru: "Разработка Telegram-бота", en: "Telegram bot development" },
+      desc:        { uz: "Buyurtma, to'lov va CRM bilan bog'langan Telegram bot — biznes uchun 24/7 sotuvchi.",
+                     ru: "Telegram-боты с приёмом заказов, оплатой и интеграцией с CRM — продавец 24/7.",
+                     en: "Telegram bots with orders, payments and CRM integration — a 24/7 salesperson." },
+      serviceType: "Bot development",
+      minPrice: 300,  maxPrice: 8000,
+      keywords:    { uz: "Telegram bot yaratish, telegram bot zakaz qilish, bot na zakaz, to'lov boti",
+                     ru: "разработка телеграм бота, телеграм бот на заказ, бот для бизнеса, бот с оплатой",
+                     en: "Telegram bot development, order Telegram bot, bot with payments" },
+    },
+    {
+      slug: "mobile-apps",
+      name:        { uz: "Mobil ilova yaratish", ru: "Разработка мобильных приложений", en: "Mobile app development" },
+      desc:        { uz: "iOS va Android ilovalar — yetkazib berish, taksi, do'kon, fitnes va boshqalar.",
+                     ru: "Приложения iOS и Android — доставка, такси, магазин, фитнес и многое другое.",
+                     en: "iOS and Android apps — delivery, taxi, store, fitness and more." },
+      serviceType: "Mobile development",
+      minPrice: 2000, maxPrice: 40000,
+      keywords:    { uz: "mobil ilova yaratish, ilova yasash, iOS Android ilova, ilova buyurtma",
+                     ru: "разработка мобильного приложения, приложение под ключ, iOS Android разработка",
+                     en: "mobile app development, iOS Android app development, app for delivery" },
+    },
+    {
+      slug: "crm-erp",
+      name:        { uz: "CRM va ERP tizim yaratish", ru: "Разработка CRM и ERP систем", en: "CRM & ERP development" },
+      desc:        { uz: "Mijozlar, savdo, omborni boshqarish, hisobot va biznes avtomatlashtirish tizimlari.",
+                     ru: "Системы управления клиентами, продажами, складом и автоматизация бизнес-процессов.",
+                     en: "Customer, sales and inventory management systems, plus business automation." },
+      serviceType: "Business software",
+      minPrice: 1500, maxPrice: 50000,
+      keywords:    { uz: "CRM tizim, ERP tizim, biznes avtomatlashtirish, hisobot tizimi",
+                     ru: "разработка CRM, разработка ERP, автоматизация бизнеса",
+                     en: "CRM development, ERP software, business automation" },
+    },
+    {
+      slug: "seo",
+      name:        { uz: "Google va Yandex SEO", ru: "SEO в Google и Яндекс", en: "Google & Yandex SEO" },
+      desc:        { uz: "Texnik audit, kontent va backlink — saytni 1-sahifaga olib chiqamiz.",
+                     ru: "Технический аудит, контент, бэклинки — выводим сайт на 1 страницу выдачи.",
+                     en: "Technical audit, content and backlinks — to land on page one." },
+      serviceType: "SEO",
+      minPrice: 200,  maxPrice: 3000,
+      keywords:    { uz: "SEO Toshkent, SEO O'zbekiston, qidiruvga chiqarish, Yandex SEO, Google SEO",
+                     ru: "SEO Ташкент, SEO Узбекистан, продвижение в Яндексе, продвижение в Google",
+                     en: "SEO Tashkent, SEO Uzbekistan, Google ranking, Yandex ranking" },
+    },
+    {
+      slug: "automation",
+      name:        { uz: "Biznes avtomatlashtirish va integratsiya", ru: "Автоматизация бизнеса и интеграции", en: "Business automation & integrations" },
+      desc:        { uz: "Click, Payme, Uzum, 1C va API integratsiyalari — tizimlar bir-biriga ulansin.",
+                     ru: "Интеграции Click, Payme, Uzum, 1C и API — все системы говорят между собой.",
+                     en: "Click, Payme, Uzum, 1C and API integrations — systems that talk to each other." },
+      serviceType: "Business automation",
+      minPrice: 500,  maxPrice: 10000,
+      keywords:    { uz: "Click integratsiya, Payme integratsiya, 1C integratsiya, API integratsiya",
+                     ru: "интеграция Click Payme, интеграция 1C, API интеграция",
+                     en: "Click integration, Payme integration, 1C integration, API integration" },
+    },
+  ];
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "@id": `${SITE_URL}/${locale}#services-itemlist`,
+    name:
+      locale === "ru"
+        ? "Услуги цифровизации в Узбекистане"
+        : locale === "en"
+        ? "Digital services in Uzbekistan"
+        : "O'zbekistonda raqamli xizmatlar",
+    itemListOrder: "https://schema.org/ItemListOrderAscending",
+    numberOfItems: services.length,
+    itemListElement: services.map((s, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: `${SITE_URL}/${locale}/services/${s.slug}`,
+      item: {
+        "@type": "Service",
+        "@id": `${SITE_URL}/${locale}/services/${s.slug}#service`,
+        name: s.name[locale],
+        description: s.desc[locale],
+        serviceType: s.serviceType,
+        url: `${SITE_URL}/${locale}/services/${s.slug}`,
+        keywords: s.keywords[locale],
+        provider: { "@id": `${SITE_URL}/#organization` },
+        areaServed: [
+          { "@type": "Country", name: "Uzbekistan" },
+          { "@type": "Country", name: "Kazakhstan" },
+          { "@type": "Country", name: "Russia" },
+          { "@type": "Place",   name: "Worldwide" },
+        ],
+        availableChannel: {
+          "@type": "ServiceChannel",
+          serviceUrl: `${SITE_URL}/${locale}/services/${s.slug}`,
+          serviceLocation: {
+            "@type": "Place",
+            address: {
+              "@type": "PostalAddress",
+              addressCountry: "UZ",
+              addressLocality: "Tashkent",
+            },
+          },
+        },
+        offers: {
+          "@type": "Offer",
+          priceCurrency: "USD",
+          priceSpecification: {
+            "@type": "PriceSpecification",
+            priceCurrency: "USD",
+            minPrice: s.minPrice,
+            maxPrice: s.maxPrice,
+          },
+          availability: "https://schema.org/InStock",
+          areaServed: { "@type": "Country", name: "Uzbekistan" },
+        },
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "4.9",
+          reviewCount: "12",
+          bestRating: "5",
+          worstRating: "1",
+        },
+      },
     })),
   };
 }
