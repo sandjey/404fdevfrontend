@@ -134,7 +134,7 @@ export default function Footer({ locale }: { locale: Locale }) {
 
         <div className="mt-14 pt-6 border-t border-cream-50/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-cream-50/55">
           <span>© {year} 404Dev. {t.footer.rights}</span>
-          <span className="font-mono">code · learn · build</span>
+          <span className="font-mono">404DEV UZBEKISTAN</span>
         </div>
       </div>
     </footer>
