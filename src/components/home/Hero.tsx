@@ -63,10 +63,14 @@ export default function Hero({ locale }: { locale: Locale }) {
       <div aria-hidden className="absolute inset-0 -z-10 aurora opacity-30" />
       <div aria-hidden className="absolute inset-0 -z-10 grid-bg opacity-50" />
 
-      {/* Subtle 404 watermark — fainter, smaller */}
+      {/* Subtle 404 watermark — kept much smaller so it's NOT the LCP
+          element (Lighthouse was flagging the giant text node as LCP).
+          content-visibility lets the browser skip layout work when
+          off-screen and keeps it out of the LCP candidate set. */}
       <div
         aria-hidden
-        className="absolute inset-x-0 top-1/2 -translate-y-1/2 -z-10 text-center font-display font-extrabold tracking-tightest leading-none text-ink-900/[.025] select-none pointer-events-none text-[12rem] md:text-[15rem] lg:text-[18rem] hidden md:block"
+        className="absolute inset-x-0 top-1/2 -translate-y-1/2 -z-10 text-center font-display font-extrabold tracking-tightest leading-none text-ink-900/[.025] select-none pointer-events-none text-[7rem] md:text-[9rem] lg:text-[10rem] hidden md:block"
+        style={{ contentVisibility: "auto", containIntrinsicSize: "200px" }}
       >
         404
       </div>

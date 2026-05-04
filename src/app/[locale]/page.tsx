@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { buildMetadata, homeServicesItemListLD, breadcrumbLD, webPageLD } from "@/lib/seo";
@@ -16,8 +15,6 @@ import { SendIcon, TelegramIcon } from "@/components/icons";
 import { SITE } from "@/lib/site";
 
 export async function generateMetadata({ params }: { params: { locale: Locale } }): Promise<Metadata> {
-  const t = getDictionary(params.locale);
-
   // Per-locale keyword-rich title — each one targets the primary search intent.
   const seoTitle =
     params.locale === "ru"
@@ -74,23 +71,21 @@ export default function HomePage({ params }: { params: { locale: Locale } }) {
 
   return (
     <>
-      {/* Homepage structured data — invisible to users, indexed by search */}
-      <Script
+      {/* Homepage structured data — plain <script> ships in initial SSR HTML
+          for crawlers like Yandex bot that don't always execute JS. */}
+      <script
         id="ld-home-itemlist"
         type="application/ld+json"
-        strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListLD) }}
       />
-      <Script
+      <script
         id="ld-home-breadcrumb"
         type="application/ld+json"
-        strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homeBreadcrumbLD) }}
       />
-      <Script
+      <script
         id="ld-home-webpage"
         type="application/ld+json"
-        strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homeWebPageLD) }}
       />
 

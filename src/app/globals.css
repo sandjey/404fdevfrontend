@@ -344,9 +344,10 @@
     100% { opacity: 1; transform: translateY(0) scaleX(1); }
   }
 
-  /* ===== Orbit border — slow comet of light traveling around the card edge.
-     Used on hero product cards. Serious ink-900 tone (not coral) for a
-     more trustworthy feel while still hinting at activity. */
+  /* ===== Orbit border — slow comet of light around the card edge.
+     Serious ink-900 tone (not coral) for a trustworthy feel.
+     12s cycle (vs 7s) keeps repaint frequency low and Lighthouse'ning
+     "non-composited animation" signalini real ish yukini kamaytiradi. */
   .border-orbit {
     position: relative;
     isolation: isolate;
@@ -371,7 +372,7 @@
     -webkit-mask-composite: xor;
             mask-composite: exclude;
     pointer-events: none;
-    animation: orbit-spin 7s linear infinite;
+    animation: orbit-spin 12s linear infinite;
     animation-delay: var(--orbit-delay, 0s);
   }
   @property --orbit-angle {
@@ -382,12 +383,14 @@
   @keyframes orbit-spin {
     to { --orbit-angle: 360deg; }
   }
-  /* Fallback for browsers without @property: rotate the gradient layer.
-     The mask rotates with it — for the card's near-square aspect this looks
-     fine; older browsers simply get a gentler effect. */
+  /* Reduced-motion users — pause the orbit entirely. */
+  @media (prefers-reduced-motion: reduce) {
+    .border-orbit::before { animation: none; }
+  }
+  /* Fallback for browsers without @property: rotate the gradient layer. */
   @supports not (background: conic-gradient(from var(--x))) {
     .border-orbit::before {
-      animation: orbit-rotate 7s linear infinite;
+      animation: orbit-rotate 12s linear infinite;
     }
     @keyframes orbit-rotate {
       to { transform: rotate(360deg); }
