@@ -43,13 +43,85 @@ export default async function PortfolioPage({ params }: { params: { locale: Loca
     items = [];
   }
 
-  // Blog uslubidagi layout: birinchi loyiha — featured (katta), qolganlari grid'da.
-  // Agar grid'da bitta toq karta qolsa (rest.length % 3 === 1 lg breakpoint uchun),
-  // o'sha karta avtomatik kattalashtiriladi.
-  const featured = items.length > 0 ? items[0] : null;
-  const rest = items.length > 1 ? items.slice(1) : [];
+  /* Layout pattern (3-column grid base):
+       n === 1                  → 1 top katta
+       n === 2                  → 1 top + 1 bottom katta
+       n % 3 === 0  (3,6,9…)    → faqat 3-li grid
+       n % 3 === 1  (4,7,10…)   → 1 top katta + grid
+       n % 3 === 2  (5,8,11…)   → 1 top katta + grid + 1 bottom katta */
+  const n = items.length;
+  let topItem: ProjectView | null = null;
+  let midItems: ProjectView[] = [];
+  let bottomItem: ProjectView | null = null;
+  if (n === 1) {
+    topItem = items[0];
+  } else if (n === 2) {
+    topItem = items[0];
+    bottomItem = items[1];
+  } else if (n >= 3) {
+    const mod = n % 3;
+    if (mod === 0) {
+      midItems = items;
+    } else if (mod === 1) {
+      topItem = items[0];
+      midItems = items.slice(1);
+    } else {
+      topItem = items[0];
+      midItems = items.slice(1, -1);
+      bottomItem = items[n - 1];
+    }
+  }
   const featuredLabel =
     params.locale === "ru" ? "Главный кейс" : params.locale === "en" ? "Featured case" : "Asosiy keys";
+  const openCase =
+    params.locale === "ru" ? "Открыть кейс" : params.locale === "en" ? "Open case" : "Keysni ochish";
+
+  function FeaturedProjectCard({ p, idx, label }: { p: ProjectView; idx: number; label?: string }) {
+    return (
+      <Link
+        href={`/${params.locale}/portfolio/${p.slug}`}
+        className="group block card card-hover overflow-hidden"
+      >
+        <div className="grid md:grid-cols-2 gap-0">
+          <div className="relative aspect-[16/10] bg-ink-50 overflow-hidden">
+            {p.cover_image ? (
+              <Image
+                src={p.cover_image}
+                alt={p.title}
+                fill
+                sizes="(min-width: 768px) 50vw, 100vw"
+                className="object-cover"
+                priority={idx === 0}
+              />
+            ) : (
+              <div className={`absolute inset-0 bg-gradient-to-br ${FALLBACK_GRADIENT[idx % FALLBACK_GRADIENT.length]}`}>
+                <div aria-hidden className="absolute inset-0 grid-bg opacity-20" />
+              </div>
+            )}
+            {label && (
+              <span className="absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-black/55 backdrop-blur text-white px-3 py-1 text-[10px] font-bold uppercase tracking-wider">
+                {label}
+              </span>
+            )}
+            {p.category && (
+              <span className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-cream-50/90 text-ink-900 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider">
+                {p.category}
+              </span>
+            )}
+          </div>
+          <div className="p-7 md:p-10 flex flex-col justify-center">
+            <span className="eyebrow">/ {params.locale === "ru" ? "проект" : params.locale === "en" ? "project" : "loyiha"}</span>
+            <h2 className="display-3 mt-3 group-hover:text-brand-700 transition">{p.title}</h2>
+            {p.excerpt && <p className="mt-3 text-ink-600 line-clamp-3">{p.excerpt}</p>}
+            <div className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-ink-900 group-hover:text-brand-600 transition">
+              {openCase}
+              <ArrowUpRightIcon size={14} className="transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </div>
+          </div>
+        </div>
+      </Link>
+    );
+  }
 
   return (
     <>
@@ -78,142 +150,51 @@ export default async function PortfolioPage({ params }: { params: { locale: Loca
               <p className="text-ink-500">{t.portfolio.empty}</p>
             </div>
           ) : (
-            <>
-              {/* Featured — birinchi loyiha (blog sahifasidagi singari) */}
-              {featured && (
-                <Link
-                  href={`/${params.locale}/portfolio/${featured.slug}`}
-                  className="group block card card-hover overflow-hidden mb-10"
-                >
-                  <div className="grid md:grid-cols-2 gap-0">
-                    <div className="relative aspect-[16/10] bg-ink-50 overflow-hidden">
-                      {featured.cover_image ? (
-                        <Image
-                          src={featured.cover_image}
-                          alt={featured.title}
-                          fill
-                          sizes="(min-width: 768px) 50vw, 100vw"
-                          className="object-cover"
-                          priority
-                        />
-                      ) : (
-                        <div className={`absolute inset-0 bg-gradient-to-br ${FALLBACK_GRADIENT[0]}`}>
-                          <div aria-hidden className="absolute inset-0 grid-bg opacity-20" />
-                        </div>
-                      )}
-                      <span className="absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-black/55 backdrop-blur text-white px-3 py-1 text-[10px] font-bold uppercase tracking-wider">
-                        {featuredLabel}
-                      </span>
-                      {featured.category && (
-                        <span className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-cream-50/90 text-ink-900 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider">
-                          {featured.category}
-                        </span>
-                      )}
-                    </div>
-                    <div className="p-7 md:p-10 flex flex-col justify-center">
-                      <span className="eyebrow">/ {params.locale === "ru" ? "проект" : params.locale === "en" ? "project" : "loyiha"}</span>
-                      <h2 className="display-3 mt-3 group-hover:text-brand-700 transition">
-                        {featured.title}
-                      </h2>
-                      {featured.excerpt && (
-                        <p className="mt-3 text-ink-600 line-clamp-3">{featured.excerpt}</p>
-                      )}
-                      <div className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-ink-900 group-hover:text-brand-600 transition">
-                        {params.locale === "ru" ? "Открыть кейс" : params.locale === "en" ? "Open case" : "Keysni ochish"}
-                        <ArrowUpRightIcon size={14} className="transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              )}
+            <div className="space-y-10">
+              {/* Top featured — n % 3 ∈ {1, 2} yoki n ∈ {1, 2} bo'lganda */}
+              {topItem && <FeaturedProjectCard p={topItem} idx={0} label={featuredLabel} />}
 
-              {/* Grid — qolgan loyihalar. Agar oxirida toq karta qolsa
-                  (lg da rest.length % 3 === 1), uni avtomatik kattalashtiramiz. */}
-              {rest.length > 0 && (
+              {/* O'rtadagi 3-ustunli grid */}
+              {midItems.length > 0 && (
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                  {rest.map((p, i) => {
-                    const isLast = i === rest.length - 1;
-                    const oddOnLg = rest.length % 3 === 1;
-                    const oddOnSm = rest.length % 2 === 1;
-                    // Toq qolgan oxirgi kartani kattalashtiramiz —
-                    // sm da 2 ustunni, lg da 3 ustunni egallaydi.
-                    const enlarge = isLast && (oddOnLg || oddOnSm);
-                    return (
-                      <Link
-                        key={p.id}
-                        href={`/${params.locale}/portfolio/${p.slug}`}
-                        className={
-                          "group card card-hover overflow-hidden flex flex-col " +
-                          (enlarge
-                            ? (oddOnLg ? "lg:col-span-3 " : "") +
-                              (oddOnSm ? "md:col-span-2 lg:col-span-3 " : "") +
-                              "lg:flex-row"
-                            : "")
-                        }
-                      >
-                        <div
-                          className={
-                            "relative bg-ink-50 overflow-hidden " +
-                            (enlarge
-                              ? "aspect-[16/9] lg:aspect-auto lg:w-1/2 lg:min-h-[360px]"
-                              : "aspect-[4/3]")
-                          }
-                        >
-                          {p.cover_image ? (
-                            <Image
-                              src={p.cover_image}
-                              alt={p.title}
-                              fill
-                              sizes={
-                                enlarge
-                                  ? "(min-width: 1024px) 50vw, 100vw"
-                                  : "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                              }
-                              className="object-contain"
-                            />
-                          ) : (
-                            <div className={`absolute inset-0 bg-gradient-to-br ${FALLBACK_GRADIENT[(i + 1) % FALLBACK_GRADIENT.length]}`}>
-                              <div aria-hidden className="absolute inset-0 grid-bg opacity-20" />
-                            </div>
-                          )}
-                          {p.category && (
-                            <span className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-black/55 backdrop-blur text-white px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider">
-                              {p.category}
-                            </span>
-                          )}
-                        </div>
-                        <div className={"flex flex-col flex-1 " + (enlarge ? "p-7 md:p-10 lg:justify-center" : "p-5")}>
-                          <h3
-                            className={
-                              "font-bold text-ink-900 leading-snug group-hover:text-brand-700 transition " +
-                              (enlarge ? "text-2xl md:text-3xl line-clamp-3" : "line-clamp-2")
-                            }
-                          >
-                            {p.title}
-                          </h3>
-                          {p.excerpt && (
-                            <p
-                              className={
-                                "mt-2 text-ink-600 " +
-                                (enlarge ? "text-base line-clamp-3 md:line-clamp-4" : "text-sm line-clamp-2")
-                              }
-                            >
-                              {p.excerpt}
-                            </p>
-                          )}
-                          {enlarge && (
-                            <div className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-ink-900 group-hover:text-brand-600 transition">
-                              {params.locale === "ru" ? "Открыть кейс" : params.locale === "en" ? "Open case" : "Keysni ochish"}
-                              <ArrowUpRightIcon size={14} className="transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                            </div>
-                          )}
-                        </div>
-                      </Link>
-                    );
-                  })}
+                  {midItems.map((p, i) => (
+                    <Link
+                      key={p.id}
+                      href={`/${params.locale}/portfolio/${p.slug}`}
+                      className="group card card-hover overflow-hidden flex flex-col"
+                    >
+                      <div className="relative aspect-[4/3] bg-ink-50 overflow-hidden">
+                        {p.cover_image ? (
+                          <Image
+                            src={p.cover_image}
+                            alt={p.title}
+                            fill
+                            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                            className="object-contain"
+                          />
+                        ) : (
+                          <div className={`absolute inset-0 bg-gradient-to-br ${FALLBACK_GRADIENT[(i + 1) % FALLBACK_GRADIENT.length]}`}>
+                            <div aria-hidden className="absolute inset-0 grid-bg opacity-20" />
+                          </div>
+                        )}
+                        {p.category && (
+                          <span className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-black/55 backdrop-blur text-white px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider">
+                            {p.category}
+                          </span>
+                        )}
+                      </div>
+                      <div className="p-5 flex flex-col flex-1">
+                        <h3 className="font-bold text-ink-900 leading-snug line-clamp-2 group-hover:text-brand-700 transition">{p.title}</h3>
+                        {p.excerpt && <p className="mt-2 text-sm text-ink-600 line-clamp-2">{p.excerpt}</p>}
+                      </div>
+                    </Link>
+                  ))}
                 </div>
               )}
-            </>
+
+              {/* Bottom featured — n % 3 === 2 yoki n === 2 bo'lganda */}
+              {bottomItem && <FeaturedProjectCard p={bottomItem} idx={n - 1} />}
+            </div>
           )}
         </div>
       </section>

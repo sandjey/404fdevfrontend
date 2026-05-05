@@ -31,8 +31,76 @@ export default async function BlogPage({ params }: { params: { locale: Locale } 
     posts = [];
   }
 
-  const featured = posts.length > 0 ? posts[0] : null;
-  const rest = posts.length > 1 ? posts.slice(1) : [];
+  /* Layout pattern (3-column grid base):
+       n === 1               → 1 top katta
+       n === 2               → 1 top + 1 bottom katta
+       n % 3 === 0           → faqat 3-li grid
+       n % 3 === 1           → 1 top katta + grid
+       n % 3 === 2           → 1 top katta + grid + 1 bottom katta */
+  const n = posts.length;
+  let topPost: BlogPostView | null = null;
+  let midPosts: BlogPostView[] = [];
+  let bottomPost: BlogPostView | null = null;
+  if (n === 1) {
+    topPost = posts[0];
+  } else if (n === 2) {
+    topPost = posts[0];
+    bottomPost = posts[1];
+  } else if (n >= 3) {
+    const mod = n % 3;
+    if (mod === 0) {
+      midPosts = posts;
+    } else if (mod === 1) {
+      topPost = posts[0];
+      midPosts = posts.slice(1);
+    } else {
+      topPost = posts[0];
+      midPosts = posts.slice(1, -1);
+      bottomPost = posts[n - 1];
+    }
+  }
+
+  function FeaturedPostCard({ p, idx, showBadge }: { p: BlogPostView; idx: number; showBadge?: boolean }) {
+    return (
+      <Link
+        href={`/${params.locale}/blog/${p.slug}`}
+        className="group block card card-hover overflow-hidden"
+      >
+        <div className="grid md:grid-cols-2 gap-0">
+          <div className="relative aspect-[16/10] bg-ink-100">
+            {p.cover_image ? (
+              <Image
+                src={p.cover_image}
+                alt={p.title}
+                fill
+                sizes="(min-width: 768px) 50vw, 100vw"
+                className="object-cover"
+                priority={idx === 0}
+              />
+            ) : (
+              <div className="absolute inset-0 bg-gradient-to-br from-brand-500 to-cyan-500" />
+            )}
+            {showBadge && (
+              <span className="absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-black/55 backdrop-blur text-white px-3 py-1 text-[10px] font-bold uppercase tracking-wider">
+                Featured
+              </span>
+            )}
+          </div>
+          <div className="p-7 md:p-10 flex flex-col justify-center">
+            {p.category && <span className="eyebrow">{p.category}</span>}
+            <h2 className="display-3 mt-3 group-hover:text-brand-700 transition">{p.title}</h2>
+            {p.excerpt && <p className="mt-3 text-ink-600 line-clamp-3">{p.excerpt}</p>}
+            <div className="mt-5 flex items-center justify-between text-xs text-ink-500">
+              <span>
+                {formatDate(p.published_at || p.created_at, params.locale)} · {readingTime(p.content, params.locale)}
+              </span>
+              <ArrowUpRightIcon size={16} className="text-ink-700 group-hover:text-brand-600 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition" />
+            </div>
+          </div>
+        </div>
+      </Link>
+    );
+  }
 
   return (
     <>
@@ -61,56 +129,14 @@ export default async function BlogPage({ params }: { params: { locale: Locale } 
               <p className="text-ink-500">{t.blog.empty}</p>
             </div>
           ) : (
-            <>
-              {/* Featured */}
-              {featured && (
-                <Link
-                  href={`/${params.locale}/blog/${featured.slug}`}
-                  className="group block card card-hover overflow-hidden mb-10"
-                >
-                  <div className="grid md:grid-cols-2 gap-0">
-                    <div className="relative aspect-[16/10] bg-ink-100">
-                      {featured.cover_image ? (
-                        <Image
-                          src={featured.cover_image}
-                          alt={featured.title}
-                          fill
-                          sizes="(min-width: 768px) 50vw, 100vw"
-                          className="object-cover"
-                          priority
-                        />
-                      ) : (
-                        <div className="absolute inset-0 bg-gradient-to-br from-brand-500 to-cyan-500" />
-                      )}
-                      <span className="absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-black/55 backdrop-blur text-white px-3 py-1 text-[10px] font-bold uppercase tracking-wider">
-                        Featured
-                      </span>
-                    </div>
-                    <div className="p-7 md:p-10 flex flex-col justify-center">
-                      {featured.category && (
-                        <span className="eyebrow">{featured.category}</span>
-                      )}
-                      <h2 className="display-3 mt-3 group-hover:text-brand-700 transition">
-                        {featured.title}
-                      </h2>
-                      {featured.excerpt && (
-                        <p className="mt-3 text-ink-600 line-clamp-3">{featured.excerpt}</p>
-                      )}
-                      <div className="mt-5 flex items-center justify-between text-xs text-ink-500">
-                        <span>
-                          {formatDate(featured.published_at || featured.created_at, params.locale)} · {readingTime(featured.content, params.locale)}
-                        </span>
-                        <ArrowUpRightIcon size={16} className="text-ink-700 group-hover:text-brand-600 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition" />
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              )}
+            <div className="space-y-10">
+              {/* Top featured — n % 3 ∈ {1, 2} yoki n ∈ {1, 2} bo'lganda */}
+              {topPost && <FeaturedPostCard p={topPost} idx={0} showBadge />}
 
-              {/* Grid */}
-              {rest.length > 0 && (
+              {/* O'rtadagi 3-ustunli grid */}
+              {midPosts.length > 0 && (
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                  {rest.map((p) => (
+                  {midPosts.map((p) => (
                     <article key={p.id} className="group card card-hover overflow-hidden flex flex-col">
                       {p.cover_image ? (
                         <Link href={`/${params.locale}/blog/${p.slug}`} className="block aspect-[16/9] relative overflow-hidden bg-ink-100">
@@ -148,7 +174,10 @@ export default async function BlogPage({ params }: { params: { locale: Locale } 
                   ))}
                 </div>
               )}
-            </>
+
+              {/* Bottom featured — n % 3 === 2 yoki n === 2 bo'lganda */}
+              {bottomPost && <FeaturedPostCard p={bottomPost} idx={n - 1} />}
+            </div>
           )}
         </div>
       </section>
