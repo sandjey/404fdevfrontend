@@ -234,7 +234,7 @@ function AnimatedHeadline({ locale }: { locale: Locale }) {
       </span>
 
       {/* Line 2 — coral, no underline */}
-      <span className={"word-mask mt-0.5 " + lineSize}>
+      <span className={"word-mask mt-2 md:mt-3 " + lineSize}>
         <span
           className="font-extrabold text-brand-500"
           style={{ animationDelay: "260ms" }}
@@ -244,7 +244,7 @@ function AnimatedHeadline({ locale }: { locale: Locale }) {
       </span>
 
       {/* Line 3 — ink-900 + softer period dot (no glow) */}
-      <span className={"word-mask mt-0.5 " + lineSize}>
+      <span className={"word-mask mt-2 md:mt-3 " + lineSize}>
         <span
           className="font-extrabold text-ink-900 inline-flex items-baseline"
           style={{ animationDelay: "400ms" }}
