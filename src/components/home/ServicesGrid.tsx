@@ -8,6 +8,7 @@ import {
   DatabaseIcon,
   PlugIcon,
   SmartphoneIcon,
+  SparklesIcon,
   ZapIcon,
 } from "@/components/icons";
 
@@ -88,6 +89,21 @@ const SERVICES: ServiceMeta[] = [
       en: "Click, Payme, Uzum, 1C, marketplaces — a bridge between your systems.",
     },
   },
+  {
+    slug: "ai",
+    Icon: SparklesIcon,
+    badge: { uz: "07 / AI", ru: "07 / AI", en: "07 / AI" },
+    title: {
+      uz: "AI integratsiya",
+      ru: "AI интеграция",
+      en: "AI integration",
+    },
+    desc: {
+      uz: "GPT, Gemini va boshqa modellar bilan ishlash — chatbot, kontent, hujjat tahlili va biznes assistentlarini loyihangizga professional integratsiya qilamiz.",
+      ru: "Работа с GPT, Gemini и другими моделями — чат-боты, генерация контента, анализ документов и бизнес-ассистенты, профессионально встроенные в ваш проект.",
+      en: "GPT, Gemini and other models — chatbots, content, document analysis and business assistants, professionally integrated into your project.",
+    },
+  },
 ];
 
 export default function ServicesGrid({ locale }: { locale: Locale }) {
@@ -129,14 +145,18 @@ export default function ServicesGrid({ locale }: { locale: Locale }) {
 
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((s, i) => {
-            const isFeatured = i === 0 || i === 3; // visual rhythm — alternate dark/light
+            const isAi = s.slug === "ai";
+            // Dark cards = visual rhythm (alternate) + the AI showcase row.
+            const isFeatured = i === 0 || i === 3 || isAi;
             return (
               <Link
                 key={s.slug}
                 href={`/${locale}/services#${s.slug}`}
                 className={
                   "group relative rounded-2xl p-6 md:p-7 transition-all duration-300 overflow-hidden " +
-                  (isFeatured
+                  (isAi
+                    ? "sm:col-span-2 lg:col-span-3 bg-ink-900 text-cream-50 ring-1 ring-ink-800 hover:-translate-y-1 hover:shadow-card"
+                    : isFeatured
                     ? "bg-ink-900 text-cream-50 ring-1 ring-ink-800 hover:-translate-y-1 hover:shadow-card"
                     : "bg-cream-50 text-ink-900 ring-1 ring-ink-200 hover:-translate-y-1 hover:shadow-card hover:ring-brand-500/40")
                 }

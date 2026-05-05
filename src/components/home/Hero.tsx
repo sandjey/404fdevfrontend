@@ -223,10 +223,11 @@ function AnimatedHeadline({ locale }: { locale: Locale }) {
 
   return (
     <h1 className="mt-3 md:mt-4 font-display tracking-tightest text-ink-900">
-      {/* Line 1 */}
+      {/* Line 1 — leading-[1.1] gives breathing room when "bo'ylab"
+          o'rab tushganda matn qatorlari yopishib qolmasin. */}
       <span className={"word-mask " + lineSize}>
         <span
-          className="font-extrabold text-ink-800"
+          className="font-extrabold text-ink-800 leading-[1.1] inline-block"
           style={{ animationDelay: "120ms" }}
         >
           {parts.lead}
@@ -236,7 +237,7 @@ function AnimatedHeadline({ locale }: { locale: Locale }) {
       {/* Line 2 — coral, no underline */}
       <span className={"word-mask mt-2 md:mt-3 " + lineSize}>
         <span
-          className="font-extrabold text-brand-500"
+          className="font-extrabold text-brand-500 leading-[1.1] inline-block"
           style={{ animationDelay: "260ms" }}
         >
           {parts.coral}
@@ -246,7 +247,7 @@ function AnimatedHeadline({ locale }: { locale: Locale }) {
       {/* Line 3 — ink-900 + softer period dot (no glow) */}
       <span className={"word-mask mt-2 md:mt-3 " + lineSize}>
         <span
-          className="font-extrabold text-ink-900 inline-flex items-baseline"
+          className="font-extrabold text-ink-900 leading-[1.1] inline-flex items-baseline"
           style={{ animationDelay: "400ms" }}
         >
           {parts.end}

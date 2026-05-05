@@ -6,7 +6,7 @@ import { getDictionary } from "@/lib/i18n/dictionaries";
 import { buildMetadata } from "@/lib/seo";
 import { rawPaged, type ProjectView } from "@/lib/api";
 import CTAButton from "@/components/CTAButton";
-import { SendIcon } from "@/components/icons";
+import { ArrowUpRightIcon, SendIcon } from "@/components/icons";
 
 export const revalidate = 120;
 
@@ -43,6 +43,14 @@ export default async function PortfolioPage({ params }: { params: { locale: Loca
     items = [];
   }
 
+  // Blog uslubidagi layout: birinchi loyiha — featured (katta), qolganlari grid'da.
+  // Agar grid'da bitta toq karta qolsa (rest.length % 3 === 1 lg breakpoint uchun),
+  // o'sha karta avtomatik kattalashtiriladi.
+  const featured = items.length > 0 ? items[0] : null;
+  const rest = items.length > 1 ? items.slice(1) : [];
+  const featuredLabel =
+    params.locale === "ru" ? "Главный кейс" : params.locale === "en" ? "Featured case" : "Asosiy keys";
+
   return (
     <>
       {/* Hero */}
@@ -70,40 +78,142 @@ export default async function PortfolioPage({ params }: { params: { locale: Loca
               <p className="text-ink-500">{t.portfolio.empty}</p>
             </div>
           ) : (
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {items.map((p, i) => (
+            <>
+              {/* Featured — birinchi loyiha (blog sahifasidagi singari) */}
+              {featured && (
                 <Link
-                  key={p.id}
-                  href={`/${params.locale}/portfolio/${p.slug}`}
-                  className="group card card-hover overflow-hidden flex flex-col"
+                  href={`/${params.locale}/portfolio/${featured.slug}`}
+                  className="group block card card-hover overflow-hidden mb-10"
                 >
-                  <div className="relative aspect-[4/3] bg-ink-50 overflow-hidden">
-                    {p.cover_image ? (
-                      <Image
-                        src={p.cover_image}
-                        alt={p.title}
-                        fill
-                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                        className="object-contain"
-                      />
-                    ) : (
-                      <div className={`absolute inset-0 bg-gradient-to-br ${FALLBACK_GRADIENT[i % FALLBACK_GRADIENT.length]}`}>
-                        <div aria-hidden className="absolute inset-0 grid-bg opacity-20" />
-                      </div>
-                    )}
-                    {p.category && (
-                      <span className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-black/55 backdrop-blur text-white px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider">
-                        {p.category}
+                  <div className="grid md:grid-cols-2 gap-0">
+                    <div className="relative aspect-[16/10] bg-ink-50 overflow-hidden">
+                      {featured.cover_image ? (
+                        <Image
+                          src={featured.cover_image}
+                          alt={featured.title}
+                          fill
+                          sizes="(min-width: 768px) 50vw, 100vw"
+                          className="object-cover"
+                          priority
+                        />
+                      ) : (
+                        <div className={`absolute inset-0 bg-gradient-to-br ${FALLBACK_GRADIENT[0]}`}>
+                          <div aria-hidden className="absolute inset-0 grid-bg opacity-20" />
+                        </div>
+                      )}
+                      <span className="absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-black/55 backdrop-blur text-white px-3 py-1 text-[10px] font-bold uppercase tracking-wider">
+                        {featuredLabel}
                       </span>
-                    )}
-                  </div>
-                  <div className="p-5 flex flex-col flex-1">
-                    <h3 className="font-bold text-ink-900 leading-snug line-clamp-2 group-hover:text-brand-700 transition">{p.title}</h3>
-                    {p.excerpt && <p className="mt-2 text-sm text-ink-600 line-clamp-2">{p.excerpt}</p>}
+                      {featured.category && (
+                        <span className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-cream-50/90 text-ink-900 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider">
+                          {featured.category}
+                        </span>
+                      )}
+                    </div>
+                    <div className="p-7 md:p-10 flex flex-col justify-center">
+                      <span className="eyebrow">/ {params.locale === "ru" ? "проект" : params.locale === "en" ? "project" : "loyiha"}</span>
+                      <h2 className="display-3 mt-3 group-hover:text-brand-700 transition">
+                        {featured.title}
+                      </h2>
+                      {featured.excerpt && (
+                        <p className="mt-3 text-ink-600 line-clamp-3">{featured.excerpt}</p>
+                      )}
+                      <div className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-ink-900 group-hover:text-brand-600 transition">
+                        {params.locale === "ru" ? "Открыть кейс" : params.locale === "en" ? "Open case" : "Keysni ochish"}
+                        <ArrowUpRightIcon size={14} className="transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                      </div>
+                    </div>
                   </div>
                 </Link>
-              ))}
-            </div>
+              )}
+
+              {/* Grid — qolgan loyihalar. Agar oxirida toq karta qolsa
+                  (lg da rest.length % 3 === 1), uni avtomatik kattalashtiramiz. */}
+              {rest.length > 0 && (
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                  {rest.map((p, i) => {
+                    const isLast = i === rest.length - 1;
+                    const oddOnLg = rest.length % 3 === 1;
+                    const oddOnSm = rest.length % 2 === 1;
+                    // Toq qolgan oxirgi kartani kattalashtiramiz —
+                    // sm da 2 ustunni, lg da 3 ustunni egallaydi.
+                    const enlarge = isLast && (oddOnLg || oddOnSm);
+                    return (
+                      <Link
+                        key={p.id}
+                        href={`/${params.locale}/portfolio/${p.slug}`}
+                        className={
+                          "group card card-hover overflow-hidden flex flex-col " +
+                          (enlarge
+                            ? (oddOnLg ? "lg:col-span-3 " : "") +
+                              (oddOnSm ? "md:col-span-2 lg:col-span-3 " : "") +
+                              "lg:flex-row"
+                            : "")
+                        }
+                      >
+                        <div
+                          className={
+                            "relative bg-ink-50 overflow-hidden " +
+                            (enlarge
+                              ? "aspect-[16/9] lg:aspect-auto lg:w-1/2 lg:min-h-[360px]"
+                              : "aspect-[4/3]")
+                          }
+                        >
+                          {p.cover_image ? (
+                            <Image
+                              src={p.cover_image}
+                              alt={p.title}
+                              fill
+                              sizes={
+                                enlarge
+                                  ? "(min-width: 1024px) 50vw, 100vw"
+                                  : "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                              }
+                              className="object-contain"
+                            />
+                          ) : (
+                            <div className={`absolute inset-0 bg-gradient-to-br ${FALLBACK_GRADIENT[(i + 1) % FALLBACK_GRADIENT.length]}`}>
+                              <div aria-hidden className="absolute inset-0 grid-bg opacity-20" />
+                            </div>
+                          )}
+                          {p.category && (
+                            <span className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-black/55 backdrop-blur text-white px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider">
+                              {p.category}
+                            </span>
+                          )}
+                        </div>
+                        <div className={"flex flex-col flex-1 " + (enlarge ? "p-7 md:p-10 lg:justify-center" : "p-5")}>
+                          <h3
+                            className={
+                              "font-bold text-ink-900 leading-snug group-hover:text-brand-700 transition " +
+                              (enlarge ? "text-2xl md:text-3xl line-clamp-3" : "line-clamp-2")
+                            }
+                          >
+                            {p.title}
+                          </h3>
+                          {p.excerpt && (
+                            <p
+                              className={
+                                "mt-2 text-ink-600 " +
+                                (enlarge ? "text-base line-clamp-3 md:line-clamp-4" : "text-sm line-clamp-2")
+                              }
+                            >
+                              {p.excerpt}
+                            </p>
+                          )}
+                          {enlarge && (
+                            <div className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-ink-900 group-hover:text-brand-600 transition">
+                              {params.locale === "ru" ? "Открыть кейс" : params.locale === "en" ? "Open case" : "Keysni ochish"}
+                              <ArrowUpRightIcon size={14} className="transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                            </div>
+                          )}
+                        </div>
+                      </Link>
+                    );
+                  })}
+                </div>
+              )}
+            </>
           )}
         </div>
       </section>
