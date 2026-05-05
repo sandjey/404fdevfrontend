@@ -161,7 +161,7 @@ export default function FAQ({ locale }: { locale: Locale }) {
 
         {/* "Still have questions?" CTA */}
         <div className="mt-12 rounded-3xl bg-ink-900 text-cream-50 p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-5 relative overflow-hidden">
-          <div aria-hidden className="absolute -top-20 -right-12 h-56 w-56 rounded-full bg-brand-500/30 blur-3xl" />
+          <div aria-hidden className="pointer-events-none absolute -top-20 -right-12 h-56 w-56 rounded-full bg-brand-500/30 blur-3xl" />
           <div className="relative flex items-center gap-4">
             <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-brand-500/20 text-brand-400 ring-1 ring-brand-500/30">
               <SparklesIcon size={20} />
@@ -182,7 +182,7 @@ export default function FAQ({ locale }: { locale: Locale }) {
           <button
             type="button"
             onClick={() => openModal("faq-cta")}
-            className="btn btn-accent btn-md shrink-0"
+            className="btn btn-accent btn-md shrink-0 relative"
           >
             {head.askButton}
           </button>

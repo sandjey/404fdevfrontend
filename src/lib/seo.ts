@@ -519,55 +519,13 @@ export function localBusinessLD() {
       "@type": "OfferCatalog",
       name: "Digital services",
       itemListElement: [
-        {
-          "@type": "Offer",
-          itemOffered: { "@type": "Service", name: "Website development", serviceType: "Web development" },
-          priceCurrency: "USD",
-          priceSpecification: { "@type": "PriceSpecification", priceCurrency: "USD", minPrice: 500, maxPrice: 15000 },
-          availability: "https://schema.org/InStock",
-        },
-        {
-          "@type": "Offer",
-          itemOffered: { "@type": "Service", name: "Telegram bot development", serviceType: "Bot development" },
-          priceCurrency: "USD",
-          priceSpecification: { "@type": "PriceSpecification", priceCurrency: "USD", minPrice: 300, maxPrice: 8000 },
-          availability: "https://schema.org/InStock",
-        },
-        {
-          "@type": "Offer",
-          itemOffered: { "@type": "Service", name: "Mobile app development", serviceType: "Mobile development" },
-          priceCurrency: "USD",
-          priceSpecification: { "@type": "PriceSpecification", priceCurrency: "USD", minPrice: 2000, maxPrice: 40000 },
-          availability: "https://schema.org/InStock",
-        },
-        {
-          "@type": "Offer",
-          itemOffered: { "@type": "Service", name: "CRM / ERP development", serviceType: "Business software" },
-          priceCurrency: "USD",
-          priceSpecification: { "@type": "PriceSpecification", priceCurrency: "USD", minPrice: 1500, maxPrice: 50000 },
-          availability: "https://schema.org/InStock",
-        },
-        {
-          "@type": "Offer",
-          itemOffered: { "@type": "Service", name: "SEO optimisation (Google + Yandex)", serviceType: "SEO" },
-          priceCurrency: "USD",
-          priceSpecification: { "@type": "PriceSpecification", priceCurrency: "USD", minPrice: 200, maxPrice: 3000 },
-          availability: "https://schema.org/InStock",
-        },
-        {
-          "@type": "Offer",
-          itemOffered: { "@type": "Service", name: "Business automation & integrations", serviceType: "Business automation" },
-          priceCurrency: "USD",
-          priceSpecification: { "@type": "PriceSpecification", priceCurrency: "USD", minPrice: 500, maxPrice: 10000 },
-          availability: "https://schema.org/InStock",
-        },
-        {
-          "@type": "Offer",
-          itemOffered: { "@type": "Service", name: "AI integration (GPT, Gemini, custom LLM)", serviceType: "AI integration" },
-          priceCurrency: "USD",
-          priceSpecification: { "@type": "PriceSpecification", priceCurrency: "USD", minPrice: 500, maxPrice: 20000 },
-          availability: "https://schema.org/InStock",
-        },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Website development" },              priceCurrency: "USD", price: 500,  availability: "https://schema.org/InStock" },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Telegram bot development" },         priceCurrency: "USD", price: 300,  availability: "https://schema.org/InStock" },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Mobile app development" },           priceCurrency: "USD", price: 2000, availability: "https://schema.org/InStock" },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "CRM / ERP development" },            priceCurrency: "USD", price: 1500, availability: "https://schema.org/InStock" },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "SEO (Google + Yandex)" },            priceCurrency: "USD", price: 200,  availability: "https://schema.org/InStock" },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Business automation & integrations" }, priceCurrency: "USD", price: 500,  availability: "https://schema.org/InStock" },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "AI integration (GPT, Gemini, LLM)" }, priceCurrency: "USD", price: 500,  availability: "https://schema.org/InStock" },
       ],
     },
     aggregateRating: {
@@ -816,7 +774,6 @@ export function homeServicesItemListLD(locale: Locale) {
         : locale === "en"
         ? "Digital services in Uzbekistan"
         : "O'zbekistonda raqamli xizmatlar",
-    itemListOrder: "https://schema.org/ItemListOrderAscending",
     numberOfItems: services.length,
     itemListElement: services.map((s, i) => ({
       "@type": "ListItem",
@@ -829,44 +786,22 @@ export function homeServicesItemListLD(locale: Locale) {
         description: s.desc[locale],
         serviceType: s.serviceType,
         url: `${SITE_URL}/${locale}/services/${s.slug}`,
-        keywords: s.keywords[locale],
-        provider: { "@id": `${SITE_URL}/#organization` },
-        areaServed: [
-          { "@type": "Country", name: "Uzbekistan" },
-          { "@type": "Country", name: "Kazakhstan" },
-          { "@type": "Country", name: "Russia" },
-          { "@type": "Place",   name: "Worldwide" },
-        ],
-        availableChannel: {
-          "@type": "ServiceChannel",
-          serviceUrl: `${SITE_URL}/${locale}/services/${s.slug}`,
-          serviceLocation: {
-            "@type": "Place",
-            address: {
-              "@type": "PostalAddress",
-              addressCountry: "UZ",
-              addressLocality: "Tashkent",
-            },
-          },
+        // Inline Organization (Google ba'zida @id-only ref'larni tushunmaydi
+        // va "<parent_node>" xatosi beradi). To'liq inline berib qo'yamiz.
+        provider: {
+          "@type": "Organization",
+          name: "404Dev",
+          url: SITE_URL,
+        },
+        areaServed: {
+          "@type": "Country",
+          name: "Uzbekistan",
         },
         offers: {
           "@type": "Offer",
           priceCurrency: "USD",
-          priceSpecification: {
-            "@type": "PriceSpecification",
-            priceCurrency: "USD",
-            minPrice: s.minPrice,
-            maxPrice: s.maxPrice,
-          },
+          price: s.minPrice,
           availability: "https://schema.org/InStock",
-          areaServed: { "@type": "Country", name: "Uzbekistan" },
-        },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.9",
-          reviewCount: "12",
-          bestRating: "5",
-          worstRating: "1",
         },
       },
     })),
