@@ -3,6 +3,7 @@ import { LOCALES, DEFAULT_LOCALE } from "@/lib/i18n/config";
 import { api, rawPaged, SITE_URL, type ProjectView, type Service } from "@/lib/api";
 
 type LessonPath = { TechSlug: string; SectionSlug: string; LessonSlug: string; UpdatedAt: string };
+type TreeTech = { slug: string; sections: { slug: string }[] };
 
 /* ============================================================
    STATIC ROUTES
@@ -179,13 +180,33 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }
 
-  /* ============ Learn (uz only — bepul maktab) ============ */
+  /* ============ Learn (uz only — bepul maktab) ============
+     Sitemap covers: root /learn, every /learn/[tech] index, every lesson.
+     Section pages aren't routable in our app, so we skip them. */
   items.push({
     url: `${SITE_URL}/learn`,
     lastModified: now,
     changeFrequency: "weekly",
-    priority: 0.8,
+    priority: 0.9, // bumped — high-value evergreen content for SEO
   });
+
+  // Per-tech index pages (e.g. /learn/javascript). Tech indices rank for
+  // "{tech} darslari", "{tech} o'zbek tilida" head terms.
+  try {
+    const tree = await api.get<TreeTech[] | null>(`/learn/tree`, {
+      next: { revalidate: 600 },
+    });
+    for (const t of Array.isArray(tree) ? tree : []) {
+      items.push({
+        url: `${SITE_URL}/learn/${t.slug}`,
+        lastModified: now,
+        changeFrequency: "weekly",
+        priority: 0.8,
+      });
+    }
+  } catch {}
+
+  // Individual lessons.
   try {
     const paths = await api.get<LessonPath[] | null>(`/learn/sitemap`, {
       next: { revalidate: 600 },
@@ -195,7 +216,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         url: `${SITE_URL}/learn/${p.TechSlug}/${p.SectionSlug}/${p.LessonSlug}`,
         lastModified: p.UpdatedAt ? new Date(p.UpdatedAt) : now,
         changeFrequency: "monthly",
-        priority: 0.6,
+        priority: 0.7, // bumped — these are deep-tail SEO landing pages
       });
     }
   } catch {}

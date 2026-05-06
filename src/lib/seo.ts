@@ -647,6 +647,209 @@ export function serviceLD(args: {
   };
 }
 
+/* ============================================================
+   Learn — programming course / lesson structured data
+   - courseLD: Schema.org Course (rich result eligible — "Course" carousel
+     in Google: appears for queries like "JavaScript darslari", "React
+     o'zbek tilida", "free Python course Uzbek").
+   - learningResourceLD: per-lesson LearningResource + Article hybrid.
+   - learnKeywords: per-technology keyword expansion. We hit:
+     * native Uzbek phrasing (latin + cyrillic)
+     * common transliterations (ru speakers searching for uz programming
+       content; uz speakers searching with ru words like "уроки")
+     * long-tail intent ("bepul", "o'rganish", "narxsiz", "kursi")
+     * brand affinity ("404Dev darslari")
+   ============================================================ */
+
+export function courseLD(args: {
+  name: string;
+  description: string;
+  url: string;
+  // tech slug used as @id
+  slug: string;
+  // Optional: list of section/lesson titles for hasPart
+  sections?: { title: string; url: string; lessons: { title: string; url: string }[] }[];
+  totalLessons?: number;
+  image?: string;
+}) {
+  const courseInstance = {
+    "@type": "CourseInstance",
+    courseMode: "online",
+    courseWorkload: args.totalLessons ? `PT${Math.max(1, args.totalLessons)}H` : undefined,
+    inLanguage: "uz-UZ",
+    isAccessibleForFree: true,
+    location: { "@type": "VirtualLocation", url: args.url },
+  };
+
+  const hasPart =
+    args.sections?.flatMap((s) => [
+      // Each section as a Course (sub-course)
+      {
+        "@type": "Course",
+        name: s.title,
+        url: s.url,
+        provider: { "@id": `${SITE_URL}/#organization` },
+        // Lessons inside the section
+        hasPart: s.lessons.map((l) => ({
+          "@type": "LearningResource",
+          name: l.title,
+          url: l.url,
+          inLanguage: "uz-UZ",
+          isAccessibleForFree: true,
+          learningResourceType: "Lesson",
+        })),
+      },
+    ]) ?? [];
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "@id": `${args.url}#course`,
+    name: args.name,
+    description: args.description,
+    url: args.url,
+    inLanguage: "uz-UZ",
+    isAccessibleForFree: true,
+    image: args.image || `${SITE_URL}/og-default.svg`,
+    educationalLevel: "Beginner to Advanced",
+    teaches: args.name,
+    provider: { "@id": `${SITE_URL}/#organization` },
+    publisher: { "@id": `${SITE_URL}/#organization` },
+    // Required by Google's Course rich result spec
+    offers: {
+      "@type": "Offer",
+      category: "Free",
+      price: 0,
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+    },
+    hasCourseInstance: courseInstance,
+    ...(hasPart.length > 0 ? { hasPart } : {}),
+  };
+}
+
+export function learningResourceLD(args: {
+  name: string;
+  description: string;
+  url: string;
+  technologyName: string;
+  technologyUrl: string;
+  sectionName: string;
+  publishedAt?: string;
+  updatedAt?: string;
+  image?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "@id": `${args.url}#lesson`,
+    name: args.name,
+    description: args.description,
+    url: args.url,
+    inLanguage: "uz-UZ",
+    isAccessibleForFree: true,
+    learningResourceType: "Lesson",
+    educationalLevel: "Beginner to Advanced",
+    teaches: args.technologyName,
+    image: args.image || `${SITE_URL}/og-default.svg`,
+    datePublished: args.publishedAt || args.updatedAt,
+    dateModified: args.updatedAt || args.publishedAt,
+    isPartOf: {
+      "@type": "Course",
+      "@id": `${args.technologyUrl}#course`,
+      name: `${args.technologyName} darslari`,
+      url: args.technologyUrl,
+    },
+    about: {
+      "@type": "Thing",
+      name: args.sectionName,
+    },
+    provider: { "@id": `${SITE_URL}/#organization` },
+    publisher: { "@id": `${SITE_URL}/#organization` },
+  };
+}
+
+/* Per-technology keyword set — extends defaultKeywords(uz) with technology
+   name variants, transliterations and intent modifiers. Search engines pick
+   up the broader phrase coverage. */
+export function learnKeywords(opts?: { name?: string; slug?: string }): string[] {
+  const baseLearn: string[] = [
+    // Generic learning intent (uz)
+    "dasturlash darslari",
+    "dasturlashni o'rganish",
+    "dasturlash kursi",
+    "bepul dasturlash darslari",
+    "online dasturlash kursi",
+    "kod yozishni o'rganish",
+    "dasturchi bo'lish",
+    "dasturchi kursi",
+    "frontend o'rganish",
+    "backend o'rganish",
+    "web dasturlash o'rganish",
+    "dasturchi uchun darsliklar",
+    "dasturlash o'zbek tilida",
+    "dasturlash uz",
+    "ona tilimda dasturlash",
+    // Cyrillic-mix
+    "дастурлаш дарслари",
+    "дастурлаш урганиш",
+    "дастурлаш курси",
+    // Long-tail intent
+    "noldan dasturlash",
+    "boshlanganlar uchun dasturlash",
+    "dasturchilik kasbi",
+    "qaysi tilni o'rganish",
+    // Russian (uz speakers occasionally search in ru)
+    "уроки программирования на узбекском",
+    "программирование с нуля",
+    "бесплатные уроки программирования",
+    "курс программирования",
+    // English
+    "programming tutorials in Uzbek",
+    "learn programming Uzbek",
+    "free programming course",
+    // Brand
+    "404Dev Learn",
+    "404Dev darslari",
+    "404 Dev kurs",
+  ];
+
+  const name = opts?.name?.trim();
+  const slug = opts?.slug?.trim();
+  if (!name && !slug) return baseLearn;
+
+  // Build per-tech variants
+  const tech = name || slug || "";
+  const techVariants: string[] = [
+    `${tech} darslari`,
+    `${tech} o'rganish`,
+    `${tech} kursi`,
+    `${tech} o'zbek tilida`,
+    `${tech} bepul darslari`,
+    `${tech} dasturlash`,
+    `${tech} asoslari`,
+    `${tech} amaliyot`,
+    `${tech} qo'llanma`,
+    `${tech} darslik`,
+    `${tech} tutorial uz`,
+    // Russian intents
+    `${tech} уроки`,
+    `${tech} с нуля`,
+    `${tech} курс`,
+    `${tech} бесплатно`,
+    // English intents
+    `learn ${tech}`,
+    `${tech} tutorial`,
+    `${tech} course`,
+    `${tech} for beginners`,
+    // Comparative
+    `${tech} qanday o'rganish kerak`,
+    `${tech} qayerdan boshlash`,
+  ];
+
+  return [...techVariants, ...baseLearn];
+}
+
 export function faqPageLD(items: { q: string; a: string }[]) {
   return {
     "@context": "https://schema.org",
