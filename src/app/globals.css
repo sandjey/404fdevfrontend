@@ -2,9 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ==========================================================
+   404DEV — BRUTALIST DESIGN SYSTEM
+   - Sharp corners only (no border-radius anywhere)
+   - Hard-offset black shadows (no soft blur)
+   - Thick 2px ink-900 borders for visual weight
+   - Heavy display type (Space Grotesk) + tight letter-spacing
+   - Mono labels in uppercase for industrial feel
+   ========================================================== */
+
 @layer base {
   :root {
-    --bg: 242 238 229;       /* cream #F2EEE5 — same as section surfaces */
+    --bg: 242 238 229;       /* cream #F2EEE5 */
     --fg: 15 15 15;          /* ink-900 #0F0F0F */
     --brand: 255 77 46;      /* coral #FF4D2E */
     --cream: 242 238 229;    /* #F2EEE5 */
@@ -20,10 +29,16 @@
   body {
     background: rgb(var(--bg));
     color: rgb(var(--fg));
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: var(--font-sans), "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-feature-settings: "ss01", "cv11", "cv02", "cv03";
+  }
+
+  /* Display headings always use Space Grotesk */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display), "Space Grotesk", "Helvetica Neue", sans-serif;
+    letter-spacing: -0.02em;
   }
 
   ::selection {
@@ -34,11 +49,8 @@
   *:focus-visible {
     outline: 2px solid #FF4D2E;
     outline-offset: 2px;
-    border-radius: 4px;
   }
 
-  /* Foydalanuvchi animatsiyalarni kamaytirishni so'rasa, bezakli
-     animatsiyalarni o'chiramiz. Bu CPU yukini va a11y'ni yaxshilaydi. */
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -53,119 +65,188 @@
 
 /* ============ Components ============ */
 @layer components {
-  /* Buttons */
+
+  /* ==========================================================
+     BUTTONS — sharp rectangles, thick ink border, hard shadow
+     ========================================================== */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold tracking-tight transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-500 disabled:opacity-60 disabled:cursor-not-allowed;
+    @apply inline-flex items-center justify-center gap-2 px-5 py-3 text-sm font-bold uppercase tracking-wider transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-500 disabled:opacity-60 disabled:cursor-not-allowed;
+    border: 2px solid #0F0F0F;
+    border-radius: 0;
+    box-shadow: 4px 4px 0 0 #0F0F0F;
   }
+  .btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 0 #0F0F0F;
+  }
+  .btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0 0 0 0 #0F0F0F;
+  }
+
   .btn-primary {
-    @apply bg-ink-900 text-cream-50 hover:bg-ink-800 active:scale-[0.98] shadow-[0_8px_24px_-8px_rgba(15,15,15,.4)];
+    @apply bg-ink-900 text-cream-50;
   }
+  .btn-primary:hover { background-color: #1A1A1A; }
+
   .btn-accent {
-    @apply text-white active:scale-[0.98];
+    @apply text-ink-900;
     background-color: #FF4D2E;
-    box-shadow: 0 10px 28px -10px rgba(255, 77, 46, 0.55);
   }
   .btn-accent:hover {
-    background-color: #E83A1B;
-    box-shadow: 0 14px 32px -10px rgba(255, 77, 46, 0.65);
+    background-color: #FF6B47;
   }
-  .btn-ghost {
-    @apply bg-cream-50/80 text-ink-900 ring-1 ring-ink-200 backdrop-blur hover:bg-cream-50 hover:ring-ink-300;
-  }
-  .btn-outline {
-    @apply text-ink-900 ring-1 ring-ink-300 hover:bg-ink-100;
-  }
-  .btn-dark {
-    @apply bg-ink-900 text-cream-50 hover:bg-ink-800;
-  }
-  .btn-sm { @apply px-4 py-2 text-xs; }
-  .btn-lg { @apply px-7 py-4 text-base; }
 
-  /* Cards */
+  .btn-ghost {
+    @apply bg-cream-50 text-ink-900;
+  }
+  .btn-ghost:hover {
+    background-color: #F2EEE5;
+  }
+
+  .btn-outline {
+    @apply text-ink-900 bg-transparent;
+  }
+  .btn-outline:hover {
+    background-color: #0F0F0F;
+    color: #FAFAF7;
+  }
+
+  .btn-dark {
+    @apply bg-ink-900 text-cream-50;
+  }
+  .btn-dark:hover { background-color: #1A1A1A; }
+
+  .btn-sm { @apply px-4 py-2 text-xs; box-shadow: 3px 3px 0 0 #0F0F0F; }
+  .btn-sm:hover { box-shadow: 5px 5px 0 0 #0F0F0F; }
+  .btn-lg { @apply px-7 py-4 text-base; box-shadow: 6px 6px 0 0 #0F0F0F; }
+  .btn-lg:hover { box-shadow: 8px 8px 0 0 #0F0F0F; }
+
+  /* ==========================================================
+     CARDS — thick black border, hard offset shadow, sharp edges
+     ========================================================== */
   .card {
-    @apply rounded-2xl bg-cream-50 ring-1 ring-ink-200/70 shadow-soft transition-all duration-300;
+    @apply bg-cream-50 transition-all duration-150;
+    border: 2px solid #0F0F0F;
+    border-radius: 0;
+    box-shadow: 6px 6px 0 0 #0F0F0F;
   }
-  .card-hover {
-    @apply hover:-translate-y-1 hover:shadow-card hover:ring-ink-300;
+  .card-hover:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0 0 #0F0F0F;
   }
-  .card-glow {
-    @apply hover:shadow-glow hover:ring-brand-200/60;
+  .card-glow:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0 0 #FF4D2E;
   }
-  /* Card with subtle coral accent on hover */
   .card-fancy {
     position: relative;
-    @apply rounded-2xl bg-cream-50 ring-1 ring-ink-200/70 shadow-soft transition-all duration-300 overflow-hidden;
+    @apply bg-cream-50 transition-all duration-150 overflow-hidden;
+    border: 2px solid #0F0F0F;
+    border-radius: 0;
+    box-shadow: 6px 6px 0 0 #0F0F0F;
   }
-  .card-fancy::before {
-    content: "";
-    position: absolute;
-    inset: -1px;
-    border-radius: inherit;
-    padding: 1px;
-    background: linear-gradient(135deg, rgba(255,77,46,.7), rgba(15,15,15,.4) 60%, rgba(255,77,46,.7));
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-            mask-composite: exclude;
-    opacity: 0;
-    transition: opacity .3s;
-    pointer-events: none;
-  }
-  .card-fancy:hover::before { opacity: 1; }
+  .card-fancy::before { display: none; }
   .card-fancy:hover {
-    @apply -translate-y-1 shadow-card;
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0 0 #FF4D2E;
   }
 
-  /* Inputs */
+  /* ==========================================================
+     INPUTS — flat, hard 2px border, no rounding
+     ========================================================== */
   .input {
-    @apply w-full rounded-xl border border-ink-200 bg-cream-50 px-4 py-3 text-sm text-ink-900 placeholder-ink-400 transition-colors focus:border-brand-500 focus:outline-none focus:ring-4 focus:ring-brand-500/15;
+    @apply w-full bg-cream-50 px-4 py-3 text-sm text-ink-900 placeholder-ink-400 transition-colors;
+    border: 2px solid #0F0F0F;
+    border-radius: 0;
+  }
+  .input:focus {
+    outline: none;
+    box-shadow: 4px 4px 0 0 #FF4D2E;
+    transform: translate(-2px, -2px);
   }
   .input-lg { @apply px-4 py-3.5 text-base; }
-  .label { @apply block text-xs font-semibold uppercase tracking-wider text-ink-500 mb-2; }
-
-  /* Admin variants (legacy) */
-  .admin-input {
-    @apply w-full rounded-lg border border-ink-200 bg-cream-50 px-3 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20;
+  .label {
+    @apply block text-xs font-bold uppercase tracking-[0.18em] text-ink-900 mb-2;
+    font-family: var(--font-mono);
   }
-  .admin-label { @apply block text-sm font-medium text-ink-700 mb-1.5; }
 
-  /* Badge / Pill */
+  /* Admin variants */
+  .admin-input {
+    @apply w-full bg-cream-50 px-3 py-2 text-sm transition-colors;
+    border: 2px solid #0F0F0F;
+    border-radius: 0;
+  }
+  .admin-input:focus {
+    outline: none;
+    box-shadow: 3px 3px 0 0 #FF4D2E;
+  }
+  .admin-label {
+    @apply block text-xs font-bold uppercase tracking-wider text-ink-900 mb-1.5;
+    font-family: var(--font-mono);
+  }
+
+  /* ==========================================================
+     PILLS / BADGES — square chip blocks
+     ========================================================== */
   .pill {
-    @apply inline-flex items-center gap-1.5 rounded-full bg-ink-100 px-3 py-1 text-xs font-medium text-ink-700 ring-1 ring-ink-200;
+    @apply inline-flex items-center gap-1.5 bg-cream-50 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-ink-900;
+    border: 1.5px solid #0F0F0F;
+    border-radius: 0;
+    font-family: var(--font-mono);
   }
   .pill-brand {
-    @apply inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700 ring-1 ring-brand-200;
+    @apply inline-flex items-center gap-1.5 bg-brand-500 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-cream-50;
+    border: 1.5px solid #0F0F0F;
+    border-radius: 0;
+    font-family: var(--font-mono);
   }
   .pill-dot::before {
     content: "";
-    @apply h-1.5 w-1.5 rounded-full bg-brand-500 animate-pulse-soft;
+    @apply h-1.5 w-1.5 bg-brand-500 animate-pulse-soft;
   }
 
   /* Sections */
   .section { @apply py-20 md:py-28; }
   .section-tight { @apply py-14 md:py-20; }
 
-  /* Eyebrow heading — JetBrains Mono, monospace label */
+  /* ==========================================================
+     EYEBROW — mono uppercase label
+     ========================================================== */
   .eyebrow {
-    @apply font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-ink-700;
+    @apply inline-block text-[11px] font-bold uppercase tracking-[0.22em] text-ink-900 px-2 py-0.5;
+    font-family: var(--font-mono);
+    border-left: 3px solid #FF4D2E;
+    padding-left: 0.625rem;
   }
   .eyebrow-dark {
-    @apply font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-cream-50/80;
+    @apply inline-block text-[11px] font-bold uppercase tracking-[0.22em] text-cream-50 px-2 py-0.5;
+    font-family: var(--font-mono);
+    border-left: 3px solid #FF4D2E;
+    padding-left: 0.625rem;
   }
 
-  /* Display title */
+  /* ==========================================================
+     DISPLAY TYPE — heavy brutalist headlines
+     ========================================================== */
   .display-1 {
-    @apply font-display text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tightest leading-[1.05] text-ink-900;
+    @apply font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-[0.95] text-ink-900;
+    letter-spacing: -0.04em;
   }
   .display-2 {
-    @apply font-display text-3xl md:text-5xl font-extrabold tracking-tighter-2 leading-[1.1] text-ink-900;
+    @apply font-display text-3xl md:text-5xl font-bold leading-[1.0] text-ink-900;
+    letter-spacing: -0.035em;
   }
   .display-3 {
-    @apply font-display text-2xl md:text-4xl font-bold tracking-tighter-2 leading-[1.15] text-ink-900;
+    @apply font-display text-2xl md:text-4xl font-bold leading-[1.05] text-ink-900;
+    letter-spacing: -0.03em;
   }
 
   /* Skeleton */
-  .skeleton { @apply animate-pulse bg-ink-100 rounded; }
+  .skeleton {
+    @apply animate-pulse bg-ink-200;
+    border-radius: 0;
+  }
 }
 
 /* ============ Prose / content rendering ============ */
@@ -174,31 +255,50 @@
   font-size: 17px;
 }
 .prose-content > * + * { margin-top: 1em; }
-.prose-content h1 { @apply text-3xl md:text-4xl font-bold mt-12 mb-4 text-ink-900 tracking-tight; }
-.prose-content h2 { @apply text-2xl md:text-3xl font-bold mt-10 mb-3 text-ink-900 tracking-tight; }
-.prose-content h3 { @apply text-xl md:text-2xl font-semibold mt-8 mb-2 text-ink-900; }
-.prose-content h4 { @apply text-lg font-semibold mt-6 mb-2 text-ink-900; }
+.prose-content h1 {
+  @apply font-display text-3xl md:text-4xl font-bold mt-12 mb-4 text-ink-900;
+  letter-spacing: -0.035em;
+}
+.prose-content h2 {
+  @apply font-display text-2xl md:text-3xl font-bold mt-10 mb-3 text-ink-900;
+  letter-spacing: -0.03em;
+}
+.prose-content h3 {
+  @apply font-display text-xl md:text-2xl font-bold mt-8 mb-2 text-ink-900;
+}
+.prose-content h4 { @apply font-display text-lg font-bold mt-6 mb-2 text-ink-900; }
 .prose-content p  { @apply text-[17px] leading-[1.75]; }
 .prose-content ul { @apply list-disc list-outside pl-6 space-y-1.5; }
 .prose-content ol { @apply list-decimal list-outside pl-6 space-y-1.5; }
 .prose-content blockquote {
-  @apply border-l-4 border-brand-500 pl-5 italic text-ink-600 my-6;
+  @apply border-l-4 border-brand-500 pl-5 italic text-ink-700 my-6 bg-cream-50 py-3 pr-4;
+  border-radius: 0;
 }
-.prose-content a { @apply text-brand-600 underline-offset-4 decoration-brand-300 hover:decoration-brand-600 underline transition; }
+.prose-content a { @apply text-brand-600 underline-offset-4 decoration-brand-500 decoration-2 hover:decoration-brand-700 underline transition; }
 .prose-content table { @apply w-full my-6 border-collapse text-sm; }
-.prose-content th, .prose-content td { @apply border border-ink-200 px-3 py-2 text-left; }
-.prose-content th { @apply bg-ink-100 font-semibold; }
-.prose-content img { @apply rounded-xl my-6 ring-1 ring-ink-200; }
-.prose-content hr { @apply my-10 border-ink-200; }
+.prose-content th, .prose-content td {
+  @apply border-2 border-ink-900 px-3 py-2 text-left;
+  border-radius: 0;
+}
+.prose-content th { @apply bg-ink-900 text-cream-50 font-bold uppercase tracking-wider text-xs; }
+.prose-content img {
+  @apply my-6;
+  border: 2px solid #0F0F0F;
+  border-radius: 0;
+}
+.prose-content hr { @apply my-10 border-2 border-ink-900; }
 
-/* Inline code */
 .prose-content :not(pre) > code {
-  @apply rounded-md bg-ink-100 px-1.5 py-0.5 text-[0.88em] font-mono text-ink-800 border border-ink-200;
+  @apply bg-ink-900 text-cream-50 px-1.5 py-0.5 text-[0.88em] font-mono;
+  border: 1px solid #0F0F0F;
+  border-radius: 0;
 }
 
-/* Code block */
 .prose-content pre {
-  @apply relative my-7 overflow-x-auto rounded-2xl bg-ink-900 p-5 text-sm leading-7 text-cream-50 ring-1 ring-ink-800;
+  @apply relative my-7 overflow-x-auto bg-ink-900 p-5 text-sm leading-7 text-cream-50;
+  border: 2px solid #0F0F0F;
+  border-radius: 0;
+  box-shadow: 6px 6px 0 0 #FF4D2E;
   scrollbar-width: thin;
 }
 .prose-content pre code {
@@ -208,7 +308,6 @@
   border: 0 !important;
 }
 
-/* highlight.js token colors — brandbook-aligned */
 .hljs { color: #FAFAF7; background: transparent; }
 .hljs-comment, .hljs-quote { color: #6B6B6B; font-style: italic; }
 .hljs-keyword, .hljs-built_in, .hljs-literal, .hljs-symbol { color: #FF8E6F; }
@@ -222,7 +321,6 @@
 
 /* ============ Utilities ============ */
 @layer utilities {
-  /* Brand gradient text — coral to ink */
   .gradient-text {
     background: linear-gradient(135deg, #FF4D2E 0%, #FF8E6F 60%, #0F0F0F 100%);
     -webkit-background-clip: text;
@@ -242,38 +340,40 @@
     color: transparent;
   }
 
+  /* Brutalist "glass" — opaque with heavy black border */
   .glass {
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
-    background: rgba(250, 250, 247, 0.78);
-    border: 1px solid rgba(15, 15, 15, 0.08);
+    background: #FAFAF7;
+    border: 2px solid #0F0F0F;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
   .glass-dark {
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
-    background: rgba(15, 15, 15, 0.78);
-    border: 1px solid rgba(250, 250, 247, 0.08);
+    background: #0F0F0F;
+    border: 2px solid #0F0F0F;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
+
   .grid-bg {
     background-image:
-      linear-gradient(rgba(15, 15, 15, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(15, 15, 15, 0.05) 1px, transparent 1px);
+      linear-gradient(rgba(15, 15, 15, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15, 15, 15, 0.08) 1px, transparent 1px);
     background-size: 56px 56px;
     mask-image: radial-gradient(ellipse 70% 70% at 50% 0%, #000 50%, transparent 100%);
     -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 0%, #000 50%, transparent 100%);
   }
   .dot-bg {
-    background-image: radial-gradient(rgba(15,15,15,.10) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(15,15,15,.14) 1px, transparent 1px);
     background-size: 22px 22px;
   }
   .aurora {
     background:
-      radial-gradient(60% 60% at 20% 10%, rgba(255,77,46,.28) 0%, transparent 60%),
-      radial-gradient(50% 50% at 90% 0%, rgba(255,107,71,.22) 0%, transparent 60%),
-      radial-gradient(70% 70% at 50% 100%, rgba(255,142,111,.18) 0%, transparent 60%);
+      radial-gradient(60% 60% at 20% 10%, rgba(255,77,46,.18) 0%, transparent 60%),
+      radial-gradient(50% 50% at 90% 0%, rgba(255,107,71,.14) 0%, transparent 60%),
+      radial-gradient(70% 70% at 50% 100%, rgba(255,142,111,.12) 0%, transparent 60%);
   }
   .text-glow-brand {
-    text-shadow: 0 0 24px rgba(255,77,46,.45);
+    text-shadow: 4px 4px 0 #0F0F0F;
   }
   .shimmer-bg {
     background-image: linear-gradient(
@@ -285,21 +385,16 @@
     background-size: 200% 100%;
   }
 
-  /* The brand wordmark slash — tilted -12° */
+  /* The brand wordmark slash — kept as a coral angled bar */
   .brand-slash {
     display: inline-block;
     width: 0.18em;
     background: #FF4D2E;
-    border-radius: 0.06em;
     transform: rotate(-12deg);
     align-self: stretch;
   }
 
-  /* ===== Hero headline word-reveal =====
-     padding-top  = breathing room for ascenders and tall caps
-     padding-bottom = room for descenders (Cyrillic ц, у, etc.) + underline
-     The negative margin-bottom collapses the visual spacing so lines
-     don't drift apart. */
+  /* Hero word reveal */
   .word-mask {
     display: block;
     overflow: hidden;
@@ -319,7 +414,6 @@
     to   { transform: translateY(0); }
   }
 
-  /* ===== Underline draw ===== */
   .underline-draw {
     display: block;
     transform-origin: left center;
@@ -330,87 +424,79 @@
     to { transform: skewX(-8deg) scaleX(1); }
   }
 
-  /* ===== Header (iPhone-notch style) — composited reveal =====
-     Uses transform (scaleX) + opacity only — both GPU-composited, no
-     layout/paint cost per frame, unlike clip-path. */
+  /* Header reveal — sharp rectangle island with thick black border */
   .header-island {
     transform-origin: center center;
-    animation: header-reveal 1.6s cubic-bezier(.22,.7,.18,1) both;
+    animation: header-reveal 1.2s cubic-bezier(.22,.7,.18,1) both;
     will-change: transform, opacity;
+    border: 2px solid #0F0F0F !important;
+    box-shadow: 4px 4px 0 0 #0F0F0F !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: #FAFAF7 !important;
   }
   @keyframes header-reveal {
-    0%   { opacity: 0; transform: translateY(-4px) scaleX(0.6); }
+    0%   { opacity: 0; transform: translateY(-4px) scaleX(0.7); }
     60%  { opacity: 1; }
     100% { opacity: 1; transform: translateY(0) scaleX(1); }
   }
 
-  /* ===== Orbit border — slow comet of light around the card edge.
-     Serious ink-900 tone (not coral) for a trustworthy feel.
-     12s cycle (vs 7s) keeps repaint frequency low and Lighthouse'ning
-     "non-composited animation" signalini real ish yukini kamaytiradi. */
-  .border-orbit {
-    position: relative;
-    isolation: isolate;
-  }
-  .border-orbit::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 1.5px;
-    background: conic-gradient(
-      from var(--orbit-angle, 0deg),
-      transparent 0deg,
-      transparent 270deg,
-      rgba(15, 15, 15, 0.55) 320deg,
-      rgba(15, 15, 15, 0.95) 345deg,
-      rgba(15, 15, 15, 0.55) 360deg
-    );
-    -webkit-mask:
-      linear-gradient(#000 0 0) content-box,
-      linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-            mask-composite: exclude;
-    pointer-events: none;
-    animation: orbit-spin 12s linear infinite;
-    animation-delay: var(--orbit-delay, 0s);
-  }
-  @property --orbit-angle {
-    syntax: "<angle>";
-    initial-value: 0deg;
-    inherits: false;
-  }
-  @keyframes orbit-spin {
-    to { --orbit-angle: 360deg; }
-  }
-  /* Reduced-motion users — pause the orbit entirely. */
-  @media (prefers-reduced-motion: reduce) {
-    .border-orbit::before { animation: none; }
-  }
-  /* Fallback for browsers without @property: rotate the gradient layer. */
-  @supports not (background: conic-gradient(from var(--x))) {
-    .border-orbit::before {
-      animation: orbit-rotate 12s linear infinite;
-    }
-    @keyframes orbit-rotate {
-      to { transform: rotate(360deg); }
-    }
-  }
+  /* Orbit border disabled in brutalist mode — flat aesthetic */
+  .border-orbit { position: relative; }
+  .border-orbit::before { display: none; }
 
-  /* Cream surface utility */
   .bg-paper { background-color: #FAFAF7; }
   .bg-cream { background-color: #F2EEE5; }
 
-  /* Hide scrollbar but keep scroll */
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-  /* Custom scrollbar */
   .pretty-scroll::-webkit-scrollbar { width: 8px; height: 8px; }
   .pretty-scroll::-webkit-scrollbar-track { background: transparent; }
   .pretty-scroll::-webkit-scrollbar-thumb {
-    background: #C2BEB3;
-    border-radius: 999px;
+    background: #0F0F0F;
   }
-  .pretty-scroll::-webkit-scrollbar-thumb:hover { background: #9B978E; }
+  .pretty-scroll::-webkit-scrollbar-thumb:hover { background: #FF4D2E; }
+
+  /* ==========================================================
+     BRUTALIST UTILITY CLASSES
+     ========================================================== */
+  .brutal-border { border: 2px solid #0F0F0F; }
+  .brutal-border-thick { border: 3px solid #0F0F0F; }
+  .brutal-shadow { box-shadow: 6px 6px 0 0 #0F0F0F; }
+  .brutal-shadow-sm { box-shadow: 3px 3px 0 0 #0F0F0F; }
+  .brutal-shadow-lg { box-shadow: 10px 10px 0 0 #0F0F0F; }
+  .brutal-shadow-coral { box-shadow: 6px 6px 0 0 #FF4D2E; }
+
+  /* Diagonal stripe pattern — brutalist accent */
+  .stripes-ink {
+    background-image: repeating-linear-gradient(
+      45deg,
+      #0F0F0F 0,
+      #0F0F0F 2px,
+      transparent 2px,
+      transparent 8px
+    );
+  }
+  .stripes-coral {
+    background-image: repeating-linear-gradient(
+      45deg,
+      #FF4D2E 0,
+      #FF4D2E 2px,
+      transparent 2px,
+      transparent 8px
+    );
+  }
+}
+
+/* ==========================================================
+   SAFETY NET — kill any lingering border-radius from inline
+   styles, third-party libs, or utility-class collisions.
+   We keep this tight (only border-radius), so it won't
+   affect layout, color, or sizing in any way.
+   ========================================================== */
+*,
+*::before,
+*::after {
+  border-radius: 0 !important;
 }

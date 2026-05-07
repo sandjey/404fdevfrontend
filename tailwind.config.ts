@@ -56,6 +56,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: [
+          "var(--font-sans)",
           "Inter",
           "-apple-system",
           "BlinkMacSystemFont",
@@ -66,7 +67,8 @@ const config: Config = {
           "sans-serif",
         ],
         display: [
-          "Inter",
+          "var(--font-display)",
+          "Space Grotesk",
           "Helvetica Neue",
           "-apple-system",
           "BlinkMacSystemFont",
@@ -74,6 +76,7 @@ const config: Config = {
           "sans-serif",
         ],
         mono: [
+          "var(--font-mono)",
           "JetBrains Mono",
           "SF Mono",
           "ui-monospace",
@@ -86,13 +89,32 @@ const config: Config = {
       letterSpacing: {
         tightest: "-0.045em",
         "tighter-2": "-0.025em",
+        brutal: "-0.06em",
+      },
+      borderRadius: {
+        none: "0",
+        DEFAULT: "0",
+        sm: "0",
+        md: "0",
+        lg: "0",
+        xl: "0",
+        "2xl": "0",
+        "3xl": "0",
+        full: "0",
       },
       boxShadow: {
-        soft: "0 1px 2px rgba(15,15,15,.04), 0 4px 12px rgba(15,15,15,.05)",
-        card: "0 1px 0 rgba(15,15,15,.04), 0 6px 24px -6px rgba(15,15,15,.10), 0 16px 48px -16px rgba(15,15,15,.12)",
-        glow: "0 0 0 1px rgba(255,77,46,.2), 0 12px 40px -10px rgba(255,77,46,.45)",
-        coral: "0 10px 28px -10px rgba(255,77,46,.55)",
-        ring: "inset 0 0 0 1px rgba(15,15,15,.06)",
+        // Brutalist hard-offset shadows — no blur, pure geometry
+        soft: "3px 3px 0 0 rgba(15,15,15,1)",
+        card: "6px 6px 0 0 rgba(15,15,15,1)",
+        hard: "4px 4px 0 0 rgba(15,15,15,1)",
+        "hard-lg": "8px 8px 0 0 rgba(15,15,15,1)",
+        "hard-xl": "10px 10px 0 0 rgba(15,15,15,1)",
+        glow: "5px 5px 0 0 rgba(255,77,46,1)",
+        coral: "5px 5px 0 0 rgba(15,15,15,1)",
+        "coral-lg": "8px 8px 0 0 rgba(15,15,15,1)",
+        ring: "inset 0 0 0 2px rgba(15,15,15,1)",
+        brutal: "6px 6px 0 0 #0F0F0F",
+        "brutal-coral": "6px 6px 0 0 #FF4D2E",
       },
       backgroundImage: {
         "grid-fade":

@@ -1,6 +1,28 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
+import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+
+const fontDisplay = Space_Grotesk({
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+const fontSans = Inter({
+  subsets: ["latin", "latin-ext", "cyrillic", "cyrillic-ext"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const fontMono = JetBrains_Mono({
+  subsets: ["latin", "latin-ext", "cyrillic", "cyrillic-ext"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: { default: "404Dev — Tashkent, Uzbekistan · code · learn · build", template: "%s — 404Dev" },
@@ -52,7 +74,11 @@ const YM_ID = process.env.NEXT_PUBLIC_YM_ID; // Yandex Metrica counter ID
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="uz" suppressHydrationWarning>
+    <html
+      lang="uz"
+      suppressHydrationWarning
+      className={`${fontDisplay.variable} ${fontSans.variable} ${fontMono.variable}`}
+    >
       <body>{children}</body>
 
       {/* ===== Google Analytics 4 (loaded only when env is set) ===== */}
