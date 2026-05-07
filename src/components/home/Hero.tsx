@@ -11,7 +11,6 @@ import {
   GlobeIcon,
   RocketIcon,
   SendIcon,
-  SmartphoneIcon,
   ZapIcon,
 } from "@/components/icons";
 
@@ -20,38 +19,41 @@ export default function Hero({ locale }: { locale: Locale }) {
 
   const eyebrow =
     locale === "ru"
-      ? "404Dev — цифровое агентство"
+      ? "404Dev — Digital Growth & Automation Agency"
       : locale === "en"
-      ? "404Dev — digital agency from Uzbekistan"
-      : "404Dev — raqamlashtirish agentligi";
+      ? "404Dev — Digital Growth & Automation Agency"
+      : "404Dev — Digital Growth & Automation Agency";
 
   const trustList =
     locale === "ru"
-      ? ["Прототип за 7 дней", "Прозрачная цена", "Поддержка после релиза"]
+      ? ["Free growth audit", "Прозрачная цена", "Долгосрочное партнёрство"]
       : locale === "en"
-      ? ["7-day prototype", "Transparent price", "Post-launch support"]
-      : ["7 kunda prototip", "Aniq narx", "Reliz keyin support"];
+      ? ["Free growth audit", "Transparent pricing", "Long-term partnership"]
+      : ["Bepul growth audit", "Aniq narx", "Long-term partner"];
 
-  // Marquee ticker words
+  // Marquee ticker — growth / marketing / automation lexicon
   const ticker = [
-    locale === "ru" ? "Узбекистан" : locale === "en" ? "Uzbekistan" : "O'zbekiston",
-    locale === "ru" ? "Ташкент" : locale === "en" ? "Tashkent" : "Toshkent",
-    locale === "ru" ? "Веб-сайты" : locale === "en" ? "Websites" : "Web saytlar",
-    "Telegram",
-    locale === "ru" ? "Боты" : locale === "en" ? "Bots" : "Botlar",
     "SEO",
+    locale === "ru" ? "Лидогенерация" : locale === "en" ? "Lead Generation" : "Lead Generation",
     "Google",
-    "Яндекс",
-    locale === "ru" ? "Мобильные" : locale === "en" ? "Mobile apps" : "Mobil ilovalar",
-    "iOS",
-    "Android",
+    "Yandex",
+    "AI Automation",
+    "GPT",
+    "Gemini",
+    locale === "ru" ? "Конверсия" : locale === "en" ? "Conversion" : "Konversiya",
+    "CRO",
     "CRM",
-    "ERP",
-    "API",
+    locale === "ru" ? "Воронки" : locale === "en" ? "Funnels" : "Voronkalar",
+    "Telegram",
+    "Branding",
+    "UI / UX",
+    "SaaS",
+    "DevOps",
+    "Cloud",
     "Click",
     "Payme",
     "Uzum",
-    locale === "ru" ? "Аутсорсинг" : locale === "en" ? "Outsourcing" : "Outsourcing",
+    locale === "ru" ? "Растём" : locale === "en" ? "We grow" : "O'samiz",
   ];
   const tickerLoop = [...ticker, ...ticker];
 
@@ -101,10 +103,10 @@ export default function Hero({ locale }: { locale: Locale }) {
               style={{ animationDelay: "120ms" }}
             >
               {locale === "uz"
-                ? "O'zbekiston va butun dunyo bo'ylab xizmatlarni raqamlashtirishga yordam beramiz — sayt, Telegram bot, mobil ilova, CRM/ERP va biznes avtomatlashtirish. Outsourcing model, aniq narx va muddat."
+                ? "Marketing va raqamlashtirish — bitta tizimda. Blogerlar bilan reklama, SEO, lead generation, AI avtomatlashtirish, brand identity va konversiyali sayt — O'zbekiston brendlari uchun yagona o'sish ekosistemasi."
                 : locale === "ru"
-                ? "Помогаем цифровизировать услуги в Узбекистане и по всему миру — сайты, Telegram-боты, мобильные приложения, CRM/ERP и автоматизация бизнеса. Outsourcing-модель, понятная цена и сроки."
-                : "We help digitalize services in Uzbekistan and around the world — websites, Telegram bots, mobile apps, CRM/ERP and business automation. Outsourcing model, clear price and timeline."}
+                ? "Объединяем маркетинг и цифровизацию в единую систему. Реклама у блогеров, SEO, лидогенерация, AI-автоматизация, brand identity и конверсионный сайт — экосистема роста для брендов Узбекистана."
+                : "Marketing meets digital engineering — in one system. Influencer marketing, SEO, lead generation, AI automation, brand identity and a conversion-focused site — one growth ecosystem for Uzbekistan's brands."}
             </p>
 
             <ul
@@ -127,11 +129,11 @@ export default function Hero({ locale }: { locale: Locale }) {
             >
               <CTAButton source="hero-primary" variant="accent" size="md" className="group sm:!px-7 sm:!py-3.5 sm:!text-base">
                 <SendIcon size={16} />
-                {locale === "ru" ? "Заказать услугу" : locale === "en" ? "Order a service" : "Xizmat buyurtma berish"}
+                {locale === "ru" ? "Бесплатный growth-аудит" : locale === "en" ? "Free growth audit" : "Bepul growth audit"}
                 <ArrowUpRightIcon size={14} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </CTAButton>
               <Link href={`/${locale}/services`} className="btn btn-ghost group sm:px-7 sm:py-3.5 sm:text-base">
-                {locale === "ru" ? "Все услуги" : locale === "en" ? "All services" : "Barcha xizmatlar"}
+                {locale === "ru" ? "Наши направления" : locale === "en" ? "Our practices" : "Yo'nalishlar"}
                 <ArrowRightIcon size={14} className="transition group-hover:translate-x-0.5" />
               </Link>
             </div>
@@ -213,10 +215,10 @@ export default function Hero({ locale }: { locale: Locale }) {
 function AnimatedHeadline({ locale }: { locale: Locale }) {
   const parts =
     locale === "uz"
-      ? { lead: "O'zbekiston va dunyo bo'ylab", coral: "raqamlashtirish", end: "xizmati" }
+      ? { lead: "Brendlarni", coral: "tanilgan", end: "va daromadli qilamiz" }
       : locale === "ru"
-      ? { lead: "Услуги цифровизации", coral: "в Узбекистане", end: "и по всему миру" }
-      : { lead: "Digitalization services", coral: "across Uzbekistan", end: "& the world" };
+      ? { lead: "Сделаем бренды", coral: "узнаваемыми", end: "и прибыльными" }
+      : { lead: "We make brands", coral: "recognizable", end: "and profitable" };
 
   // Compressed scale across breakpoints so 3 lines fit in viewport.
   const lineSize = "text-[1.75rem] sm:text-4xl md:text-[2.75rem] lg:text-[3.25rem] xl:text-[3.75rem]";
@@ -287,39 +289,34 @@ function FloatingProductStack({ locale }: { locale: Locale }) {
 
   const products: ProductCardData[] = [
     {
-      Icon: GlobeIcon,
-      label: locale === "ru" ? "Веб-сайты" : locale === "en" ? "Websites" : "Web saytlar",
-      tag: "Next.js · TypeScript",
-      meta: locale === "ru" ? "от 7 дней" : locale === "en" ? "from 7 days" : "7 kundan",
+      Icon: ZapIcon,
+      label: locale === "ru" ? "SEO & Growth" : locale === "en" ? "SEO & Growth" : "SEO & Growth",
+      tag: "Google · Yandex · Programmatic",
+      meta: locale === "ru" ? "органический рост" : locale === "en" ? "organic growth" : "organik o'sish",
       tilt: "-rotate-[1.5deg]",
       offset: "translate-x-0",
     },
     {
-      Icon: BotIcon,
-      label: locale === "ru" ? "Telegram-боты" : locale === "en" ? "Telegram bots" : "Telegram botlar",
-      tag: "Click · Payme · CRM",
-      meta: locale === "ru" ? "24/7 продажи" : locale === "en" ? "24/7 sales" : "24/7 sotuv",
+      Icon: RocketIcon,
+      label: locale === "ru" ? "Lead Generation" : locale === "en" ? "Lead Generation" : "Lead Generation",
+      tag: "CRO · CRM · Funnels",
+      meta: locale === "ru" ? "поток клиентов" : locale === "en" ? "real customers" : "mijoz oqimi",
       tilt: "rotate-[1deg]",
       offset: "translate-x-2",
     },
     {
-      Icon: ZapIcon,
-      label:
-        locale === "ru"
-          ? "SEO в Google и Яндекс"
-          : locale === "en"
-          ? "SEO for Google & Yandex"
-          : "Google va Yandex SEO",
-      tag: locale === "ru" ? "Топ-1 страница" : locale === "en" ? "Page-1 ranking" : "1-sahifa reyting",
-      meta: locale === "ru" ? "органический рост" : locale === "en" ? "organic growth" : "organik o'sish",
+      Icon: BotIcon,
+      label: locale === "ru" ? "AI & Automation" : locale === "en" ? "AI & Automation" : "AI & Automation",
+      tag: "GPT · Gemini · LLM",
+      meta: locale === "ru" ? "24/7 цифровой сотрудник" : locale === "en" ? "24/7 digital employee" : "24/7 raqamli xodim",
       tilt: "-rotate-[1deg]",
       offset: "-translate-x-1",
     },
     {
-      Icon: SmartphoneIcon,
-      label: locale === "ru" ? "Мобильные приложения" : locale === "en" ? "Mobile apps" : "Mobil ilovalar",
-      tag: "iOS · Android · React Native",
-      meta: locale === "ru" ? "App Store + Google Play" : locale === "en" ? "App Store + Google Play" : "App Store + Google Play",
+      Icon: GlobeIcon,
+      label: locale === "ru" ? "Web & Branding" : locale === "en" ? "Web & Branding" : "Web & Branding",
+      tag: "Next.js · UI/UX · Brand book",
+      meta: locale === "ru" ? "Lighthouse 95+" : locale === "en" ? "Lighthouse 95+" : "Lighthouse 95+",
       tilt: "rotate-[1.5deg]",
       offset: "translate-x-1",
     },

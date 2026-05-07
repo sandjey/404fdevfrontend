@@ -25,9 +25,12 @@ const fontMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: { default: "404Dev — Tashkent, Uzbekistan · code · learn · build", template: "%s — 404Dev" },
+  title: {
+    default: "404Dev — Digital Growth & Automation Agency · Tashkent, Uzbekistan",
+    template: "%s — 404Dev",
+  },
   description:
-    "404Dev — outsourcing studio in Tashkent, Uzbekistan. We help digitalize services in Uzbekistan and around the world: websites, Telegram bots, mobile apps, CRM/ERP, SEO and business automation. Free programming school in Uzbek.",
+    "404Dev is a digital growth, marketing & automation agency in Tashkent, Uzbekistan. We help brands in Uzbekistan earn more — SEO, influencer marketing (Instagram, TikTok, Telegram, YouTube creators), lead generation, AI automation, CRM/ERP, branding and conversion-focused websites. Free programming school in Uzbek.",
   applicationName: "404Dev",
   manifest: "/manifest.webmanifest",
   icons: {
@@ -46,7 +49,7 @@ export const metadata: Metadata = {
     "geo.placename": "Tashkent",
     "geo.position": "41.2995;69.2401",
     "ICBM": "41.2995, 69.2401",
-    "DC.title": "404Dev — Tashkent, Uzbekistan",
+    "DC.title": "404Dev — Digital Growth & Automation Agency · Tashkent, Uzbekistan",
     "DC.language": "uz, ru, en",
     "DC.creator": "404Dev",
     "DC.publisher": "404Dev",

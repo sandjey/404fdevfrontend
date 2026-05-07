@@ -30,6 +30,13 @@ type Dict = {
     techSubtitle: string;
     ctaTitle: string;
     ctaSubtitle: string;
+    /** Mission / Education block on homepage */
+    learnEyebrow: string;
+    learnTitle: string;
+    learnLead: string;
+    learnMission: string;
+    learnCTA: string;
+    learnSecondaryCTA: string;
   };
   services: {
     title: string;
@@ -95,64 +102,73 @@ const dictionaries: Record<Locale, Dict> = {
       viewAll: "Barchasini ko'rish",
     },
     home: {
-      heroBadge: "404Dev — Toshkentdan raqamli agentlik",
-      heroTitle: "O'zbekiston va butun dunyo bo'ylab xizmatlarni raqamlashtirishga yordam beramiz",
+      heroBadge: "404Dev — Digital Growth & Automation Agency",
+      heroTitle: "Brendlarni tanilgan va daromadli qilamiz",
       heroSubtitle:
-        "404Dev — Toshkentdagi outsourcing studiya. Web saytlar, Telegram botlar, mobil ilovalar, CRM/ERP tizimlar va biznes avtomatlashtirish — O'zbekiston biznesi uchun g'oyadan tayyor mahsulotgacha bir joyda.",
-      statsProjects: "yakunlangan loyihalar",
-      statsClients: "O'zbekistondagi mamnun mijozlar",
-      statsYears: "yillik tajriba",
-      servicesTitle: "Bizning xizmatlar",
+        "Marketing va raqamlashtirish — bitta tizimda. Blogerlar bilan reklama, SEO, lead generation, AI avtomatlashtirish, brand identity va konversiyali sayt — O'zbekiston brendlari uchun yagona o'sish ekosistemasi.",
+      statsProjects: "ishga tushirilgan o'sish tizimlari",
+      statsClients: "O'zbekiston va xalqaro mijozlar",
+      statsYears: "yillik muhandislik tajribasi",
+      servicesTitle: "Bizning yo'nalishlar",
       servicesSubtitle:
-        "O'zbekiston bozoriga moslangan yechimlar — g'oyadan tortib ishga tushirish va keyingi qo'llab-quvvatlashgacha bir joyda.",
-      techTitle: "Texnologiyalar",
-      techSubtitle: "Biz ishonchli, sinovdan o'tgan texnologiya stekidan foydalanamiz.",
-      ctaTitle: "Loyihangizni biz bilan boshlang",
+        "Biz “sayt ishlab chiqaruvchi studio” emasmiz — biz biznesingizga lid keltiruvchi, savdoni avtomatlashtiradigan va brendni o'stiradigan to'liq ekosistemani quramiz.",
+      techTitle: "Texnologiyalar va integratsiyalar",
+      techSubtitle: "Biz growth, automation va data uchun zamonaviy, sinovdan o'tgan stack'dan foydalanamiz.",
+      ctaTitle: "Biznesingizning navbatdagi o'sish bosqichini biz bilan boshlang",
       ctaSubtitle:
-        "Bepul konsultatsiya oling — O'zbekistondagi biznesingiz uchun eng to'g'ri raqamli yechimni topamiz.",
+        "Bepul growth audit — bugungi marketing va avtomatlashtirish darajangizni baholaymiz va eng tezkor o'sish kanali nima ekanligini aytamiz.",
+      learnEyebrow: "/ ta'lim missiyasi",
+      learnTitle: "Bilim — bu ham eng kuchli marketing",
+      learnLead:
+        "Biz O'zbekistonda zamonaviy dasturchilar va digital mutaxassislar avlodini tarbiyalashga ishonamiz.",
+      learnMission:
+        "404Dev Learn — bu bepul, ona tilimizdagi dasturlash va marketing maktabi. Mijozlarimizdan tushgan har bir buyurtma ulushi yangi darslar tayyorlashga ketadi. Biz uchun bu shunchaki content marketing emas — bu mas'uliyat va mamlakat kelajagiga investitsiya.",
+      learnCTA: "Bepul darslarni boshlash",
+      learnSecondaryCTA: "Maktab haqida batafsil",
     },
     services: {
-      title: "Xizmatlarimiz",
+      title: "Bizning xizmatlar",
       subtitle:
-        "O'zbekiston biznesi va dunyo bo'ylab mijozlar uchun raqamli yechimlar — g'oyadan tayyor mahsulotgacha bir joyda.",
+        "Biz xizmatlarni alohida emas, biznes muammolari atrofida paketlaymiz: ko'proq lid, tezroq jarayonlar, kuchli brend va o'sayotgan organik trafik.",
       items: [
-        { title: "Web saytlar", description: "Korporativ saytlar, landing pagelar, e-commerce platformalar." },
-        { title: "Telegram botlar", description: "Mijozlarni avtomatlashtirish, savdo va yetkazib berish botlari." },
-        { title: "Mobil ilovalar", description: "iOS va Android uchun cross-platforma mobil yechimlar." },
-        { title: "CRM / ERP tizimlar", description: "Kompaniya jarayonlarini avtomatlashtiruvchi maxsus tizimlar." },
-        { title: "Biznes avtomatlashtirish", description: "Hujjat aylanishi, hisobot va integratsiyalarni avtomatlashtirish." },
-        { title: "API integratsiya", description: "To'lov tizimlari, logistika, marketplace va boshqa servislar." },
+        { title: "Web Development", description: "Konversiyaga yo'naltirilgan korporativ saytlar, landinglar, e-commerce platformalar va SaaS." },
+        { title: "SEO & Growth", description: "Texnik SEO, programmatic SEO, kontent strategiya, Google va Yandex'da 1-sahifa." },
+        { title: "Lead Generation Systems", description: "Lid voronkalari, CRO, CRM va analitika — saytdan haqiqiy mijozlar oqimi." },
+        { title: "AI & Automation", description: "AI chatbotlar, Telegram avtomatlashtirish, ish jarayonlari va aqlli yordamchilar." },
+        { title: "Branding & Design", description: "Brand identity, logo, brand book, UI/UX va dizayn tizimlari." },
+        { title: "Business Systems", description: "CRM, ERP, logistika, dispatch va ichki biznes platformalar — SaaS-darajadagi sifat bilan." },
+        { title: "Infrastructure & Technical", description: "Cloud, DevOps, CI/CD, mikrosservislar, API va xavfsizlik optimizatsiya." },
       ],
     },
     about: {
       title: "Biz haqimizda",
       subtitle:
-        "404Dev — Toshkent shahridagi outsourcing studiya. Biz O'zbekiston va butun dunyo bo'ylab xizmatlarni raqamlashtirishga yordam beramiz: raqamli mahsulotlarni yaratish va biznesni avtomatlashtirishga ixtisoslashganmiz.",
+        "404Dev — Toshkentda joylashgan digital growth, marketing va avtomatlashtirish agentligi. Biz biznesga shunchaki sayt yoki ilova bermaymiz — biz ularga o'sish tizimlarini, ya'ni har oy mijoz keltiruvchi va savdoni avtomatlashtiradigan to'liq mexanizmni topshiramiz.",
       missionTitle: "Bizning missiyamiz",
       mission:
-        "O'zbekiston biznesiga zamonaviy texnologiyalar orqali o'sish va xalqaro bozorda raqobatbardosh bo'lishga yordam berish. Biz har bir loyihaga shaffof, professional va natijaga yo'naltirilgan yondashuvni qo'llaymiz.",
+        "O'zbekiston biznesini muhandislik darajasidagi digital ekosistemalar bilan qurollantirish va xalqaro bozorda raqobatbardosh qilish. Bunga parallel ravishda — yangi avlod dasturchilar va digital mutaxassislarni bepul o'qitish.",
       valuesTitle: "Qadriyatlarimiz",
       values: [
-        { title: "Sifat", description: "Har bir kod qatorida muhandislik standartlari." },
-        { title: "Shaffoflik", description: "Mijoz har bosqichda jarayonni ko'radi." },
-        { title: "Tezlik", description: "Tezkor yetkazib berish va kelishilgan deadline." },
-        { title: "Qo'llab-quvvatlash", description: "Loyiha tugagandan keyin ham yoningizdamiz." },
+        { title: "Engineering-driven", description: "Har bir yechim muhandislik standartlari asosida — soat-soat ishlaydi." },
+        { title: "Growth-focused", description: "Biz dizayndan emas, raqamlardan boshlaymiz — har bir piksel mijoz keltirishi kerak." },
+        { title: "Premium darajasi", description: "Brand, mahsulot va tajriba — xalqaro standartda his qilinadigan sifat." },
+        { title: "Long-term partner", description: "Loyiha topshirilgandan keyin ham yoningizdamiz — o'sish davom etadi." },
       ],
     },
     portfolio: {
       title: "Portfolio",
-      subtitle: "O'zbekistondagi va xalqaro mijozlar uchun yakunlangan loyihalarimiz va keyslar.",
+      subtitle: "O'zbekiston va xalqaro mijozlar uchun ishlab chiqilgan growth tizimlari va kompleks loyihalar.",
       empty: "Tez orada bu yerda yangi loyihalar paydo bo'ladi.",
     },
     blog: {
       title: "Blog",
-      subtitle: "O'zbekiston bozori, texnologiyalar va biznes raqamlashtirish haqida maqolalarimiz.",
+      subtitle: "Digital marketing, SEO, AI avtomatlashtirish va biznes raqamlashtirish bo'yicha amaliy maqolalar.",
       empty: "Tez orada birinchi maqolalarimiz e'lon qilinadi.",
       readingTime: "min o'qish",
     },
     contact: {
       title: "Bog'lanish",
-      subtitle: "Toshkentdan ish boshlaymiz, dunyo bo'ylab yetkazib beramiz. Loyihangiz haqida gaplashaylik — 1 ish kuni ichida javob beramiz.",
+      subtitle: "Toshkentdan ish boshlaymiz, dunyo bo'ylab natija beramiz. Loyihangiz haqida gaplashaylik — 1 ish kuni ichida javob beramiz.",
       name: "Ismingiz",
       phone: "Telefon raqamingiz",
       telegram: "Telegram username",
@@ -188,61 +204,73 @@ const dictionaries: Record<Locale, Dict> = {
       viewAll: "Смотреть все",
     },
     home: {
-      heroBadge: "404Dev — цифровое агентство из Ташкента",
-      heroTitle: "Помогаем цифровизировать услуги в Узбекистане и по всему миру",
+      heroBadge: "404Dev — Digital Growth & Automation Agency",
+      heroTitle: "Сделаем бренды узнаваемыми и прибыльными",
       heroSubtitle:
-        "404Dev — outsourcing-студия в Ташкенте. Мы создаём веб-сайты, Telegram-ботов, мобильные приложения, CRM/ERP системы и автоматизируем бизнес-процессы — от идеи до готового продукта в одном месте.",
-      statsProjects: "завершённых проектов",
-      statsClients: "довольных клиентов в Узбекистане",
-      statsYears: "лет опыта",
-      servicesTitle: "Наши услуги",
-      servicesSubtitle: "Решения, адаптированные к рынку Узбекистана — от идеи до запуска и сопровождения в одном месте.",
-      techTitle: "Технологии",
-      techSubtitle: "Мы используем надёжный, проверенный технологический стек.",
-      ctaTitle: "Начните проект с нами",
-      ctaSubtitle: "Бесплатная консультация — подберём оптимальное цифровое решение для вашего бизнеса в Узбекистане.",
+        "Объединяем маркетинг и цифровизацию в единую систему. Реклама у блогеров, SEO, лидогенерация, AI-автоматизация, brand identity и конверсионный сайт — экосистема роста для брендов Узбекистана.",
+      statsProjects: "запущенных growth-систем",
+      statsClients: "клиентов в Узбекистане и за рубежом",
+      statsYears: "лет инженерного опыта",
+      servicesTitle: "Наши направления",
+      servicesSubtitle:
+        "Мы не «студия, которая делает сайты» — мы строим экосистему: лидогенерация, автоматизация продаж и сильный бренд. Всё, что превращает компанию в системно растущий бизнес.",
+      techTitle: "Технологии и интеграции",
+      techSubtitle: "Современный, проверенный стек для growth, automation и data.",
+      ctaTitle: "Запустим следующий этап роста вашего бизнеса",
+      ctaSubtitle:
+        "Бесплатный growth-аудит — оценим текущий уровень маркетинга и автоматизации и покажем самый быстрый канал роста.",
+      learnEyebrow: "/ образовательная миссия",
+      learnTitle: "Знание — это самый сильный маркетинг",
+      learnLead:
+        "Мы инвестируем в новое поколение разработчиков и digital-специалистов в Узбекистане.",
+      learnMission:
+        "404Dev Learn — это бесплатная школа программирования и digital-навыков на узбекском. Часть от каждого клиентского контракта идёт на создание новых уроков. Для нас это не контент-маркетинг, а ответственность и инвестиция в будущее страны.",
+      learnCTA: "Начать бесплатные уроки",
+      learnSecondaryCTA: "О школе подробнее",
     },
     services: {
       title: "Наши услуги",
-      subtitle: "Цифровые решения для бизнеса в Узбекистане и клиентов по всему миру — от идеи до готового продукта.",
+      subtitle:
+        "Мы упаковываем услуги не списком, а вокруг бизнес-задач: больше лидов, быстрее процессы, сильный бренд и растущий органический трафик.",
       items: [
-        { title: "Веб-сайты", description: "Корпоративные сайты, лендинги, e-commerce." },
-        { title: "Telegram боты", description: "Автоматизация клиентов, продажи, логистика." },
-        { title: "Мобильные приложения", description: "Cross-platform решения для iOS и Android." },
-        { title: "CRM / ERP", description: "Кастомные системы автоматизации компании." },
-        { title: "Автоматизация бизнеса", description: "Документооборот, отчётность, интеграции." },
-        { title: "API интеграции", description: "Платежи, логистика, маркетплейсы и др." },
+        { title: "Web Development", description: "Конверсионные корпоративные сайты, лендинги, e-commerce платформы и SaaS." },
+        { title: "SEO & Growth", description: "Технический SEO, programmatic SEO, контент-стратегия, 1 страница в Google и Яндекс." },
+        { title: "Lead Generation Systems", description: "Лид-воронки, CRO, CRM, аналитика — поток реальных клиентов с сайта." },
+        { title: "AI & Automation", description: "AI чат-боты, автоматизация Telegram, рабочие процессы и умные ассистенты." },
+        { title: "Branding & Design", description: "Brand identity, лого, brand book, UI/UX и дизайн-системы." },
+        { title: "Business Systems", description: "CRM, ERP, логистика, диспатч и внутренние платформы — на уровне SaaS." },
+        { title: "Infrastructure & Technical", description: "Cloud, DevOps, CI/CD, микросервисы, API и оптимизация безопасности." },
       ],
     },
     about: {
       title: "О нас",
       subtitle:
-        "404Dev — outsourcing-студия из Ташкента, Узбекистан. Помогаем цифровизировать услуги в Узбекистане и по всему миру: специализируемся на создании цифровых продуктов и автоматизации бизнеса.",
+        "404Dev — digital growth, marketing и automation агентство из Ташкента. Мы не просто «делаем сайт» — мы передаём вам систему роста: маркетинг, лидогенерацию и автоматизацию, которые работают каждый месяц.",
       missionTitle: "Наша миссия",
       mission:
-        "Помогать бизнесу в Узбекистане расти и оставаться конкурентным на международном рынке с помощью современных технологий. Прозрачно, профессионально, с фокусом на результат.",
+        "Дать бизнесу Узбекистана инженерные digital-экосистемы и сделать его конкурентным на международном рынке. Параллельно — бесплатно обучать новое поколение разработчиков и digital-специалистов.",
       valuesTitle: "Наши ценности",
       values: [
-        { title: "Качество", description: "Инженерные стандарты в каждой строке кода." },
-        { title: "Прозрачность", description: "Клиент видит процесс на каждом этапе." },
-        { title: "Скорость", description: "Соблюдаем дедлайны." },
-        { title: "Поддержка", description: "Не оставляем после релиза." },
+        { title: "Engineering-driven", description: "Каждое решение собрано как инженерная система — работает по часам." },
+        { title: "Growth-focused", description: "Начинаем с цифр, не с дизайна — каждый пиксель должен приносить клиента." },
+        { title: "Premium-уровень", description: "Бренд, продукт и опыт — на международном уровне ощущения качества." },
+        { title: "Долгосрочное партнёрство", description: "После релиза остаёмся рядом — рост продолжается." },
       ],
     },
     portfolio: {
       title: "Портфолио",
-      subtitle: "Наши завершённые проекты и кейсы — для клиентов в Узбекистане и за рубежом.",
+      subtitle: "Growth-системы и комплексные проекты для клиентов в Узбекистане и за рубежом.",
       empty: "Скоро здесь появятся новые проекты.",
     },
     blog: {
       title: "Блог",
-      subtitle: "Статьи о рынке Узбекистана, технологиях и цифровизации бизнеса.",
+      subtitle: "Прикладные статьи о digital marketing, SEO, AI-автоматизации и цифровизации бизнеса.",
       empty: "Скоро будут опубликованы первые статьи.",
       readingTime: "мин чтения",
     },
     contact: {
       title: "Контакты",
-      subtitle: "Работаем из Ташкента, доставляем по всему миру. Давайте обсудим ваш проект — ответим в течение одного рабочего дня.",
+      subtitle: "Работаем из Ташкента, доставляем результат по всему миру. Давайте обсудим ваш проект — ответим в течение одного рабочего дня.",
       name: "Ваше имя",
       phone: "Номер телефона",
       telegram: "Telegram username",
@@ -278,61 +306,73 @@ const dictionaries: Record<Locale, Dict> = {
       viewAll: "View all",
     },
     home: {
-      heroBadge: "404Dev — digital agency from Tashkent, Uzbekistan",
-      heroTitle: "We help digitalize services in Uzbekistan and around the world",
+      heroBadge: "404Dev — Digital Growth & Automation Agency",
+      heroTitle: "We make brands recognizable and profitable",
       heroSubtitle:
-        "404Dev is an outsourcing studio based in Tashkent, Uzbekistan. We build websites, Telegram bots, mobile apps, CRM/ERP systems, and automate business workflows — from idea to finished product in one place.",
-      statsProjects: "projects delivered",
-      statsClients: "happy clients across Uzbekistan",
-      statsYears: "years of experience",
-      servicesTitle: "Our services",
-      servicesSubtitle: "Solutions tailored to the Uzbekistan market — from idea to launch and ongoing support, all in one place.",
-      techTitle: "Technologies",
-      techSubtitle: "We use a reliable, battle-tested technology stack.",
-      ctaTitle: "Start your project with us",
-      ctaSubtitle: "Free consultation — we'll find the right digital solution for your business in Uzbekistan.",
+        "Marketing meets digital engineering — in one system. Influencer marketing, SEO, lead generation, AI automation, brand identity and a conversion-focused site — one growth ecosystem for Uzbekistan's brands.",
+      statsProjects: "growth systems shipped",
+      statsClients: "clients across Uzbekistan & worldwide",
+      statsYears: "years of engineering experience",
+      servicesTitle: "Our practices",
+      servicesSubtitle:
+        "We're not just a web studio — we build the full ecosystem: lead generation, sales automation and a strong brand. Everything that turns a business into a systematically growing one.",
+      techTitle: "Technology & integrations",
+      techSubtitle: "A modern, battle-tested stack for growth, automation and data.",
+      ctaTitle: "Let's launch the next stage of your growth",
+      ctaSubtitle:
+        "Free growth audit — we evaluate your current marketing and automation maturity and show the fastest channel for growth.",
+      learnEyebrow: "/ education mission",
+      learnTitle: "Knowledge is the strongest marketing of all",
+      learnLead:
+        "We invest in the next generation of developers and digital specialists in Uzbekistan.",
+      learnMission:
+        "404Dev Learn is a free school of programming and digital skills in Uzbek. A share of every client contract goes into producing new lessons. For us this isn't content marketing — it's a responsibility and an investment in the future of the country.",
+      learnCTA: "Start free lessons",
+      learnSecondaryCTA: "About the school",
     },
     services: {
       title: "Our services",
-      subtitle: "Digital solutions for businesses in Uzbekistan and clients worldwide — from idea to launch.",
+      subtitle:
+        "We don't just list services — we package them around business outcomes: more leads, faster processes, a stronger brand, and growing organic traffic.",
       items: [
-        { title: "Websites", description: "Corporate sites, landing pages, e-commerce." },
-        { title: "Telegram bots", description: "Customer automation, sales, delivery bots." },
-        { title: "Mobile apps", description: "Cross-platform iOS & Android solutions." },
-        { title: "CRM / ERP", description: "Custom systems to automate your company." },
-        { title: "Business automation", description: "Document flow, reporting, integrations." },
-        { title: "API integrations", description: "Payments, logistics, marketplaces, more." },
+        { title: "Web Development", description: "Conversion-focused corporate sites, landing pages, e-commerce platforms and SaaS." },
+        { title: "SEO & Growth", description: "Technical SEO, programmatic SEO, content strategy, page-one rankings on Google & Yandex." },
+        { title: "Lead Generation Systems", description: "Lead funnels, CRO, CRM, analytics — a real flow of customers from your site." },
+        { title: "AI & Automation", description: "AI chatbots, Telegram automation, workflows and smart business assistants." },
+        { title: "Branding & Design", description: "Brand identity, logo, brand book, UI/UX and design systems." },
+        { title: "Business Systems", description: "CRM, ERP, logistics, dispatch and internal platforms — at SaaS-grade quality." },
+        { title: "Infrastructure & Technical", description: "Cloud, DevOps, CI/CD, microservices, APIs and security optimisation." },
       ],
     },
     about: {
       title: "About us",
       subtitle:
-        "404Dev is an outsourcing studio based in Tashkent, Uzbekistan. We help digitalize services in Uzbekistan and around the world — focused on building digital products and automating businesses.",
+        "404Dev is a digital growth, marketing & automation agency based in Tashkent, Uzbekistan. We don't just hand you a website — we hand you a growth system: marketing, lead generation and automation that work every month.",
       missionTitle: "Our mission",
       mission:
-        "Help Uzbekistan businesses grow and stay competitive in the global market through modern technology. Transparent, professional, results-driven.",
+        "Equip Uzbekistan's businesses with engineering-grade digital ecosystems and make them competitive in the global market. In parallel — train the next generation of developers and digital specialists for free.",
       valuesTitle: "Our values",
       values: [
-        { title: "Quality", description: "Engineering standards in every line of code." },
-        { title: "Transparency", description: "Clients see the process at every stage." },
-        { title: "Speed", description: "We meet deadlines." },
-        { title: "Support", description: "We stay with you after release." },
+        { title: "Engineering-driven", description: "Every solution is built like an engineering system — runs like clockwork." },
+        { title: "Growth-focused", description: "We start from numbers, not design — every pixel must earn a customer." },
+        { title: "Premium-grade", description: "Brand, product and experience that feel international." },
+        { title: "Long-term partner", description: "We stay with you after launch — growth keeps going." },
       ],
     },
     portfolio: {
       title: "Portfolio",
-      subtitle: "Completed projects and case studies — for clients in Uzbekistan and abroad.",
+      subtitle: "Growth systems and end-to-end projects for clients in Uzbekistan and abroad.",
       empty: "New projects coming soon.",
     },
     blog: {
       title: "Blog",
-      subtitle: "Articles about the Uzbekistan market, technology and business digitalization.",
+      subtitle: "Practical articles on digital marketing, SEO, AI automation and business digitalisation.",
       empty: "Our first articles will be published soon.",
       readingTime: "min read",
     },
     contact: {
       title: "Contact",
-      subtitle: "Based in Tashkent, delivering worldwide. Let's talk about your project — we reply within one business day.",
+      subtitle: "Based in Tashkent, delivering results worldwide. Let's talk about your project — we reply within one business day.",
       name: "Your name",
       phone: "Phone number",
       telegram: "Telegram username",

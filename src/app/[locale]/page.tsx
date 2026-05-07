@@ -10,25 +10,26 @@ import ServicesGrid from "@/components/home/ServicesGrid";
 import ProcessAndTestimonials from "@/components/home/ProcessAndTestimonials";
 import TechMarquee from "@/components/home/TechMarquee";
 import FAQ from "@/components/home/FAQ";
+import LearnBanner from "@/components/home/LearnBanner";
 import CTAButton from "@/components/CTAButton";
 import { SendIcon, TelegramIcon } from "@/components/icons";
 import { SITE } from "@/lib/site";
 
 export async function generateMetadata({ params }: { params: { locale: Locale } }): Promise<Metadata> {
-  // Per-locale keyword-rich title — each one targets the primary search intent.
+  // Per-locale keyword-rich title — new positioning: marketing × digital engineering.
   const seoTitle =
     params.locale === "ru"
-      ? "Цифровизация услуг в Узбекистане и по всему миру | 404Dev Ташкент"
+      ? "Сделаем бренды узнаваемыми и прибыльными · маркетинг и цифровизация | 404Dev Ташкент"
       : params.locale === "en"
-      ? "Digitalizing services in Uzbekistan and worldwide | 404Dev Tashkent"
-      : "O'zbekiston va dunyo bo'ylab xizmatlarni raqamlashtirish | 404Dev Toshkent";
+      ? "We make brands recognizable and profitable · marketing × digital engineering | 404Dev Tashkent"
+      : "Brendlarni tanilgan va daromadli qilamiz · marketing va raqamlashtirish | 404Dev Toshkent";
 
   const seoDescription =
     params.locale === "ru"
-      ? "404Dev — outsourcing-студия в Ташкенте. Помогаем цифровизировать услуги в Узбекистане и по всему миру: сайты, Telegram-боты, мобильные приложения, CRM/ERP, SEO в Google и Яндекс. Прозрачная цена, прототип за 7 дней."
+      ? "404Dev — объединяем маркетинг и цифровизацию в единую систему роста. Реклама у блогеров (Instagram, TikTok, Telegram, YouTube), SEO и programmatic SEO, лидогенерация и CRO, AI-автоматизация (GPT, Gemini, RAG), brand identity, CRM/ERP и конверсионные сайты для брендов Узбекистана. Бесплатный growth-аудит."
       : params.locale === "en"
-      ? "404Dev is an outsourcing studio in Tashkent, Uzbekistan. We help digitalize services in Uzbekistan and around the world: websites, Telegram bots, mobile apps, CRM/ERP, and SEO for Google and Yandex. Transparent pricing, prototype in 7 days."
-      : "404Dev — Toshkentdagi outsourcing studiya. O'zbekiston va butun dunyo bo'ylab xizmatlarni raqamlashtirishga yordam beramiz: web sayt, Telegram bot, mobil ilova, CRM/ERP, Google va Yandex SEO. Aniq narx, 7 kunda tayyor prototip.";
+      ? "404Dev unites marketing and digital engineering into one growth system. Influencer marketing (Instagram, TikTok, Telegram, YouTube), SEO and programmatic SEO, lead generation and CRO, AI automation (GPT, Gemini, RAG), brand identity, CRM/ERP and conversion-focused websites for Uzbekistan's brands. Free growth audit."
+      : "404Dev — marketing va raqamlashtirishni bitta o'sish tizimida birlashtiramiz. Blogerlar bilan reklama (Instagram, TikTok, Telegram, YouTube), SEO va programmatic SEO, lead generation va CRO, AI avtomatlashtirish (GPT, Gemini, RAG), brand identity, CRM/ERP va O'zbekiston brendlari uchun konversiyali web. Bepul growth audit.";
 
   return buildMetadata({
     title: seoTitle,
@@ -56,16 +57,11 @@ export default function HomePage({ params }: { params: { locale: Locale } }) {
     url: homeUrl,
     name:
       params.locale === "ru"
-        ? "Цифровизация услуг в Узбекистане и по всему миру | 404Dev Ташкент"
+        ? "Сделаем бренды узнаваемыми и прибыльными | 404Dev"
         : params.locale === "en"
-        ? "Digitalizing services in Uzbekistan and worldwide | 404Dev Tashkent"
-        : "O'zbekiston va dunyo bo'ylab xizmatlarni raqamlashtirish | 404Dev Toshkent",
-    description:
-      params.locale === "ru"
-        ? "Заказать сайт, Telegram-бота, мобильное приложение, CRM/ERP и SEO в Ташкенте и по всему Узбекистану. Прозрачная цена, прототип за 7 дней."
-        : params.locale === "en"
-        ? "Order a website, Telegram bot, mobile app, CRM/ERP and SEO in Tashkent and across Uzbekistan. Transparent pricing, prototype in 7 days."
-        : "Toshkent va butun O'zbekiston bo'ylab sayt, Telegram bot, mobil ilova, CRM/ERP va SEO buyurtma bering. Aniq narx, 7 kunda prototip.",
+        ? "We make brands recognizable and profitable | 404Dev"
+        : "Brendlarni tanilgan va daromadli qilamiz | 404Dev",
+    description: t.home.heroSubtitle,
     locale: params.locale,
   });
 
@@ -90,9 +86,10 @@ export default function HomePage({ params }: { params: { locale: Locale } }) {
       />
 
       <Hero locale={params.locale} />
-      <HomePortfolio locale={params.locale} />
       <ServicesGrid locale={params.locale} />
+      <HomePortfolio locale={params.locale} />
       <ProcessAndTestimonials locale={params.locale} />
+      <LearnBanner locale={params.locale} />
       <TechMarquee locale={params.locale} />
       <FAQ locale={params.locale} />
       <HomeBlog locale={params.locale} />

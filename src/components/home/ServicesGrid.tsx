@@ -6,102 +6,158 @@ import {
   BotIcon,
   CodeIcon,
   DatabaseIcon,
+  InstagramIcon,
   PlugIcon,
-  SmartphoneIcon,
+  RocketIcon,
   SparklesIcon,
   ZapIcon,
 } from "@/components/icons";
 
+/* ============================================================
+   HOME — 7 GROWTH PRACTICES preview.
+   Mirrors src/app/[locale]/services/page.tsx structure but copy
+   is shorter. Each card is framed as a business outcome.
+   ============================================================ */
+
 type ServiceMeta = {
   slug: string;
   Icon: React.ComponentType<{ size?: number; className?: string }>;
-  /** kept short — 2-3 lines max in the card */
   badge: { uz: string; ru: string; en: string };
-  /** card title (overrides dict for the home grid copy) */
+  /** short title shown on the card */
   title: { uz: string; ru: string; en: string };
+  /** one-line outcome — read first */
+  outcome: { uz: string; ru: string; en: string };
+  /** longer description */
   desc: { uz: string; ru: string; en: string };
 };
 
 const SERVICES: ServiceMeta[] = [
   {
-    slug: "websites",
-    Icon: CodeIcon,
-    badge: { uz: "01 / Web", ru: "01 / Web", en: "01 / Web" },
-    title: { uz: "Web saytlar", ru: "Веб-сайты", en: "Websites" },
-    desc: {
-      uz: "Korporativ sayt, landing, e-commerce — Next.js, tezkor yuklanish, SEO-tayyor.",
-      ru: "Корпоративные сайты, лендинги, e-commerce — Next.js, быстрая загрузка, SEO-готово.",
-      en: "Corporate sites, landings, e-commerce — Next.js, fast load, SEO-ready.",
-    },
-  },
-  {
-    slug: "telegram-bots",
-    Icon: BotIcon,
-    badge: { uz: "02 / Bot", ru: "02 / Bot", en: "02 / Bot" },
-    title: { uz: "Telegram botlar", ru: "Telegram-боты", en: "Telegram bots" },
-    desc: {
-      uz: "Buyurtma qabul, to'lov, CRM bilan bog'lanish — 24/7 ishlovchi sotuvchi.",
-      ru: "Приём заявок, оплата, связь с CRM — продавец, который работает 24/7.",
-      en: "Lead intake, payments, CRM sync — a salesperson that works 24/7.",
-    },
-  },
-  {
-    slug: "seo",
+    slug: "seo-growth",
     Icon: ZapIcon,
-    badge: { uz: "03 / SEO", ru: "03 / SEO", en: "03 / SEO" },
-    title: { uz: "Google va Yandex SEO", ru: "SEO в Google и Яндекс", en: "Google & Yandex SEO" },
+    badge: { uz: "01 / Growth", ru: "01 / Growth", en: "01 / Growth" },
+    title: { uz: "SEO & Growth", ru: "SEO & Growth", en: "SEO & Growth" },
+    outcome: {
+      uz: "Har oy o'sayotgan organik trafik",
+      ru: "Растущий органический трафик каждый месяц",
+      en: "Organic traffic that compounds every month",
+    },
     desc: {
-      uz: "Texnik audit, kontent, backlinkalar — qidiruvda 1-sahifada chiqing.",
-      ru: "Технический аудит, контент, бэклинки — попадайте на 1 страницу выдачи.",
-      en: "Technical audit, content, backlinks — land on page one of search.",
+      uz: "Texnik SEO, programmatic SEO va kontent strategiya — Google va Yandex'da 1-sahifa.",
+      ru: "Технический SEO, programmatic SEO и контент-стратегия — 1 страница в Google и Яндекс.",
+      en: "Technical SEO, programmatic SEO and content strategy — page-one rankings on Google & Yandex.",
     },
   },
   {
-    slug: "mobile-apps",
-    Icon: SmartphoneIcon,
-    badge: { uz: "04 / Mobile", ru: "04 / Mobile", en: "04 / Mobile" },
-    title: { uz: "Mobil ilovalar", ru: "Мобильные приложения", en: "Mobile apps" },
+    slug: "lead-generation",
+    Icon: RocketIcon,
+    badge: { uz: "02 / Leads", ru: "02 / Leads", en: "02 / Leads" },
+    title: { uz: "Lead Generation", ru: "Lead Generation", en: "Lead Generation" },
+    outcome: {
+      uz: "Saytdan haqiqiy mijoz oqimi, trafik emas",
+      ru: "Поток клиентов с сайта, а не «трафик»",
+      en: "A real customer pipeline, not just traffic",
+    },
     desc: {
-      uz: "iOS + Android — bitta kod bazada, App Store va Google Play'da.",
-      ru: "iOS + Android — одна кодовая база, в App Store и Google Play.",
-      en: "iOS + Android — one codebase, on App Store and Google Play.",
+      uz: "Lid voronkalari, CRO, CRM va analitika — har bir tashrifni mijozga aylantirish tizimi.",
+      ru: "Лид-воронки, CRO, CRM и аналитика — система превращения визитов в клиентов.",
+      en: "Lead funnels, CRO, CRM and analytics — a system that turns visitors into customers.",
     },
   },
   {
-    slug: "crm-erp",
-    Icon: DatabaseIcon,
-    badge: { uz: "05 / CRM", ru: "05 / CRM", en: "05 / CRM" },
-    title: { uz: "CRM / ERP tizimlar", ru: "CRM / ERP системы", en: "CRM / ERP systems" },
+    slug: "influencer-marketing",
+    Icon: InstagramIcon,
+    badge: { uz: "03 / Influence", ru: "03 / Influence", en: "03 / Influence" },
+    title: { uz: "Influencer Marketing", ru: "Influencer Marketing", en: "Influencer Marketing" },
+    outcome: {
+      uz: "Blogerlar bilan reklama — kampaniyalar siz uchun",
+      ru: "Реклама у блогеров — кампании под ключ",
+      en: "Creator-led campaigns, fully managed",
+    },
     desc: {
-      uz: "Mijoz, omborxona, hisobot — kompaniya jarayonlari bitta panelda.",
-      ru: "Клиенты, склад, отчёты — все процессы компании в одной панели.",
-      en: "Customers, inventory, reports — all company processes in one place.",
+      uz: "O'zbekistonning eng kuchli blogerlari — bizga yozasiz, blogerga emas. Bloger tanlash, kelishuv, tekst va publish — biz uchun. To'lov bosqichlarga bo'lingan, ROI shaffof.",
+      ru: "Лучшие блогеры Узбекистана — пишете нам, не блогеру. Подбор, согласование, тексты и публикация — на нашей стороне. Оплата делится на этапы, ROI прозрачный.",
+      en: "Uzbekistan's strongest creators — you write to us, not the creator. Picks, negotiation, copy and publishing on us. Staged payment, transparent ROI.",
     },
   },
   {
-    slug: "integrations",
-    Icon: PlugIcon,
-    badge: { uz: "06 / API", ru: "06 / API", en: "06 / API" },
-    title: { uz: "API integratsiyalar", ru: "API интеграции", en: "API integrations" },
-    desc: {
-      uz: "Click, Payme, Uzum, 1C, marketplace'lar — tizimlaringiz orasida ko'prik.",
-      ru: "Click, Payme, Uzum, 1C, маркетплейсы — мост между вашими системами.",
-      en: "Click, Payme, Uzum, 1C, marketplaces — a bridge between your systems.",
-    },
-  },
-  {
-    slug: "ai",
+    slug: "ai-automation",
     Icon: SparklesIcon,
-    badge: { uz: "07 / AI", ru: "07 / AI", en: "07 / AI" },
-    title: {
-      uz: "AI integratsiya",
-      ru: "AI интеграция",
-      en: "AI integration",
+    badge: { uz: "04 / AI", ru: "04 / AI", en: "04 / AI" },
+    title: { uz: "AI & Automation", ru: "AI & Automation", en: "AI & Automation" },
+    outcome: {
+      uz: "24/7 ishlovchi raqamli xodim",
+      ru: "Цифровой сотрудник, работающий 24/7",
+      en: "A digital employee that works 24/7",
     },
     desc: {
-      uz: "GPT, Gemini va boshqa modellar bilan ishlash — chatbot, kontent, hujjat tahlili va biznes assistentlarini loyihangizga professional integratsiya qilamiz.",
-      ru: "Работа с GPT, Gemini и другими моделями — чат-боты, генерация контента, анализ документов и бизнес-ассистенты, профессионально встроенные в ваш проект.",
-      en: "GPT, Gemini and other models — chatbots, content, document analysis and business assistants, professionally integrated into your project.",
+      uz: "AI chatbotlar, Telegram avtomatlashtirish, ish jarayonlari va aqlli yordamchilar — biznesga GPT, Gemini va custom LLM darajasida.",
+      ru: "AI чат-боты, автоматизация Telegram, рабочие процессы и умные ассистенты — на уровне GPT, Gemini и кастомных LLM.",
+      en: "AI chatbots, Telegram automation, workflows and smart assistants — on top of GPT, Gemini and custom LLMs.",
+    },
+  },
+  {
+    slug: "web-development",
+    Icon: CodeIcon,
+    badge: { uz: "05 / Web", ru: "05 / Web", en: "05 / Web" },
+    title: { uz: "Web Development", ru: "Web Development", en: "Web Development" },
+    outcome: {
+      uz: "Yuqori konversiyali sayt va platformalar",
+      ru: "Высококонверсионные сайты и платформы",
+      en: "High-conversion sites and platforms",
+    },
+    desc: {
+      uz: "Korporativ sayt, landing, e-commerce va SaaS — Next.js, Lighthouse 95+, SEO-tayyor.",
+      ru: "Корпоративные сайты, лендинги, e-commerce и SaaS — Next.js, Lighthouse 95+, SEO-готово.",
+      en: "Corporate sites, landings, e-commerce and SaaS — Next.js, Lighthouse 95+, SEO-ready.",
+    },
+  },
+  {
+    slug: "business-systems",
+    Icon: DatabaseIcon,
+    badge: { uz: "06 / Systems", ru: "06 / Systems", en: "06 / Systems" },
+    title: { uz: "Business Systems", ru: "Business Systems", en: "Business Systems" },
+    outcome: {
+      uz: "Kompaniyaning butun jarayoni bitta tizimda",
+      ru: "Все процессы компании в одной системе",
+      en: "Every company process in one system",
+    },
+    desc: {
+      uz: "CRM, ERP, dispatch, logistika va SaaS platformalar — B2B-darajadagi muhandislik bilan.",
+      ru: "CRM, ERP, dispatch, логистика и SaaS — на инженерном B2B-уровне.",
+      en: "CRM, ERP, dispatch, logistics and SaaS — at engineering-grade B2B quality.",
+    },
+  },
+  {
+    slug: "branding-design",
+    Icon: BotIcon,
+    badge: { uz: "07 / Brand", ru: "07 / Brand", en: "07 / Brand" },
+    title: { uz: "Branding & Design", ru: "Branding & Design", en: "Branding & Design" },
+    outcome: {
+      uz: "Premium, xalqaro his uyg'otadigan brend",
+      ru: "Премиальный бренд международного уровня",
+      en: "A premium, international-grade brand",
+    },
+    desc: {
+      uz: "Brand identity, logo, brand book, UI/UX va design system — premium narx asoslangan vizual til.",
+      ru: "Brand identity, лого, brand book, UI/UX и design system — визуальный язык, оправдывающий премиум-цену.",
+      en: "Brand identity, logo, brand book, UI/UX and design system — a visual language that justifies premium pricing.",
+    },
+  },
+  {
+    slug: "infrastructure",
+    Icon: PlugIcon,
+    badge: { uz: "08 / Infra", ru: "08 / Infra", en: "08 / Infra" },
+    title: { uz: "Infrastructure", ru: "Infrastructure", en: "Infrastructure" },
+    outcome: {
+      uz: "Tezkor, barqaror va xavfsiz texnik fundament",
+      ru: "Быстрая, стабильная и защищённая основа",
+      en: "Fast, stable, secure technical foundation",
+    },
+    desc: {
+      uz: "Cloud, CI/CD, mikrosservislar, API integratsiyalari va xavfsizlik — 99.9% uptime va PCI-DSS / GDPR compliance.",
+      ru: "Cloud, CI/CD, микросервисы, API-интеграции и безопасность — 99.9% uptime и PCI-DSS / GDPR compliance.",
+      en: "Cloud, CI/CD, microservices, API integrations and security — 99.9% uptime and PCI-DSS / GDPR compliance.",
     },
   },
 ];
@@ -111,99 +167,100 @@ export default function ServicesGrid({ locale }: { locale: Locale }) {
 
   const headTitle =
     locale === "uz" ? (
-      <>G'oyadan <span className="text-brand-500">mahsulotgacha</span> — bir joyda</>
+      <>
+        Bitta agentlik — <span className="text-brand-500">butun o'sish ekosistemasi</span>
+      </>
     ) : locale === "ru" ? (
-      <>От идеи до <span className="text-brand-500">продукта</span> — в одном месте</>
+      <>
+        Одно агентство — <span className="text-brand-500">вся экосистема роста</span>
+      </>
     ) : (
-      <>From idea to <span className="text-brand-500">product</span> — all in one</>
+      <>
+        One agency — <span className="text-brand-500">your full growth stack</span>
+      </>
     );
 
   const more = locale === "ru" ? "Подробнее" : locale === "en" ? "Details" : "Batafsil";
 
   return (
     <section className="section relative overflow-hidden bg-cream-100">
-      {/* Background accents */}
-      <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-ink-300/60 to-transparent" />
-      <div aria-hidden className="absolute -top-32 -right-24 h-96 w-96 rounded-full bg-brand-500/10 blur-3xl" />
-      <div aria-hidden className="absolute -bottom-32 -left-24 h-96 w-96 rounded-full bg-brand-300/15 blur-3xl" />
-
       <div className="container relative">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5">
           <div className="max-w-2xl">
             <span className="eyebrow">/ {t.home.servicesTitle}</span>
-            <h2 className="display-2 mt-3">{headTitle}</h2>
+            <h2 className="display-2 mt-4">{headTitle}</h2>
             <p className="mt-4 text-ink-700 text-base md:text-lg max-w-xl">{t.home.servicesSubtitle}</p>
           </div>
           <Link
             href={`/${locale}/services`}
-            className="hidden md:inline-flex items-center gap-1.5 rounded-full bg-cream-50 ring-1 ring-ink-200 px-4 py-2 text-sm font-semibold text-ink-900 hover:bg-ink-900 hover:text-cream-50 transition shrink-0"
+            className="hidden md:inline-flex items-center gap-1.5 bg-ink-900 text-cream-50 px-5 py-2.5 text-xs font-bold uppercase tracking-wider border-2 border-ink-900 brutal-shadow-sm hover:bg-brand-500 hover:text-ink-900 transition shrink-0"
           >
             {locale === "ru" ? "Все услуги" : locale === "en" ? "View all services" : "Hammasini ko'rish"}
             <ArrowUpRightIcon size={14} />
           </Link>
         </div>
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((s, i) => {
-            const isAi = s.slug === "ai";
-            // Dark cards = visual rhythm (alternate) + the AI showcase row.
-            const isFeatured = i === 0 || i === 3 || isAi;
+            // 8 cards: zebra rhythm (even = dark, odd = light), and the
+            // last card (Infrastructure) spans 2 columns on lg to balance
+            // row 3 with the lone preceding card.
+            const isFeatured = i % 2 === 0;
+            const isFullWidth = i === 7;
             return (
               <Link
                 key={s.slug}
                 href={`/${locale}/services#${s.slug}`}
                 className={
-                  "group relative rounded-2xl p-6 md:p-7 transition-all duration-300 overflow-hidden " +
-                  (isAi
-                    ? "sm:col-span-2 lg:col-span-3 bg-ink-900 text-cream-50 ring-1 ring-ink-800 hover:-translate-y-1 hover:shadow-card"
-                    : isFeatured
-                    ? "bg-ink-900 text-cream-50 ring-1 ring-ink-800 hover:-translate-y-1 hover:shadow-card"
-                    : "bg-cream-50 text-ink-900 ring-1 ring-ink-200 hover:-translate-y-1 hover:shadow-card hover:ring-brand-500/40")
+                  "group relative p-6 md:p-7 transition-all duration-150 overflow-hidden border-2 border-ink-900 " +
+                  (isFullWidth ? "lg:col-span-2 " : "") +
+                  (isFeatured || isFullWidth
+                    ? "bg-ink-900 text-cream-50 brutal-shadow hover:-translate-x-1 hover:-translate-y-1 hover:brutal-shadow-lg"
+                    : "bg-cream-50 text-ink-900 brutal-shadow-sm hover:-translate-x-1 hover:-translate-y-1 hover:brutal-shadow")
                 }
               >
-                {/* Decorative coral chip behind icon */}
-                <div
-                  aria-hidden
-                  className={
-                    "absolute -top-10 -right-10 h-32 w-32 rounded-full blur-2xl transition opacity-0 group-hover:opacity-100 " +
-                    (isFeatured ? "bg-brand-500/30" : "bg-brand-500/15")
-                  }
-                />
-
                 {/* Number badge */}
                 <span
                   className={
-                    "inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.18em] " +
-                    (isFeatured ? "text-cream-50/60" : "text-ink-600")
+                    "inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.22em] font-bold " +
+                    (isFeatured || isFullWidth ? "text-cream-50/80" : "text-ink-900")
                   }
                 >
-                  <span className={"inline-block h-1 w-1 rounded-full " + (isFeatured ? "bg-brand-400" : "bg-brand-500")} />
+                  <span className={"inline-block h-1.5 w-1.5 " + (isFeatured || isFullWidth ? "bg-brand-400" : "bg-brand-500")} />
                   {s.badge[locale]}
                 </span>
 
-                {/* Icon — coral accent square */}
+                {/* Icon — sharp coral square */}
                 <div
                   className={
-                    "mt-4 grid h-12 w-12 place-items-center rounded-xl " +
-                    (isFeatured
-                      ? "bg-brand-500/20 text-brand-400 ring-1 ring-brand-500/30"
-                      : "bg-brand-50 text-brand-600 ring-1 ring-brand-100")
+                    "mt-4 grid h-12 w-12 place-items-center bg-brand-500 text-ink-900 border-2 " +
+                    (isFeatured || isFullWidth ? "border-brand-500" : "border-ink-900")
                   }
                 >
                   <s.Icon size={22} />
                 </div>
 
-                <h3
+                {/* Outcome — read first */}
+                <p
                   className={
-                    "mt-5 font-display text-xl md:text-2xl font-extrabold tracking-tightest leading-tight transition " +
-                    (isFeatured ? "" : "group-hover:text-brand-600")
+                    "mt-5 font-mono text-[11px] uppercase tracking-[0.22em] font-bold " +
+                    (isFeatured || isFullWidth ? "text-brand-400" : "text-brand-600")
                   }
+                >
+                  → {s.outcome[locale]}
+                </p>
+
+                <h3
+                  className="mt-2 font-display text-xl md:text-2xl font-bold leading-tight"
+                  style={{ letterSpacing: "-0.03em" }}
                 >
                   {s.title[locale]}
                 </h3>
                 <p
                   className={
-                    "mt-2 text-sm leading-6 " + (isFeatured ? "text-cream-50/75" : "text-ink-600")
+                    "mt-3 text-sm leading-6 " +
+                    (isFeatured || isFullWidth ? "text-cream-50/80" : "text-ink-700") +
+                    (isFullWidth ? " max-w-2xl" : "")
                   }
                 >
                   {s.desc[locale]}
@@ -211,22 +268,13 @@ export default function ServicesGrid({ locale }: { locale: Locale }) {
 
                 <span
                   className={
-                    "mt-6 inline-flex items-center gap-1 text-sm font-semibold transition " +
-                    (isFeatured ? "text-brand-400 group-hover:gap-2" : "text-ink-900 group-hover:text-brand-600 group-hover:gap-2")
+                    "mt-6 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider transition " +
+                    (isFeatured || isFullWidth ? "text-brand-400 group-hover:gap-3" : "text-ink-900 group-hover:gap-3")
                   }
                 >
                   {more}
                   <ArrowUpRightIcon size={14} />
                 </span>
-
-                {/* Bottom hairline accent */}
-                <span
-                  aria-hidden
-                  className={
-                    "absolute left-6 right-6 bottom-0 h-px transition origin-left scale-x-0 group-hover:scale-x-100 " +
-                    (isFeatured ? "bg-brand-400/60" : "bg-brand-500/60")
-                  }
-                />
               </Link>
             );
           })}
@@ -236,7 +284,7 @@ export default function ServicesGrid({ locale }: { locale: Locale }) {
         <div className="md:hidden mt-8 text-center">
           <Link
             href={`/${locale}/services`}
-            className="inline-flex items-center gap-1.5 rounded-full bg-ink-900 text-cream-50 px-5 py-2.5 text-sm font-semibold hover:bg-brand-500 transition"
+            className="inline-flex items-center gap-1.5 bg-ink-900 text-cream-50 px-6 py-3 text-xs font-bold uppercase tracking-wider border-2 border-ink-900 brutal-shadow-sm"
           >
             {locale === "ru" ? "Все услуги" : locale === "en" ? "View all services" : "Hammasini ko'rish"}
             <ArrowUpRightIcon size={14} />

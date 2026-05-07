@@ -1,136 +1,186 @@
 import Link from "next/link";
 import { type Locale } from "@/lib/i18n/config";
-import { ArrowUpRightIcon, BotIcon, CodeIcon, DatabaseIcon, RocketIcon, SparklesIcon } from "@/components/icons";
+import { getDictionary } from "@/lib/i18n/dictionaries";
+import {
+  ArrowUpRightIcon,
+  BotIcon,
+  CheckIcon,
+  CodeIcon,
+  DatabaseIcon,
+  RocketIcon,
+  SparklesIcon,
+} from "@/components/icons";
 
-const TECH_PILLS: { label: string; tint: string }[] = [
-  { label: "JavaScript", tint: "bg-cream-50/10 text-cream-50 ring-cream-50/20" },
-  { label: "Python",     tint: "bg-cream-50/10 text-cream-50 ring-cream-50/20" },
-  { label: "Go",         tint: "bg-brand-500/15 text-brand-300 ring-brand-400/30" },
-  { label: "React",      tint: "bg-cream-50/10 text-cream-50 ring-cream-50/20" },
-  { label: "Java",       tint: "bg-brand-500/15 text-brand-300 ring-brand-400/30" },
-  { label: "SQL",        tint: "bg-cream-50/10 text-cream-50 ring-cream-50/20" },
-  { label: "Telegram bot", tint: "bg-brand-500/15 text-brand-300 ring-brand-400/30" },
-  { label: "Docker",     tint: "bg-cream-50/10 text-cream-50 ring-cream-50/20" },
+/* ============================================================
+   404DEV — EDUCATION MISSION SECTION
+   Frames the free school as a brand mission, not just a banner.
+   - Eyebrow: "/ education mission"
+   - Lead: "Knowledge is the strongest marketing"
+   - Mission paragraph: a share of every contract → new lessons
+   - Pillars (4 cards): from zero, real projects, structured, practical
+   - Tech list: what we teach
+   - CTA: /learn
+   ============================================================ */
+
+const TECHS = [
+  "JavaScript",
+  "TypeScript",
+  "Python",
+  "Go",
+  "React",
+  "Next.js",
+  "Java",
+  "SQL",
+  "Telegram bot",
+  "Docker",
+  "Linux",
+  "Git",
 ];
 
 export default function LearnBanner({ locale }: { locale: Locale }) {
-  const headline =
-    locale === "ru" ? (
-      <>Бесплатные уроки <span className="gradient-text-cyan">программирования</span> на узбекском</>
-    ) : locale === "en" ? (
-      <>Free <span className="gradient-text-cyan">programming lessons</span> in Uzbek</>
-    ) : (
-      <>Bepul <span className="gradient-text-cyan">dasturlash darslari</span> — o'zbek tilida</>
-    );
+  const t = getDictionary(locale);
 
-  const subtitle =
-    locale === "ru" ? "Соберите фундамент через структурированные уроки и реальные примеры. Без воды." :
-    locale === "en" ? "Build a strong foundation with structured lessons and real-world examples. No fluff." :
-    "Tartibli darsliklar va real misollar orqali mustahkam asos quring. Hech qanday suv emas, faqat foyda.";
-
-  const cta1 =
-    locale === "ru" ? "Начать учиться" :
-    locale === "en" ? "Start learning" :
-    "O'qishni boshlash";
-
-  const cta2 =
-    locale === "ru" ? "Что внутри" :
-    locale === "en" ? "What's inside" :
-    "Ichkarida nima bor";
-
-  const features = [
+  const pillars = [
     {
       Icon: CodeIcon,
-      title: locale === "ru" ? "От нуля" : locale === "en" ? "From zero" : "Noldan",
+      title: locale === "ru" ? "С нуля" : locale === "en" ? "From zero" : "Noldan",
       text:
-        locale === "ru" ? "Не требует подготовки. Подходит для новичков." :
-        locale === "en" ? "No prep required. Beginner-friendly path." :
-        "Hech qanday tayyorgarlik kerak emas. Boshlovchi uchun.",
+        locale === "ru"
+          ? "Подходит без подготовки. Каждая тема объясняется заново."
+          : locale === "en"
+          ? "No prep needed. Every topic is explained from first principles."
+          : "Hech qanday tayyorgarlik kerak emas. Har bir mavzu noldan tushuntiriladi.",
     },
     {
       Icon: BotIcon,
       title: locale === "ru" ? "Реальные проекты" : locale === "en" ? "Real projects" : "Real loyihalar",
       text:
-        locale === "ru" ? "Боты, API, веб-приложения, базы." :
-        locale === "en" ? "Bots, APIs, web apps, databases." :
-        "Botlar, API, web ilovalar va ma'lumotlar bazasi.",
+        locale === "ru"
+          ? "Telegram-боты, API, CRM, AI — то, что используется на работе."
+          : locale === "en"
+          ? "Telegram bots, APIs, CRM, AI — the things used in production."
+          : "Telegram-botlar, API, CRM, AI — real ishda qo'llaniladigan loyihalar.",
     },
     {
       Icon: DatabaseIcon,
-      title: locale === "ru" ? "Структурировано" : locale === "en" ? "Structured" : "Tuzilgan",
+      title: locale === "ru" ? "Структурировано" : locale === "en" ? "Structured" : "Tartibli",
       text:
-        locale === "ru" ? "Темы идут по логичной последовательности." :
-        locale === "en" ? "Topics flow in a logical order." :
-        "Mavzular mantiqiy tartibda.",
+        locale === "ru"
+          ? "Темы идут логически, без скачков и пропусков."
+          : locale === "en"
+          ? "Topics flow in a logical order, no skipping, no gaps."
+          : "Mavzular mantiqiy ketma-ketlikda, sakrash va bo'shliqlarsiz.",
     },
     {
       Icon: RocketIcon,
-      title: locale === "ru" ? "Применимо" : locale === "en" ? "Practical" : "Amaliy",
+      title: locale === "ru" ? "Практика" : locale === "en" ? "Hands-on" : "Amaliy",
       text:
-        locale === "ru" ? "Каждое объяснение заканчивается практикой." :
-        locale === "en" ? "Every concept ends in hands-on practice." :
-        "Har bir tushuncha amaliyot bilan tugaydi.",
+        locale === "ru"
+          ? "Каждое объяснение завершается заданием — учишься, применяя."
+          : locale === "en"
+          ? "Every concept ends in hands-on practice — you learn by doing."
+          : "Har bir tushuncha amaliyot bilan tugaydi — bajarib o'rganasiz.",
     },
   ];
 
   return (
-    <section className="section relative">
+    <section className="section relative bg-cream-100">
       <div className="container">
-        <div className="relative overflow-hidden rounded-[2rem] bg-ink-900 px-6 py-12 md:px-14 md:py-20 text-cream-50">
-          {/* Background fx — coral-only */}
-          <div aria-hidden className="absolute -top-32 -left-24 h-96 w-96 rounded-full bg-brand-500/35 blur-3xl animate-blob" />
-          <div aria-hidden className="absolute -bottom-32 -right-20 h-96 w-96 rounded-full bg-brand-700/30 blur-3xl animate-blob" style={{ animationDelay: "-7s" }} />
+        <div className="relative overflow-hidden bg-ink-900 px-6 py-12 md:px-14 md:py-20 text-cream-50 brutal-border-thick brutal-shadow-coral">
+          {/* Decorative diagonal stripes — top right */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute top-0 right-0 h-24 w-48 stripes-coral opacity-60"
+          />
           <div aria-hidden className="absolute inset-0 grid-bg opacity-15" />
-          <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cream-50/20 to-transparent" />
 
-          <div className="relative grid gap-12 lg:grid-cols-[1.1fr_1fr] items-center">
-            {/* Left */}
+          <div className="relative grid gap-12 lg:grid-cols-[1.1fr_1fr] items-start">
+            {/* LEFT — mission narrative */}
             <div>
-              <span className="inline-flex items-center gap-2 rounded-full bg-cream-50/10 px-3 py-1.5 text-[11px] font-mono uppercase tracking-[0.18em] ring-1 ring-cream-50/15 backdrop-blur">
-                <SparklesIcon size={13} className="text-brand-400" />
+              <span className="inline-flex items-center gap-2 bg-cream-50 text-ink-900 px-3 py-1.5 text-[11px] font-mono font-bold uppercase tracking-[0.22em] border-2 border-cream-50">
+                <SparklesIcon size={13} className="text-brand-500" />
                 404Dev Learn
-                <span className="ml-1 rounded-full bg-brand-500/20 px-2 py-0.5 text-[10px] font-bold text-brand-400">
-                  {locale === "ru" ? "БЕСПЛАТНО" : locale === "en" ? "FREE" : "BEPUL"}
+                <span className="ml-1 bg-brand-500 text-ink-900 px-2 py-0.5 text-[10px] font-bold border border-ink-900">
+                  {locale === "uz" ? "BEPUL" : locale === "ru" ? "БЕСПЛАТНО" : "FREE"}
                 </span>
               </span>
 
-              <h2 className="mt-5 font-display text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tightest leading-[1.05]">
-                {headline}
+              <h2
+                className="mt-6 font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.0]"
+                style={{ letterSpacing: "-0.04em" }}
+              >
+                {t.home.learnTitle}
               </h2>
-              <p className="mt-5 max-w-xl text-cream-50/75 text-lg leading-relaxed">{subtitle}</p>
+
+              <p className="mt-5 max-w-xl text-cream-50 text-lg md:text-xl leading-snug font-medium">
+                {t.home.learnLead}
+              </p>
+
+              <p className="mt-5 max-w-xl text-cream-50/75 text-base leading-relaxed">
+                {t.home.learnMission}
+              </p>
 
               <div className="mt-8 flex flex-wrap items-center gap-3">
                 <Link href="/learn" className="btn btn-accent btn-lg group">
-                  <RocketIcon size={18} /> {cta1}
-                  <ArrowUpRightIcon size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition" />
+                  <RocketIcon size={18} /> {t.home.learnCTA}
+                  <ArrowUpRightIcon
+                    size={14}
+                    className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition"
+                  />
                 </Link>
-                <Link href="/learn" className="btn btn-lg bg-cream-50/10 text-cream-50 hover:bg-cream-50/20">
-                  {cta2}
+                <Link
+                  href="/learn"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 text-sm font-bold uppercase tracking-wider bg-cream-50 text-ink-900 border-2 border-cream-50 hover:bg-cream-50/90 transition"
+                >
+                  {t.home.learnSecondaryCTA}
+                  <ArrowUpRightIcon size={14} />
                 </Link>
               </div>
 
-              {/* Tech pills */}
-              <div className="mt-9 flex flex-wrap gap-2">
-                {TECH_PILLS.map((p) => (
-                  <span key={p.label} className={`inline-flex items-center rounded-full ring-1 ${p.tint} px-3 py-1 text-xs font-medium font-mono`}>
-                    {p.label}
-                  </span>
-                ))}
+              {/* Tech list */}
+              <div className="mt-9">
+                <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-cream-50/60 font-bold">
+                  {locale === "ru" ? "/ что преподаём" : locale === "en" ? "/ what we teach" : "/ nimani o'rgatamiz"}
+                </span>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {TECHS.map((tech) => (
+                    <span
+                      key={tech}
+                      className="inline-flex items-center bg-cream-50/[.06] text-cream-50/90 px-2.5 py-1 text-xs font-mono border border-cream-50/20"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Mission line — small footer */}
+              <div className="mt-9 flex items-start gap-2.5 max-w-md text-xs text-cream-50/60 leading-relaxed">
+                <CheckIcon size={14} className="text-brand-500 mt-0.5 shrink-0" />
+                <span>
+                  {locale === "uz"
+                    ? "Har bir kontrakt ulushi — yangi darslar uchun. Bu bizning O'zbekiston kelajagiga investitsiyamiz."
+                    : locale === "ru"
+                    ? "Часть от каждого контракта идёт на новые уроки. Это наша инвестиция в будущее Узбекистана."
+                    : "A share of every contract funds new lessons. This is our investment in the future of Uzbekistan."}
+                </span>
               </div>
             </div>
 
-            {/* Right — feature cards */}
+            {/* RIGHT — 4 pillars */}
             <div className="grid grid-cols-2 gap-3 md:gap-4">
-              {features.map((f, i) => (
+              {pillars.map((p, i) => (
                 <div
                   key={i}
-                  className="group rounded-2xl bg-cream-50/[.04] ring-1 ring-cream-50/10 p-5 backdrop-blur transition hover:bg-cream-50/[.08] hover:ring-cream-50/20 hover:-translate-y-0.5"
+                  className="group relative bg-cream-50/[.04] border-2 border-cream-50/20 p-5 transition hover:bg-cream-50/[.08] hover:border-cream-50/40 hover:-translate-x-0.5 hover:-translate-y-0.5"
                 >
-                  <span className="grid h-10 w-10 place-items-center rounded-xl bg-brand-500/20 text-brand-400 ring-1 ring-brand-400/30">
-                    <f.Icon size={18} />
+                  <span className="grid h-10 w-10 place-items-center bg-brand-500 text-ink-900 border-2 border-cream-50">
+                    <p.Icon size={18} />
                   </span>
-                  <h3 className="mt-3 text-sm font-bold tracking-tight text-cream-50">{f.title}</h3>
-                  <p className="mt-1 text-xs leading-5 text-cream-50/70">{f.text}</p>
+                  <h3 className="mt-4 font-display text-base font-bold text-cream-50" style={{ letterSpacing: "-0.02em" }}>
+                    {p.title}
+                  </h3>
+                  <p className="mt-1.5 text-xs leading-5 text-cream-50/70">{p.text}</p>
                 </div>
               ))}
             </div>
