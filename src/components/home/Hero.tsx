@@ -31,19 +31,22 @@ export default function Hero({ locale }: { locale: Locale }) {
       ? ["Free growth audit", "Transparent pricing", "Long-term partnership"]
       : ["Bepul growth audit", "Aniq narx", "Long-term partner"];
 
-  // Marquee ticker — growth / marketing / automation lexicon
+  // Marquee ticker — universal English lexicon for the global agency feel.
   const ticker = [
     "SEO",
-    locale === "ru" ? "Лидогенерация" : locale === "en" ? "Lead Generation" : "Lead Generation",
+    "Lead Generation",
     "Google",
     "Yandex",
     "AI Automation",
     "GPT",
     "Gemini",
-    locale === "ru" ? "Конверсия" : locale === "en" ? "Conversion" : "Konversiya",
+    "Conversion",
     "CRO",
     "CRM",
-    locale === "ru" ? "Воронки" : locale === "en" ? "Funnels" : "Voronkalar",
+    "Funnels",
+    "Influencer Marketing",
+    "Instagram",
+    "TikTok",
     "Telegram",
     "Branding",
     "UI / UX",
@@ -53,7 +56,7 @@ export default function Hero({ locale }: { locale: Locale }) {
     "Click",
     "Payme",
     "Uzum",
-    locale === "ru" ? "Растём" : locale === "en" ? "We grow" : "O'samiz",
+    "Growth",
   ];
   const tickerLoop = [...ticker, ...ticker];
 
